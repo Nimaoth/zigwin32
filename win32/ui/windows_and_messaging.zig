@@ -1604,22 +1604,22 @@ pub const __WARNING_POST_EXPECTED = @as(u32, 28210);
 //--------------------------------------------------------------------------------
 // Section: Types (211)
 //--------------------------------------------------------------------------------
-pub const WINSTAENUMPROCA = fn(
+pub const WINSTAENUMPROCA = fn (
     param0: PSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const WINSTAENUMPROCW = fn(
+pub const WINSTAENUMPROCW = fn (
     param0: PWSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DESKTOPENUMPROCA = fn(
+pub const DESKTOPENUMPROCA = fn (
     param0: PSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DESKTOPENUMPROCW = fn(
+pub const DESKTOPENUMPROCW = fn (
     param0: PWSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -1640,14 +1640,7 @@ pub const DI_FLAGS = enum(u32) {
         DEFAULTSIZE: u1 = 0,
         NOMIRROR: u1 = 0,
     }) DI_FLAGS {
-        return @intToEnum(DI_FLAGS,
-              (if (o.MASK == 1) @enumToInt(DI_FLAGS.MASK) else 0)
-            | (if (o.IMAGE == 1) @enumToInt(DI_FLAGS.IMAGE) else 0)
-            | (if (o.NORMAL == 1) @enumToInt(DI_FLAGS.NORMAL) else 0)
-            | (if (o.COMPAT == 1) @enumToInt(DI_FLAGS.COMPAT) else 0)
-            | (if (o.DEFAULTSIZE == 1) @enumToInt(DI_FLAGS.DEFAULTSIZE) else 0)
-            | (if (o.NOMIRROR == 1) @enumToInt(DI_FLAGS.NOMIRROR) else 0)
-        );
+        return @intToEnum(DI_FLAGS, (if (o.MASK == 1) @enumToInt(DI_FLAGS.MASK) else 0) | (if (o.IMAGE == 1) @enumToInt(DI_FLAGS.IMAGE) else 0) | (if (o.NORMAL == 1) @enumToInt(DI_FLAGS.NORMAL) else 0) | (if (o.COMPAT == 1) @enumToInt(DI_FLAGS.COMPAT) else 0) | (if (o.DEFAULTSIZE == 1) @enumToInt(DI_FLAGS.DEFAULTSIZE) else 0) | (if (o.NOMIRROR == 1) @enumToInt(DI_FLAGS.NOMIRROR) else 0));
     }
 };
 pub const DI_MASK = DI_FLAGS.MASK;
@@ -1657,7 +1650,7 @@ pub const DI_COMPAT = DI_FLAGS.COMPAT;
 pub const DI_DEFAULTSIZE = DI_FLAGS.DEFAULTSIZE;
 pub const DI_NOMIRROR = DI_FLAGS.NOMIRROR;
 
-pub const LPOFNHOOKPROC = fn(
+pub const LPOFNHOOKPROC = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
@@ -1665,124 +1658,124 @@ pub const LPOFNHOOKPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPENFILENAME_NT4A = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u8,
-    lpstrCustomFilter: PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u8,
-    lpstrTitle: [*:0]const u8,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u8,
+    .X64, .Arm64 => struct {
+        pub const OPENFILENAME_NT4A = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            lpstrFilter: [*:0]const u8,
+            lpstrCustomFilter: PSTR,
+            nMaxCustFilter: u32,
+            nFilterIndex: u32,
+            lpstrFile: PSTR,
+            nMaxFile: u32,
+            lpstrFileTitle: PSTR,
+            nMaxFileTitle: u32,
+            lpstrInitialDir: [*:0]const u8,
+            lpstrTitle: [*:0]const u8,
+            Flags: u32,
+            nFileOffset: u16,
+            nFileExtension: u16,
+            lpstrDefExt: [*:0]const u8,
+            lCustData: LPARAM,
+            lpfnHook: LPOFNHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPENFILENAME_NT4W = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u16,
-    lpstrCustomFilter: PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u16,
-    lpstrTitle: [*:0]const u16,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u16,
+    .X64, .Arm64 => struct {
+        pub const OPENFILENAME_NT4W = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            lpstrFilter: [*:0]const u16,
+            lpstrCustomFilter: PWSTR,
+            nMaxCustFilter: u32,
+            nFilterIndex: u32,
+            lpstrFile: PWSTR,
+            nMaxFile: u32,
+            lpstrFileTitle: PWSTR,
+            nMaxFileTitle: u32,
+            lpstrInitialDir: [*:0]const u16,
+            lpstrTitle: [*:0]const u16,
+            Flags: u32,
+            nFileOffset: u16,
+            nFileExtension: u16,
+            lpstrDefExt: [*:0]const u16,
+            lCustData: LPARAM,
+            lpfnHook: LPOFNHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPENFILENAMEA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u8,
-    lpstrCustomFilter: PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u8,
-    lpstrTitle: [*:0]const u8,
-    Flags: OPEN_FILENAME_FLAGS,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-    pvReserved: *c_void,
-    dwReserved: u32,
-    FlagsEx: OPEN_FILENAME_FLAGS_EX,
+    .X64, .Arm64 => struct {
+        pub const OPENFILENAMEA = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            lpstrFilter: [*:0]const u8,
+            lpstrCustomFilter: PSTR,
+            nMaxCustFilter: u32,
+            nFilterIndex: u32,
+            lpstrFile: PSTR,
+            nMaxFile: u32,
+            lpstrFileTitle: PSTR,
+            nMaxFileTitle: u32,
+            lpstrInitialDir: [*:0]const u8,
+            lpstrTitle: [*:0]const u8,
+            Flags: OPEN_FILENAME_FLAGS,
+            nFileOffset: u16,
+            nFileExtension: u16,
+            lpstrDefExt: [*:0]const u8,
+            lCustData: LPARAM,
+            lpfnHook: LPOFNHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+            pvReserved: *c_void,
+            dwReserved: u32,
+            FlagsEx: OPEN_FILENAME_FLAGS_EX,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OPENFILENAMEW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u16,
-    lpstrCustomFilter: PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u16,
-    lpstrTitle: [*:0]const u16,
-    Flags: OPEN_FILENAME_FLAGS,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-    pvReserved: *c_void,
-    dwReserved: u32,
-    FlagsEx: OPEN_FILENAME_FLAGS_EX,
+    .X64, .Arm64 => struct {
+        pub const OPENFILENAMEW = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            lpstrFilter: [*:0]const u16,
+            lpstrCustomFilter: PWSTR,
+            nMaxCustFilter: u32,
+            nFilterIndex: u32,
+            lpstrFile: PWSTR,
+            nMaxFile: u32,
+            lpstrFileTitle: PWSTR,
+            nMaxFileTitle: u32,
+            lpstrInitialDir: [*:0]const u16,
+            lpstrTitle: [*:0]const u16,
+            Flags: OPEN_FILENAME_FLAGS,
+            nFileOffset: u16,
+            nFileExtension: u16,
+            lpstrDefExt: [*:0]const u16,
+            lCustData: LPARAM,
+            lpfnHook: LPOFNHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+            pvReserved: *c_void,
+            dwReserved: u32,
+            FlagsEx: OPEN_FILENAME_FLAGS_EX,
+        };
+    },
+    else => struct {},
 };
 
-}, else => struct { } };
-
-pub const LPCCHOOKPROC = fn(
+pub const LPCCHOOKPROC = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
@@ -1790,86 +1783,86 @@ pub const LPCCHOOKPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OFNOTIFYA = extern struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEA,
-    pszFile: PSTR,
+    .X64, .Arm64 => struct {
+        pub const OFNOTIFYA = extern struct {
+            hdr: NMHDR,
+            lpOFN: *OPENFILENAMEA,
+            pszFile: PSTR,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OFNOTIFYW = extern struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEW,
-    pszFile: PWSTR,
+    .X64, .Arm64 => struct {
+        pub const OFNOTIFYW = extern struct {
+            hdr: NMHDR,
+            lpOFN: *OPENFILENAMEW,
+            pszFile: PWSTR,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OFNOTIFYEXA = extern struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEA,
-    psf: *c_void,
-    pidl: *c_void,
+    .X64, .Arm64 => struct {
+        pub const OFNOTIFYEXA = extern struct {
+            hdr: NMHDR,
+            lpOFN: *OPENFILENAMEA,
+            psf: *c_void,
+            pidl: *c_void,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const OFNOTIFYEXW = extern struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEW,
-    psf: *c_void,
-    pidl: *c_void,
+    .X64, .Arm64 => struct {
+        pub const OFNOTIFYEXW = extern struct {
+            hdr: NMHDR,
+            lpOFN: *OPENFILENAMEW,
+            psf: *c_void,
+            pidl: *c_void,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CHOOSECOLORA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HWND,
-    rgbResult: u32,
-    lpCustColors: *u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCCHOOKPROC,
-    lpTemplateName: [*:0]const u8,
+    .X64, .Arm64 => struct {
+        pub const CHOOSECOLORA = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HWND,
+            rgbResult: u32,
+            lpCustColors: *u32,
+            Flags: u32,
+            lCustData: LPARAM,
+            lpfnHook: LPCCHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CHOOSECOLORW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HWND,
-    rgbResult: u32,
-    lpCustColors: *u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCCHOOKPROC,
-    lpTemplateName: [*:0]const u16,
+    .X64, .Arm64 => struct {
+        pub const CHOOSECOLORW = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HWND,
+            rgbResult: u32,
+            lpCustColors: *u32,
+            Flags: u32,
+            lCustData: LPARAM,
+            lpfnHook: LPCCHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+        };
+    },
+    else => struct {},
 };
 
-}, else => struct { } };
-
-pub const LPFRHOOKPROC = fn(
+pub const LPFRHOOKPROC = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
@@ -1877,44 +1870,44 @@ pub const LPFRHOOKPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FINDREPLACEA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    Flags: FINDREPLACE_FLAGS,
-    lpstrFindWhat: PSTR,
-    lpstrReplaceWith: PSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: LPFRHOOKPROC,
-    lpTemplateName: [*:0]const u8,
+    .X64, .Arm64 => struct {
+        pub const FINDREPLACEA = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            Flags: FINDREPLACE_FLAGS,
+            lpstrFindWhat: PSTR,
+            lpstrReplaceWith: PSTR,
+            wFindWhatLen: u16,
+            wReplaceWithLen: u16,
+            lCustData: LPARAM,
+            lpfnHook: LPFRHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const FINDREPLACEW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    Flags: FINDREPLACE_FLAGS,
-    lpstrFindWhat: PWSTR,
-    lpstrReplaceWith: PWSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: LPFRHOOKPROC,
-    lpTemplateName: [*:0]const u16,
+    .X64, .Arm64 => struct {
+        pub const FINDREPLACEW = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            Flags: FINDREPLACE_FLAGS,
+            lpstrFindWhat: PWSTR,
+            lpstrReplaceWith: PWSTR,
+            wFindWhatLen: u16,
+            wReplaceWithLen: u16,
+            lCustData: LPARAM,
+            lpfnHook: LPFRHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+        };
+    },
+    else => struct {},
 };
 
-}, else => struct { } };
-
-pub const LPCFHOOKPROC = fn(
+pub const LPCFHOOKPROC = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
@@ -1922,61 +1915,61 @@ pub const LPCFHOOKPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CHOOSEFONTA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDC: HDC,
-    lpLogFont: *LOGFONTA,
-    iPointSize: i32,
-    Flags: CHOOSEFONT_FLAGS,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCFHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-    hInstance: HINSTANCE,
-    lpszStyle: PSTR,
-    nFontType: CHOOSEFONT_FONT_TYPE,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
+    .X64, .Arm64 => struct {
+        pub const CHOOSEFONTA = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDC: HDC,
+            lpLogFont: *LOGFONTA,
+            iPointSize: i32,
+            Flags: CHOOSEFONT_FLAGS,
+            rgbColors: u32,
+            lCustData: LPARAM,
+            lpfnHook: LPCFHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+            hInstance: HINSTANCE,
+            lpszStyle: PSTR,
+            nFontType: CHOOSEFONT_FONT_TYPE,
+            ___MISSING_ALIGNMENT__: u16,
+            nSizeMin: i32,
+            nSizeMax: i32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const CHOOSEFONTW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDC: HDC,
-    lpLogFont: *LOGFONTW,
-    iPointSize: i32,
-    Flags: CHOOSEFONT_FLAGS,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCFHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-    hInstance: HINSTANCE,
-    lpszStyle: PWSTR,
-    nFontType: CHOOSEFONT_FONT_TYPE,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
+    .X64, .Arm64 => struct {
+        pub const CHOOSEFONTW = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDC: HDC,
+            lpLogFont: *LOGFONTW,
+            iPointSize: i32,
+            Flags: CHOOSEFONT_FLAGS,
+            rgbColors: u32,
+            lCustData: LPARAM,
+            lpfnHook: LPCFHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+            hInstance: HINSTANCE,
+            lpszStyle: PWSTR,
+            nFontType: CHOOSEFONT_FONT_TYPE,
+            ___MISSING_ALIGNMENT__: u16,
+            nSizeMin: i32,
+            nSizeMax: i32,
+        };
+    },
+    else => struct {},
 };
 
-}, else => struct { } };
-
-pub const LPPRINTHOOKPROC = fn(
+pub const LPPRINTHOOKPROC = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub const LPSETUPHOOKPROC = fn(
+pub const LPSETUPHOOKPROC = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
@@ -1984,58 +1977,58 @@ pub const LPSETUPHOOKPROC = fn(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTDLGA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: LPPRINTHOOKPROC,
-    lpfnSetupHook: LPSETUPHOOKPROC,
-    lpPrintTemplateName: [*:0]const u8,
-    lpSetupTemplateName: [*:0]const u8,
-    hPrintTemplate: isize,
-    hSetupTemplate: isize,
+    .X64, .Arm64 => struct {
+        pub const PRINTDLGA = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            hDC: HDC,
+            Flags: PRINTDLGEX_FLAGS,
+            nFromPage: u16,
+            nToPage: u16,
+            nMinPage: u16,
+            nMaxPage: u16,
+            nCopies: u16,
+            hInstance: HINSTANCE,
+            lCustData: LPARAM,
+            lpfnPrintHook: LPPRINTHOOKPROC,
+            lpfnSetupHook: LPSETUPHOOKPROC,
+            lpPrintTemplateName: [*:0]const u8,
+            lpSetupTemplateName: [*:0]const u8,
+            hPrintTemplate: isize,
+            hSetupTemplate: isize,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTDLGW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: LPPRINTHOOKPROC,
-    lpfnSetupHook: LPSETUPHOOKPROC,
-    lpPrintTemplateName: [*:0]const u16,
-    lpSetupTemplateName: [*:0]const u16,
-    hPrintTemplate: isize,
-    hSetupTemplate: isize,
+    .X64, .Arm64 => struct {
+        pub const PRINTDLGW = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            hDC: HDC,
+            Flags: PRINTDLGEX_FLAGS,
+            nFromPage: u16,
+            nToPage: u16,
+            nMinPage: u16,
+            nMaxPage: u16,
+            nCopies: u16,
+            hInstance: HINSTANCE,
+            lCustData: LPARAM,
+            lpfnPrintHook: LPPRINTHOOKPROC,
+            lpfnSetupHook: LPSETUPHOOKPROC,
+            lpPrintTemplateName: [*:0]const u16,
+            lpSetupTemplateName: [*:0]const u16,
+            hPrintTemplate: isize,
+            hSetupTemplate: isize,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IPrintDialogCallback_Value = @import("../zig.zig").Guid.initString("5852a2c3-6530-11d1-b6a3-0000f8757bf9");
@@ -2043,13 +2036,13 @@ pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
 pub const IPrintDialogCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitDone: fn(
+        InitDone: fn (
             self: *const IPrintDialogCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SelectionChange: fn(
+        SelectionChange: fn (
             self: *const IPrintDialogCallback,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        HandleMessage: fn(
+        HandleMessage: fn (
             self: *const IPrintDialogCallback,
             hDlg: HWND,
             uMsg: u32,
@@ -2059,21 +2052,23 @@ pub const IPrintDialogCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_InitDone(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).InitDone(@ptrCast(*const IPrintDialogCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_SelectionChange(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).SelectionChange(@ptrCast(*const IPrintDialogCallback, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: *LRESULT) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).HandleMessage(@ptrCast(*const IPrintDialogCallback, self), hDlg, uMsg, wParam, lParam, pResult);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub fn IPrintDialogCallback_InitDone(self: *const T) callconv(.Inline) HRESULT {
+                return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).InitDone(@ptrCast(*const IPrintDialogCallback, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub fn IPrintDialogCallback_SelectionChange(self: *const T) callconv(.Inline) HRESULT {
+                return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).SelectionChange(@ptrCast(*const IPrintDialogCallback, self));
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub fn IPrintDialogCallback_HandleMessage(self: *const T, hDlg: HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: *LRESULT) callconv(.Inline) HRESULT {
+                return @ptrCast(*const IPrintDialogCallback.VTable, self.vtable).HandleMessage(@ptrCast(*const IPrintDialogCallback, self), hDlg, uMsg, wParam, lParam, pResult);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
@@ -2083,129 +2078,131 @@ pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
 pub const IPrintDialogServices = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCurrentDevMode: fn(
+        GetCurrentDevMode: fn (
             self: *const IPrintDialogServices,
             pDevMode: *DEVMODEA,
             pcbSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentPrinterName: fn(
+        GetCurrentPrinterName: fn (
             self: *const IPrintDialogServices,
             pPrinterName: ?[*:0]u16,
             pcchSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetCurrentPortName: fn(
+        GetCurrentPortName: fn (
             self: *const IPrintDialogServices,
             pPortName: ?[*:0]u16,
             pcchSize: *u32,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: *DEVMODEA, pcbSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentDevMode(@ptrCast(*const IPrintDialogServices, self), pDevMode, pcbSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPrinterName(@ptrCast(*const IPrintDialogServices, self), pPrinterName, pcchSize);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPortName(@ptrCast(*const IPrintDialogServices, self), pPortName, pcchSize);
-        }
-    };}
+    pub fn MethodMixin(comptime T: type) type {
+        return struct {
+            pub usingnamespace IUnknown.MethodMixin(T);
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub fn IPrintDialogServices_GetCurrentDevMode(self: *const T, pDevMode: *DEVMODEA, pcbSize: *u32) callconv(.Inline) HRESULT {
+                return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentDevMode(@ptrCast(*const IPrintDialogServices, self), pDevMode, pcbSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub fn IPrintDialogServices_GetCurrentPrinterName(self: *const T, pPrinterName: ?[*:0]u16, pcchSize: *u32) callconv(.Inline) HRESULT {
+                return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPrinterName(@ptrCast(*const IPrintDialogServices, self), pPrinterName, pcchSize);
+            }
+            // NOTE: method is namespaced with interface name to avoid conflicts for now
+            pub fn IPrintDialogServices_GetCurrentPortName(self: *const T, pPortName: ?[*:0]u16, pcchSize: *u32) callconv(.Inline) HRESULT {
+                return @ptrCast(*const IPrintDialogServices.VTable, self.vtable).GetCurrentPortName(@ptrCast(*const IPrintDialogServices, self), pPortName, pcchSize);
+            }
+        };
+    }
     pub usingnamespace MethodMixin(@This());
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTPAGERANGE = extern struct {
-    nFromPage: u32,
-    nToPage: u32,
+    .X64, .Arm64 => struct {
+        pub const PRINTPAGERANGE = extern struct {
+            nFromPage: u32,
+            nToPage: u32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTDLGEXA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: *PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: HINSTANCE,
-    lpPrintTemplateName: [*:0]const u8,
-    lpCallback: *IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: *HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
+    .X64, .Arm64 => struct {
+        pub const PRINTDLGEXA = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            hDC: HDC,
+            Flags: PRINTDLGEX_FLAGS,
+            Flags2: u32,
+            ExclusionFlags: u32,
+            nPageRanges: u32,
+            nMaxPageRanges: u32,
+            lpPageRanges: *PRINTPAGERANGE,
+            nMinPage: u32,
+            nMaxPage: u32,
+            nCopies: u32,
+            hInstance: HINSTANCE,
+            lpPrintTemplateName: [*:0]const u8,
+            lpCallback: *IUnknown,
+            nPropertyPages: u32,
+            lphPropertyPages: *HPROPSHEETPAGE,
+            nStartPage: u32,
+            dwResultAction: u32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PRINTDLGEXW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: *PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: HINSTANCE,
-    lpPrintTemplateName: [*:0]const u16,
-    lpCallback: *IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: *HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
+    .X64, .Arm64 => struct {
+        pub const PRINTDLGEXW = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            hDC: HDC,
+            Flags: PRINTDLGEX_FLAGS,
+            Flags2: u32,
+            ExclusionFlags: u32,
+            nPageRanges: u32,
+            nMaxPageRanges: u32,
+            lpPageRanges: *PRINTPAGERANGE,
+            nMinPage: u32,
+            nMaxPage: u32,
+            nCopies: u32,
+            hInstance: HINSTANCE,
+            lpPrintTemplateName: [*:0]const u16,
+            lpCallback: *IUnknown,
+            nPropertyPages: u32,
+            lphPropertyPages: *HPROPSHEETPAGE,
+            nStartPage: u32,
+            dwResultAction: u32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DEVNAMES = extern struct {
-    wDriverOffset: u16,
-    wDeviceOffset: u16,
-    wOutputOffset: u16,
-    wDefault: u16,
+    .X64, .Arm64 => struct {
+        pub const DEVNAMES = extern struct {
+            wDriverOffset: u16,
+            wDeviceOffset: u16,
+            wOutputOffset: u16,
+            wDefault: u16,
+        };
+    },
+    else => struct {},
 };
 
-}, else => struct { } };
-
-pub const LPPAGEPAINTHOOK = fn(
+pub const LPPAGEPAINTHOOK = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub const LPPAGESETUPHOOK = fn(
+pub const LPPAGESETUPHOOK = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
@@ -2213,48 +2210,48 @@ pub const LPPAGESETUPHOOK = fn(
 ) callconv(@import("std").os.windows.WINAPI) usize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PAGESETUPDLGA = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    Flags: PAGESETUPDLG_FLAGS,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: LPPAGESETUPHOOK,
-    lpfnPagePaintHook: LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: [*:0]const u8,
-    hPageSetupTemplate: isize,
+    .X64, .Arm64 => struct {
+        pub const PAGESETUPDLGA = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            Flags: PAGESETUPDLG_FLAGS,
+            ptPaperSize: POINT,
+            rtMinMargin: RECT,
+            rtMargin: RECT,
+            hInstance: HINSTANCE,
+            lCustData: LPARAM,
+            lpfnPageSetupHook: LPPAGESETUPHOOK,
+            lpfnPagePaintHook: LPPAGEPAINTHOOK,
+            lpPageSetupTemplateName: [*:0]const u8,
+            hPageSetupTemplate: isize,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const PAGESETUPDLGW = extern struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    Flags: PAGESETUPDLG_FLAGS,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: LPPAGESETUPHOOK,
-    lpfnPagePaintHook: LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: [*:0]const u16,
-    hPageSetupTemplate: isize,
+    .X64, .Arm64 => struct {
+        pub const PAGESETUPDLGW = extern struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            Flags: PAGESETUPDLG_FLAGS,
+            ptPaperSize: POINT,
+            rtMinMargin: RECT,
+            rtMargin: RECT,
+            hInstance: HINSTANCE,
+            lCustData: LPARAM,
+            lpfnPageSetupHook: LPPAGESETUPHOOK,
+            lpfnPagePaintHook: LPPAGEPAINTHOOK,
+            lpPageSetupTemplateName: [*:0]const u16,
+            hPageSetupTemplate: isize,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub const WNDCLASS_STYLES = enum(u32) {
     VREDRAW = 1,
@@ -2286,21 +2283,7 @@ pub const WNDCLASS_STYLES = enum(u32) {
         IME: u1 = 0,
         DROPSHADOW: u1 = 0,
     }) WNDCLASS_STYLES {
-        return @intToEnum(WNDCLASS_STYLES,
-              (if (o.VREDRAW == 1) @enumToInt(WNDCLASS_STYLES.VREDRAW) else 0)
-            | (if (o.HREDRAW == 1) @enumToInt(WNDCLASS_STYLES.HREDRAW) else 0)
-            | (if (o.DBLCLKS == 1) @enumToInt(WNDCLASS_STYLES.DBLCLKS) else 0)
-            | (if (o.OWNDC == 1) @enumToInt(WNDCLASS_STYLES.OWNDC) else 0)
-            | (if (o.CLASSDC == 1) @enumToInt(WNDCLASS_STYLES.CLASSDC) else 0)
-            | (if (o.PARENTDC == 1) @enumToInt(WNDCLASS_STYLES.PARENTDC) else 0)
-            | (if (o.NOCLOSE == 1) @enumToInt(WNDCLASS_STYLES.NOCLOSE) else 0)
-            | (if (o.SAVEBITS == 1) @enumToInt(WNDCLASS_STYLES.SAVEBITS) else 0)
-            | (if (o.BYTEALIGNCLIENT == 1) @enumToInt(WNDCLASS_STYLES.BYTEALIGNCLIENT) else 0)
-            | (if (o.BYTEALIGNWINDOW == 1) @enumToInt(WNDCLASS_STYLES.BYTEALIGNWINDOW) else 0)
-            | (if (o.GLOBALCLASS == 1) @enumToInt(WNDCLASS_STYLES.GLOBALCLASS) else 0)
-            | (if (o.IME == 1) @enumToInt(WNDCLASS_STYLES.IME) else 0)
-            | (if (o.DROPSHADOW == 1) @enumToInt(WNDCLASS_STYLES.DROPSHADOW) else 0)
-        );
+        return @intToEnum(WNDCLASS_STYLES, (if (o.VREDRAW == 1) @enumToInt(WNDCLASS_STYLES.VREDRAW) else 0) | (if (o.HREDRAW == 1) @enumToInt(WNDCLASS_STYLES.HREDRAW) else 0) | (if (o.DBLCLKS == 1) @enumToInt(WNDCLASS_STYLES.DBLCLKS) else 0) | (if (o.OWNDC == 1) @enumToInt(WNDCLASS_STYLES.OWNDC) else 0) | (if (o.CLASSDC == 1) @enumToInt(WNDCLASS_STYLES.CLASSDC) else 0) | (if (o.PARENTDC == 1) @enumToInt(WNDCLASS_STYLES.PARENTDC) else 0) | (if (o.NOCLOSE == 1) @enumToInt(WNDCLASS_STYLES.NOCLOSE) else 0) | (if (o.SAVEBITS == 1) @enumToInt(WNDCLASS_STYLES.SAVEBITS) else 0) | (if (o.BYTEALIGNCLIENT == 1) @enumToInt(WNDCLASS_STYLES.BYTEALIGNCLIENT) else 0) | (if (o.BYTEALIGNWINDOW == 1) @enumToInt(WNDCLASS_STYLES.BYTEALIGNWINDOW) else 0) | (if (o.GLOBALCLASS == 1) @enumToInt(WNDCLASS_STYLES.GLOBALCLASS) else 0) | (if (o.IME == 1) @enumToInt(WNDCLASS_STYLES.IME) else 0) | (if (o.DROPSHADOW == 1) @enumToInt(WNDCLASS_STYLES.DROPSHADOW) else 0));
     }
 };
 pub const CS_VREDRAW = WNDCLASS_STYLES.VREDRAW;
@@ -2329,12 +2312,7 @@ pub const CWP_FLAGS = enum(u32) {
         SKIPDISABLED: u1 = 0,
         SKIPTRANSPARENT: u1 = 0,
     }) CWP_FLAGS {
-        return @intToEnum(CWP_FLAGS,
-              (if (o.ALL == 1) @enumToInt(CWP_FLAGS.ALL) else 0)
-            | (if (o.SKIPINVISIBLE == 1) @enumToInt(CWP_FLAGS.SKIPINVISIBLE) else 0)
-            | (if (o.SKIPDISABLED == 1) @enumToInt(CWP_FLAGS.SKIPDISABLED) else 0)
-            | (if (o.SKIPTRANSPARENT == 1) @enumToInt(CWP_FLAGS.SKIPTRANSPARENT) else 0)
-        );
+        return @intToEnum(CWP_FLAGS, (if (o.ALL == 1) @enumToInt(CWP_FLAGS.ALL) else 0) | (if (o.SKIPINVISIBLE == 1) @enumToInt(CWP_FLAGS.SKIPINVISIBLE) else 0) | (if (o.SKIPDISABLED == 1) @enumToInt(CWP_FLAGS.SKIPDISABLED) else 0) | (if (o.SKIPTRANSPARENT == 1) @enumToInt(CWP_FLAGS.SKIPTRANSPARENT) else 0));
     }
 };
 pub const CWP_ALL = CWP_FLAGS.ALL;
@@ -2413,38 +2391,7 @@ pub const MESSAGEBOX_STYLE = enum(u32) {
         MODEMASK: u1 = 0,
         MISCMASK: u1 = 0,
     }) MESSAGEBOX_STYLE {
-        return @intToEnum(MESSAGEBOX_STYLE,
-              (if (o.ABORTRETRYIGNORE == 1) @enumToInt(MESSAGEBOX_STYLE.ABORTRETRYIGNORE) else 0)
-            | (if (o.CANCELTRYCONTINUE == 1) @enumToInt(MESSAGEBOX_STYLE.CANCELTRYCONTINUE) else 0)
-            | (if (o.HELP == 1) @enumToInt(MESSAGEBOX_STYLE.HELP) else 0)
-            | (if (o.OK == 1) @enumToInt(MESSAGEBOX_STYLE.OK) else 0)
-            | (if (o.OKCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.OKCANCEL) else 0)
-            | (if (o.RETRYCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.RETRYCANCEL) else 0)
-            | (if (o.YESNO == 1) @enumToInt(MESSAGEBOX_STYLE.YESNO) else 0)
-            | (if (o.YESNOCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.YESNOCANCEL) else 0)
-            | (if (o.ICONHAND == 1) @enumToInt(MESSAGEBOX_STYLE.ICONHAND) else 0)
-            | (if (o.ICONQUESTION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONQUESTION) else 0)
-            | (if (o.ICONEXCLAMATION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONEXCLAMATION) else 0)
-            | (if (o.ICONASTERISK == 1) @enumToInt(MESSAGEBOX_STYLE.ICONASTERISK) else 0)
-            | (if (o.USERICON == 1) @enumToInt(MESSAGEBOX_STYLE.USERICON) else 0)
-            | (if (o.DEFBUTTON2 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON2) else 0)
-            | (if (o.DEFBUTTON3 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON3) else 0)
-            | (if (o.DEFBUTTON4 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON4) else 0)
-            | (if (o.SYSTEMMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.SYSTEMMODAL) else 0)
-            | (if (o.TASKMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.TASKMODAL) else 0)
-            | (if (o.NOFOCUS == 1) @enumToInt(MESSAGEBOX_STYLE.NOFOCUS) else 0)
-            | (if (o.SETFOREGROUND == 1) @enumToInt(MESSAGEBOX_STYLE.SETFOREGROUND) else 0)
-            | (if (o.DEFAULT_DESKTOP_ONLY == 1) @enumToInt(MESSAGEBOX_STYLE.DEFAULT_DESKTOP_ONLY) else 0)
-            | (if (o.TOPMOST == 1) @enumToInt(MESSAGEBOX_STYLE.TOPMOST) else 0)
-            | (if (o.RIGHT == 1) @enumToInt(MESSAGEBOX_STYLE.RIGHT) else 0)
-            | (if (o.RTLREADING == 1) @enumToInt(MESSAGEBOX_STYLE.RTLREADING) else 0)
-            | (if (o.SERVICE_NOTIFICATION == 1) @enumToInt(MESSAGEBOX_STYLE.SERVICE_NOTIFICATION) else 0)
-            | (if (o.TYPEMASK == 1) @enumToInt(MESSAGEBOX_STYLE.TYPEMASK) else 0)
-            | (if (o.ICONMASK == 1) @enumToInt(MESSAGEBOX_STYLE.ICONMASK) else 0)
-            | (if (o.DEFMASK == 1) @enumToInt(MESSAGEBOX_STYLE.DEFMASK) else 0)
-            | (if (o.MODEMASK == 1) @enumToInt(MESSAGEBOX_STYLE.MODEMASK) else 0)
-            | (if (o.MISCMASK == 1) @enumToInt(MESSAGEBOX_STYLE.MISCMASK) else 0)
-        );
+        return @intToEnum(MESSAGEBOX_STYLE, (if (o.ABORTRETRYIGNORE == 1) @enumToInt(MESSAGEBOX_STYLE.ABORTRETRYIGNORE) else 0) | (if (o.CANCELTRYCONTINUE == 1) @enumToInt(MESSAGEBOX_STYLE.CANCELTRYCONTINUE) else 0) | (if (o.HELP == 1) @enumToInt(MESSAGEBOX_STYLE.HELP) else 0) | (if (o.OK == 1) @enumToInt(MESSAGEBOX_STYLE.OK) else 0) | (if (o.OKCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.OKCANCEL) else 0) | (if (o.RETRYCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.RETRYCANCEL) else 0) | (if (o.YESNO == 1) @enumToInt(MESSAGEBOX_STYLE.YESNO) else 0) | (if (o.YESNOCANCEL == 1) @enumToInt(MESSAGEBOX_STYLE.YESNOCANCEL) else 0) | (if (o.ICONHAND == 1) @enumToInt(MESSAGEBOX_STYLE.ICONHAND) else 0) | (if (o.ICONQUESTION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONQUESTION) else 0) | (if (o.ICONEXCLAMATION == 1) @enumToInt(MESSAGEBOX_STYLE.ICONEXCLAMATION) else 0) | (if (o.ICONASTERISK == 1) @enumToInt(MESSAGEBOX_STYLE.ICONASTERISK) else 0) | (if (o.USERICON == 1) @enumToInt(MESSAGEBOX_STYLE.USERICON) else 0) | (if (o.DEFBUTTON2 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON2) else 0) | (if (o.DEFBUTTON3 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON3) else 0) | (if (o.DEFBUTTON4 == 1) @enumToInt(MESSAGEBOX_STYLE.DEFBUTTON4) else 0) | (if (o.SYSTEMMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.SYSTEMMODAL) else 0) | (if (o.TASKMODAL == 1) @enumToInt(MESSAGEBOX_STYLE.TASKMODAL) else 0) | (if (o.NOFOCUS == 1) @enumToInt(MESSAGEBOX_STYLE.NOFOCUS) else 0) | (if (o.SETFOREGROUND == 1) @enumToInt(MESSAGEBOX_STYLE.SETFOREGROUND) else 0) | (if (o.DEFAULT_DESKTOP_ONLY == 1) @enumToInt(MESSAGEBOX_STYLE.DEFAULT_DESKTOP_ONLY) else 0) | (if (o.TOPMOST == 1) @enumToInt(MESSAGEBOX_STYLE.TOPMOST) else 0) | (if (o.RIGHT == 1) @enumToInt(MESSAGEBOX_STYLE.RIGHT) else 0) | (if (o.RTLREADING == 1) @enumToInt(MESSAGEBOX_STYLE.RTLREADING) else 0) | (if (o.SERVICE_NOTIFICATION == 1) @enumToInt(MESSAGEBOX_STYLE.SERVICE_NOTIFICATION) else 0) | (if (o.TYPEMASK == 1) @enumToInt(MESSAGEBOX_STYLE.TYPEMASK) else 0) | (if (o.ICONMASK == 1) @enumToInt(MESSAGEBOX_STYLE.ICONMASK) else 0) | (if (o.DEFMASK == 1) @enumToInt(MESSAGEBOX_STYLE.DEFMASK) else 0) | (if (o.MODEMASK == 1) @enumToInt(MESSAGEBOX_STYLE.MODEMASK) else 0) | (if (o.MISCMASK == 1) @enumToInt(MESSAGEBOX_STYLE.MISCMASK) else 0));
     }
 };
 pub const MB_ABORTRETRYIGNORE = MESSAGEBOX_STYLE.ABORTRETRYIGNORE;
@@ -2534,25 +2481,7 @@ pub const MENU_ITEM_FLAGS = enum(u32) {
         HELP: u1 = 0,
         MOUSESELECT: u1 = 0,
     }) MENU_ITEM_FLAGS {
-        return @intToEnum(MENU_ITEM_FLAGS,
-              (if (o.BYCOMMAND == 1) @enumToInt(MENU_ITEM_FLAGS.BYCOMMAND) else 0)
-            | (if (o.BYPOSITION == 1) @enumToInt(MENU_ITEM_FLAGS.BYPOSITION) else 0)
-            | (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_FLAGS.BITMAP) else 0)
-            | (if (o.CHECKED == 1) @enumToInt(MENU_ITEM_FLAGS.CHECKED) else 0)
-            | (if (o.DISABLED == 1) @enumToInt(MENU_ITEM_FLAGS.DISABLED) else 0)
-            | (if (o.GRAYED == 1) @enumToInt(MENU_ITEM_FLAGS.GRAYED) else 0)
-            | (if (o.MENUBARBREAK == 1) @enumToInt(MENU_ITEM_FLAGS.MENUBARBREAK) else 0)
-            | (if (o.MENUBREAK == 1) @enumToInt(MENU_ITEM_FLAGS.MENUBREAK) else 0)
-            | (if (o.OWNERDRAW == 1) @enumToInt(MENU_ITEM_FLAGS.OWNERDRAW) else 0)
-            | (if (o.POPUP == 1) @enumToInt(MENU_ITEM_FLAGS.POPUP) else 0)
-            | (if (o.SEPARATOR == 1) @enumToInt(MENU_ITEM_FLAGS.SEPARATOR) else 0)
-            | (if (o.CHANGE == 1) @enumToInt(MENU_ITEM_FLAGS.CHANGE) else 0)
-            | (if (o.DELETE == 1) @enumToInt(MENU_ITEM_FLAGS.DELETE) else 0)
-            | (if (o.REMOVE == 1) @enumToInt(MENU_ITEM_FLAGS.REMOVE) else 0)
-            | (if (o.SYSMENU == 1) @enumToInt(MENU_ITEM_FLAGS.SYSMENU) else 0)
-            | (if (o.HELP == 1) @enumToInt(MENU_ITEM_FLAGS.HELP) else 0)
-            | (if (o.MOUSESELECT == 1) @enumToInt(MENU_ITEM_FLAGS.MOUSESELECT) else 0)
-        );
+        return @intToEnum(MENU_ITEM_FLAGS, (if (o.BYCOMMAND == 1) @enumToInt(MENU_ITEM_FLAGS.BYCOMMAND) else 0) | (if (o.BYPOSITION == 1) @enumToInt(MENU_ITEM_FLAGS.BYPOSITION) else 0) | (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_FLAGS.BITMAP) else 0) | (if (o.CHECKED == 1) @enumToInt(MENU_ITEM_FLAGS.CHECKED) else 0) | (if (o.DISABLED == 1) @enumToInt(MENU_ITEM_FLAGS.DISABLED) else 0) | (if (o.GRAYED == 1) @enumToInt(MENU_ITEM_FLAGS.GRAYED) else 0) | (if (o.MENUBARBREAK == 1) @enumToInt(MENU_ITEM_FLAGS.MENUBARBREAK) else 0) | (if (o.MENUBREAK == 1) @enumToInt(MENU_ITEM_FLAGS.MENUBREAK) else 0) | (if (o.OWNERDRAW == 1) @enumToInt(MENU_ITEM_FLAGS.OWNERDRAW) else 0) | (if (o.POPUP == 1) @enumToInt(MENU_ITEM_FLAGS.POPUP) else 0) | (if (o.SEPARATOR == 1) @enumToInt(MENU_ITEM_FLAGS.SEPARATOR) else 0) | (if (o.CHANGE == 1) @enumToInt(MENU_ITEM_FLAGS.CHANGE) else 0) | (if (o.DELETE == 1) @enumToInt(MENU_ITEM_FLAGS.DELETE) else 0) | (if (o.REMOVE == 1) @enumToInt(MENU_ITEM_FLAGS.REMOVE) else 0) | (if (o.SYSMENU == 1) @enumToInt(MENU_ITEM_FLAGS.SYSMENU) else 0) | (if (o.HELP == 1) @enumToInt(MENU_ITEM_FLAGS.HELP) else 0) | (if (o.MOUSESELECT == 1) @enumToInt(MENU_ITEM_FLAGS.MOUSESELECT) else 0));
     }
 };
 pub const MF_BYCOMMAND = MENU_ITEM_FLAGS.BYCOMMAND;
@@ -2624,21 +2553,7 @@ pub const SHOW_WINDOW_CMD = enum(u32) {
         SHOWNORMAL: u1 = 0,
         SMOOTHSCROLL: u1 = 0,
     }) SHOW_WINDOW_CMD {
-        return @intToEnum(SHOW_WINDOW_CMD,
-              (if (o.FORCEMINIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.FORCEMINIMIZE) else 0)
-            | (if (o.HIDE == 1) @enumToInt(SHOW_WINDOW_CMD.HIDE) else 0)
-            | (if (o.MAXIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.MAXIMIZE) else 0)
-            | (if (o.MINIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.MINIMIZE) else 0)
-            | (if (o.RESTORE == 1) @enumToInt(SHOW_WINDOW_CMD.RESTORE) else 0)
-            | (if (o.SHOW == 1) @enumToInt(SHOW_WINDOW_CMD.SHOW) else 0)
-            | (if (o.SHOWDEFAULT == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWDEFAULT) else 0)
-            | (if (o.SHOWMINIMIZED == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMINIMIZED) else 0)
-            | (if (o.SHOWMINNOACTIVE == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMINNOACTIVE) else 0)
-            | (if (o.SHOWNA == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNA) else 0)
-            | (if (o.SHOWNOACTIVATE == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNOACTIVATE) else 0)
-            | (if (o.SHOWNORMAL == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNORMAL) else 0)
-            | (if (o.SMOOTHSCROLL == 1) @enumToInt(SHOW_WINDOW_CMD.SMOOTHSCROLL) else 0)
-        );
+        return @intToEnum(SHOW_WINDOW_CMD, (if (o.FORCEMINIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.FORCEMINIMIZE) else 0) | (if (o.HIDE == 1) @enumToInt(SHOW_WINDOW_CMD.HIDE) else 0) | (if (o.MAXIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.MAXIMIZE) else 0) | (if (o.MINIMIZE == 1) @enumToInt(SHOW_WINDOW_CMD.MINIMIZE) else 0) | (if (o.RESTORE == 1) @enumToInt(SHOW_WINDOW_CMD.RESTORE) else 0) | (if (o.SHOW == 1) @enumToInt(SHOW_WINDOW_CMD.SHOW) else 0) | (if (o.SHOWDEFAULT == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWDEFAULT) else 0) | (if (o.SHOWMINIMIZED == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMINIMIZED) else 0) | (if (o.SHOWMINNOACTIVE == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWMINNOACTIVE) else 0) | (if (o.SHOWNA == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNA) else 0) | (if (o.SHOWNOACTIVATE == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNOACTIVATE) else 0) | (if (o.SHOWNORMAL == 1) @enumToInt(SHOW_WINDOW_CMD.SHOWNORMAL) else 0) | (if (o.SMOOTHSCROLL == 1) @enumToInt(SHOW_WINDOW_CMD.SMOOTHSCROLL) else 0));
     }
 };
 pub const SW_FORCEMINIMIZE = SHOW_WINDOW_CMD.FORCEMINIMIZE;
@@ -3148,246 +3063,7 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = enum(u32) {
         GETHANDEDNESS: u1 = 0,
         SETHANDEDNESS: u1 = 0,
     }) SYSTEM_PARAMETERS_INFO_ACTION {
-        return @intToEnum(SYSTEM_PARAMETERS_INFO_ACTION,
-              (if (o.GETBEEP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBEEP) else 0)
-            | (if (o.SETBEEP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBEEP) else 0)
-            | (if (o.GETMOUSE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSE) else 0)
-            | (if (o.SETMOUSE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSE) else 0)
-            | (if (o.GETBORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBORDER) else 0)
-            | (if (o.SETBORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBORDER) else 0)
-            | (if (o.GETKEYBOARDSPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDSPEED) else 0)
-            | (if (o.SETKEYBOARDSPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDSPEED) else 0)
-            | (if (o.LANGDRIVER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.LANGDRIVER) else 0)
-            | (if (o.ICONHORIZONTALSPACING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.ICONHORIZONTALSPACING) else 0)
-            | (if (o.GETSCREENSAVETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVETIMEOUT) else 0)
-            | (if (o.SETSCREENSAVETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVETIMEOUT) else 0)
-            | (if (o.GETSCREENSAVEACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVEACTIVE) else 0)
-            | (if (o.SETSCREENSAVEACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVEACTIVE) else 0)
-            | (if (o.GETGRIDGRANULARITY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGRIDGRANULARITY) else 0)
-            | (if (o.SETGRIDGRANULARITY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGRIDGRANULARITY) else 0)
-            | (if (o.SETDESKWALLPAPER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDESKWALLPAPER) else 0)
-            | (if (o.SETDESKPATTERN == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDESKPATTERN) else 0)
-            | (if (o.GETKEYBOARDDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDDELAY) else 0)
-            | (if (o.SETKEYBOARDDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDDELAY) else 0)
-            | (if (o.ICONVERTICALSPACING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.ICONVERTICALSPACING) else 0)
-            | (if (o.GETICONTITLEWRAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONTITLEWRAP) else 0)
-            | (if (o.SETICONTITLEWRAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONTITLEWRAP) else 0)
-            | (if (o.GETMENUDROPALIGNMENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUDROPALIGNMENT) else 0)
-            | (if (o.SETMENUDROPALIGNMENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUDROPALIGNMENT) else 0)
-            | (if (o.SETDOUBLECLKWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLKWIDTH) else 0)
-            | (if (o.SETDOUBLECLKHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLKHEIGHT) else 0)
-            | (if (o.GETICONTITLELOGFONT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONTITLELOGFONT) else 0)
-            | (if (o.SETDOUBLECLICKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLICKTIME) else 0)
-            | (if (o.SETMOUSEBUTTONSWAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEBUTTONSWAP) else 0)
-            | (if (o.SETICONTITLELOGFONT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONTITLELOGFONT) else 0)
-            | (if (o.GETFASTTASKSWITCH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFASTTASKSWITCH) else 0)
-            | (if (o.SETFASTTASKSWITCH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFASTTASKSWITCH) else 0)
-            | (if (o.SETDRAGFULLWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGFULLWINDOWS) else 0)
-            | (if (o.GETDRAGFULLWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDRAGFULLWINDOWS) else 0)
-            | (if (o.GETNONCLIENTMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETNONCLIENTMETRICS) else 0)
-            | (if (o.SETNONCLIENTMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETNONCLIENTMETRICS) else 0)
-            | (if (o.GETMINIMIZEDMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMINIMIZEDMETRICS) else 0)
-            | (if (o.SETMINIMIZEDMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMINIMIZEDMETRICS) else 0)
-            | (if (o.GETICONMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONMETRICS) else 0)
-            | (if (o.SETICONMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONMETRICS) else 0)
-            | (if (o.SETWORKAREA == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWORKAREA) else 0)
-            | (if (o.GETWORKAREA == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWORKAREA) else 0)
-            | (if (o.SETPENWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENWINDOWS) else 0)
-            | (if (o.GETHIGHCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHIGHCONTRAST) else 0)
-            | (if (o.SETHIGHCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHIGHCONTRAST) else 0)
-            | (if (o.GETKEYBOARDPREF == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDPREF) else 0)
-            | (if (o.SETKEYBOARDPREF == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDPREF) else 0)
-            | (if (o.GETSCREENREADER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENREADER) else 0)
-            | (if (o.SETSCREENREADER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENREADER) else 0)
-            | (if (o.GETANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETANIMATION) else 0)
-            | (if (o.SETANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETANIMATION) else 0)
-            | (if (o.GETFONTSMOOTHING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHING) else 0)
-            | (if (o.SETFONTSMOOTHING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHING) else 0)
-            | (if (o.SETDRAGWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGWIDTH) else 0)
-            | (if (o.SETDRAGHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGHEIGHT) else 0)
-            | (if (o.SETHANDHELD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHANDHELD) else 0)
-            | (if (o.GETLOWPOWERTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOWPOWERTIMEOUT) else 0)
-            | (if (o.GETPOWEROFFTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPOWEROFFTIMEOUT) else 0)
-            | (if (o.SETLOWPOWERTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOWPOWERTIMEOUT) else 0)
-            | (if (o.SETPOWEROFFTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPOWEROFFTIMEOUT) else 0)
-            | (if (o.GETLOWPOWERACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOWPOWERACTIVE) else 0)
-            | (if (o.GETPOWEROFFACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPOWEROFFACTIVE) else 0)
-            | (if (o.SETLOWPOWERACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOWPOWERACTIVE) else 0)
-            | (if (o.SETPOWEROFFACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPOWEROFFACTIVE) else 0)
-            | (if (o.SETCURSORS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCURSORS) else 0)
-            | (if (o.SETICONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONS) else 0)
-            | (if (o.GETDEFAULTINPUTLANG == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDEFAULTINPUTLANG) else 0)
-            | (if (o.SETDEFAULTINPUTLANG == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDEFAULTINPUTLANG) else 0)
-            | (if (o.SETLANGTOGGLE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLANGTOGGLE) else 0)
-            | (if (o.GETWINDOWSEXTENSION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWINDOWSEXTENSION) else 0)
-            | (if (o.SETMOUSETRAILS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSETRAILS) else 0)
-            | (if (o.GETMOUSETRAILS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSETRAILS) else 0)
-            | (if (o.SETSCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVERRUNNING) else 0)
-            | (if (o.GETFILTERKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFILTERKEYS) else 0)
-            | (if (o.SETFILTERKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFILTERKEYS) else 0)
-            | (if (o.GETTOGGLEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOGGLEKEYS) else 0)
-            | (if (o.SETTOGGLEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOGGLEKEYS) else 0)
-            | (if (o.GETMOUSEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEKEYS) else 0)
-            | (if (o.SETMOUSEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEKEYS) else 0)
-            | (if (o.GETSHOWSOUNDS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSHOWSOUNDS) else 0)
-            | (if (o.SETSHOWSOUNDS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSHOWSOUNDS) else 0)
-            | (if (o.GETSTICKYKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSTICKYKEYS) else 0)
-            | (if (o.SETSTICKYKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSTICKYKEYS) else 0)
-            | (if (o.GETACCESSTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACCESSTIMEOUT) else 0)
-            | (if (o.SETACCESSTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACCESSTIMEOUT) else 0)
-            | (if (o.GETSERIALKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSERIALKEYS) else 0)
-            | (if (o.SETSERIALKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSERIALKEYS) else 0)
-            | (if (o.GETSOUNDSENTRY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSOUNDSENTRY) else 0)
-            | (if (o.SETSOUNDSENTRY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSOUNDSENTRY) else 0)
-            | (if (o.GETSNAPTODEFBUTTON == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSNAPTODEFBUTTON) else 0)
-            | (if (o.SETSNAPTODEFBUTTON == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSNAPTODEFBUTTON) else 0)
-            | (if (o.GETMOUSEHOVERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERWIDTH) else 0)
-            | (if (o.SETMOUSEHOVERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERWIDTH) else 0)
-            | (if (o.GETMOUSEHOVERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERHEIGHT) else 0)
-            | (if (o.SETMOUSEHOVERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERHEIGHT) else 0)
-            | (if (o.GETMOUSEHOVERTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERTIME) else 0)
-            | (if (o.SETMOUSEHOVERTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERTIME) else 0)
-            | (if (o.GETWHEELSCROLLLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWHEELSCROLLLINES) else 0)
-            | (if (o.SETWHEELSCROLLLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWHEELSCROLLLINES) else 0)
-            | (if (o.GETMENUSHOWDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUSHOWDELAY) else 0)
-            | (if (o.SETMENUSHOWDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUSHOWDELAY) else 0)
-            | (if (o.GETWHEELSCROLLCHARS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWHEELSCROLLCHARS) else 0)
-            | (if (o.SETWHEELSCROLLCHARS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWHEELSCROLLCHARS) else 0)
-            | (if (o.GETSHOWIMEUI == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSHOWIMEUI) else 0)
-            | (if (o.SETSHOWIMEUI == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSHOWIMEUI) else 0)
-            | (if (o.GETMOUSESPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESPEED) else 0)
-            | (if (o.SETMOUSESPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESPEED) else 0)
-            | (if (o.GETSCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVERRUNNING) else 0)
-            | (if (o.GETDESKWALLPAPER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDESKWALLPAPER) else 0)
-            | (if (o.GETAUDIODESCRIPTION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETAUDIODESCRIPTION) else 0)
-            | (if (o.SETAUDIODESCRIPTION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETAUDIODESCRIPTION) else 0)
-            | (if (o.GETSCREENSAVESECURE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVESECURE) else 0)
-            | (if (o.SETSCREENSAVESECURE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVESECURE) else 0)
-            | (if (o.GETHUNGAPPTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHUNGAPPTIMEOUT) else 0)
-            | (if (o.SETHUNGAPPTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHUNGAPPTIMEOUT) else 0)
-            | (if (o.GETWAITTOKILLTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWAITTOKILLTIMEOUT) else 0)
-            | (if (o.SETWAITTOKILLTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWAITTOKILLTIMEOUT) else 0)
-            | (if (o.GETWAITTOKILLSERVICETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWAITTOKILLSERVICETIMEOUT) else 0)
-            | (if (o.SETWAITTOKILLSERVICETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWAITTOKILLSERVICETIMEOUT) else 0)
-            | (if (o.GETMOUSEDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEDOCKTHRESHOLD) else 0)
-            | (if (o.SETMOUSEDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEDOCKTHRESHOLD) else 0)
-            | (if (o.GETPENDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENDOCKTHRESHOLD) else 0)
-            | (if (o.SETPENDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENDOCKTHRESHOLD) else 0)
-            | (if (o.GETWINARRANGING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWINARRANGING) else 0)
-            | (if (o.SETWINARRANGING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWINARRANGING) else 0)
-            | (if (o.GETMOUSEDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEDRAGOUTTHRESHOLD) else 0)
-            | (if (o.SETMOUSEDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEDRAGOUTTHRESHOLD) else 0)
-            | (if (o.GETPENDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENDRAGOUTTHRESHOLD) else 0)
-            | (if (o.SETPENDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENDRAGOUTTHRESHOLD) else 0)
-            | (if (o.GETMOUSESIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESIDEMOVETHRESHOLD) else 0)
-            | (if (o.SETMOUSESIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESIDEMOVETHRESHOLD) else 0)
-            | (if (o.GETPENSIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENSIDEMOVETHRESHOLD) else 0)
-            | (if (o.SETPENSIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENSIDEMOVETHRESHOLD) else 0)
-            | (if (o.GETDRAGFROMMAXIMIZE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDRAGFROMMAXIMIZE) else 0)
-            | (if (o.SETDRAGFROMMAXIMIZE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGFROMMAXIMIZE) else 0)
-            | (if (o.GETSNAPSIZING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSNAPSIZING) else 0)
-            | (if (o.SETSNAPSIZING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSNAPSIZING) else 0)
-            | (if (o.GETDOCKMOVING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDOCKMOVING) else 0)
-            | (if (o.SETDOCKMOVING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOCKMOVING) else 0)
-            | (if (o.GETTOUCHPREDICTIONPARAMETERS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOUCHPREDICTIONPARAMETERS) else 0)
-            | (if (o.SETTOUCHPREDICTIONPARAMETERS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOUCHPREDICTIONPARAMETERS) else 0)
-            | (if (o.GETLOGICALDPIOVERRIDE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOGICALDPIOVERRIDE) else 0)
-            | (if (o.SETLOGICALDPIOVERRIDE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOGICALDPIOVERRIDE) else 0)
-            | (if (o.GETMENURECT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENURECT) else 0)
-            | (if (o.SETMENURECT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENURECT) else 0)
-            | (if (o.GETACTIVEWINDOWTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWINDOWTRACKING) else 0)
-            | (if (o.SETACTIVEWINDOWTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWINDOWTRACKING) else 0)
-            | (if (o.GETMENUANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUANIMATION) else 0)
-            | (if (o.SETMENUANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUANIMATION) else 0)
-            | (if (o.GETCOMBOBOXANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCOMBOBOXANIMATION) else 0)
-            | (if (o.SETCOMBOBOXANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCOMBOBOXANIMATION) else 0)
-            | (if (o.GETLISTBOXSMOOTHSCROLLING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLISTBOXSMOOTHSCROLLING) else 0)
-            | (if (o.SETLISTBOXSMOOTHSCROLLING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLISTBOXSMOOTHSCROLLING) else 0)
-            | (if (o.GETGRADIENTCAPTIONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGRADIENTCAPTIONS) else 0)
-            | (if (o.SETGRADIENTCAPTIONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGRADIENTCAPTIONS) else 0)
-            | (if (o.GETKEYBOARDCUES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDCUES) else 0)
-            | (if (o.SETKEYBOARDCUES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDCUES) else 0)
-            | (if (o.GETACTIVEWNDTRKZORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWNDTRKZORDER) else 0)
-            | (if (o.SETACTIVEWNDTRKZORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWNDTRKZORDER) else 0)
-            | (if (o.GETHOTTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHOTTRACKING) else 0)
-            | (if (o.SETHOTTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHOTTRACKING) else 0)
-            | (if (o.GETMENUFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUFADE) else 0)
-            | (if (o.SETMENUFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUFADE) else 0)
-            | (if (o.GETSELECTIONFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSELECTIONFADE) else 0)
-            | (if (o.SETSELECTIONFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSELECTIONFADE) else 0)
-            | (if (o.GETTOOLTIPANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOOLTIPANIMATION) else 0)
-            | (if (o.SETTOOLTIPANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOOLTIPANIMATION) else 0)
-            | (if (o.GETTOOLTIPFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOOLTIPFADE) else 0)
-            | (if (o.SETTOOLTIPFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOOLTIPFADE) else 0)
-            | (if (o.GETCURSORSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCURSORSHADOW) else 0)
-            | (if (o.SETCURSORSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCURSORSHADOW) else 0)
-            | (if (o.GETMOUSESONAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESONAR) else 0)
-            | (if (o.SETMOUSESONAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESONAR) else 0)
-            | (if (o.GETMOUSECLICKLOCK == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSECLICKLOCK) else 0)
-            | (if (o.SETMOUSECLICKLOCK == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSECLICKLOCK) else 0)
-            | (if (o.GETMOUSEVANISH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEVANISH) else 0)
-            | (if (o.SETMOUSEVANISH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEVANISH) else 0)
-            | (if (o.GETFLATMENU == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFLATMENU) else 0)
-            | (if (o.SETFLATMENU == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFLATMENU) else 0)
-            | (if (o.GETDROPSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDROPSHADOW) else 0)
-            | (if (o.SETDROPSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDROPSHADOW) else 0)
-            | (if (o.GETBLOCKSENDINPUTRESETS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBLOCKSENDINPUTRESETS) else 0)
-            | (if (o.SETBLOCKSENDINPUTRESETS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBLOCKSENDINPUTRESETS) else 0)
-            | (if (o.GETUIEFFECTS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETUIEFFECTS) else 0)
-            | (if (o.SETUIEFFECTS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETUIEFFECTS) else 0)
-            | (if (o.GETDISABLEOVERLAPPEDCONTENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDISABLEOVERLAPPEDCONTENT) else 0)
-            | (if (o.SETDISABLEOVERLAPPEDCONTENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDISABLEOVERLAPPEDCONTENT) else 0)
-            | (if (o.GETCLIENTAREAANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCLIENTAREAANIMATION) else 0)
-            | (if (o.SETCLIENTAREAANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCLIENTAREAANIMATION) else 0)
-            | (if (o.GETCLEARTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCLEARTYPE) else 0)
-            | (if (o.SETCLEARTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCLEARTYPE) else 0)
-            | (if (o.GETSPEECHRECOGNITION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSPEECHRECOGNITION) else 0)
-            | (if (o.SETSPEECHRECOGNITION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSPEECHRECOGNITION) else 0)
-            | (if (o.GETCARETBROWSING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETBROWSING) else 0)
-            | (if (o.SETCARETBROWSING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETBROWSING) else 0)
-            | (if (o.GETTHREADLOCALINPUTSETTINGS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTHREADLOCALINPUTSETTINGS) else 0)
-            | (if (o.SETTHREADLOCALINPUTSETTINGS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTHREADLOCALINPUTSETTINGS) else 0)
-            | (if (o.GETSYSTEMLANGUAGEBAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSYSTEMLANGUAGEBAR) else 0)
-            | (if (o.SETSYSTEMLANGUAGEBAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSYSTEMLANGUAGEBAR) else 0)
-            | (if (o.GETFOREGROUNDLOCKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOREGROUNDLOCKTIMEOUT) else 0)
-            | (if (o.SETFOREGROUNDLOCKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOREGROUNDLOCKTIMEOUT) else 0)
-            | (if (o.GETACTIVEWNDTRKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWNDTRKTIMEOUT) else 0)
-            | (if (o.SETACTIVEWNDTRKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWNDTRKTIMEOUT) else 0)
-            | (if (o.GETFOREGROUNDFLASHCOUNT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOREGROUNDFLASHCOUNT) else 0)
-            | (if (o.SETFOREGROUNDFLASHCOUNT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOREGROUNDFLASHCOUNT) else 0)
-            | (if (o.GETCARETWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETWIDTH) else 0)
-            | (if (o.SETCARETWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETWIDTH) else 0)
-            | (if (o.GETMOUSECLICKLOCKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSECLICKLOCKTIME) else 0)
-            | (if (o.SETMOUSECLICKLOCKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSECLICKLOCKTIME) else 0)
-            | (if (o.GETFONTSMOOTHINGTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGTYPE) else 0)
-            | (if (o.SETFONTSMOOTHINGTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGTYPE) else 0)
-            | (if (o.GETFONTSMOOTHINGCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGCONTRAST) else 0)
-            | (if (o.SETFONTSMOOTHINGCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGCONTRAST) else 0)
-            | (if (o.GETFOCUSBORDERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOCUSBORDERWIDTH) else 0)
-            | (if (o.SETFOCUSBORDERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOCUSBORDERWIDTH) else 0)
-            | (if (o.GETFOCUSBORDERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOCUSBORDERHEIGHT) else 0)
-            | (if (o.SETFOCUSBORDERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOCUSBORDERHEIGHT) else 0)
-            | (if (o.GETFONTSMOOTHINGORIENTATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGORIENTATION) else 0)
-            | (if (o.SETFONTSMOOTHINGORIENTATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGORIENTATION) else 0)
-            | (if (o.GETMINIMUMHITRADIUS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMINIMUMHITRADIUS) else 0)
-            | (if (o.SETMINIMUMHITRADIUS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMINIMUMHITRADIUS) else 0)
-            | (if (o.GETMESSAGEDURATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMESSAGEDURATION) else 0)
-            | (if (o.SETMESSAGEDURATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMESSAGEDURATION) else 0)
-            | (if (o.GETCONTACTVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCONTACTVISUALIZATION) else 0)
-            | (if (o.SETCONTACTVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCONTACTVISUALIZATION) else 0)
-            | (if (o.GETGESTUREVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGESTUREVISUALIZATION) else 0)
-            | (if (o.SETGESTUREVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGESTUREVISUALIZATION) else 0)
-            | (if (o.GETMOUSEWHEELROUTING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEWHEELROUTING) else 0)
-            | (if (o.SETMOUSEWHEELROUTING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEWHEELROUTING) else 0)
-            | (if (o.GETPENVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENVISUALIZATION) else 0)
-            | (if (o.SETPENVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENVISUALIZATION) else 0)
-            | (if (o.GETPENARBITRATIONTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENARBITRATIONTYPE) else 0)
-            | (if (o.SETPENARBITRATIONTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENARBITRATIONTYPE) else 0)
-            | (if (o.GETCARETTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETTIMEOUT) else 0)
-            | (if (o.SETCARETTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETTIMEOUT) else 0)
-            | (if (o.GETHANDEDNESS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHANDEDNESS) else 0)
-            | (if (o.SETHANDEDNESS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHANDEDNESS) else 0)
-        );
+        return @intToEnum(SYSTEM_PARAMETERS_INFO_ACTION, (if (o.GETBEEP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBEEP) else 0) | (if (o.SETBEEP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBEEP) else 0) | (if (o.GETMOUSE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSE) else 0) | (if (o.SETMOUSE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSE) else 0) | (if (o.GETBORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBORDER) else 0) | (if (o.SETBORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBORDER) else 0) | (if (o.GETKEYBOARDSPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDSPEED) else 0) | (if (o.SETKEYBOARDSPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDSPEED) else 0) | (if (o.LANGDRIVER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.LANGDRIVER) else 0) | (if (o.ICONHORIZONTALSPACING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.ICONHORIZONTALSPACING) else 0) | (if (o.GETSCREENSAVETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVETIMEOUT) else 0) | (if (o.SETSCREENSAVETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVETIMEOUT) else 0) | (if (o.GETSCREENSAVEACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVEACTIVE) else 0) | (if (o.SETSCREENSAVEACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVEACTIVE) else 0) | (if (o.GETGRIDGRANULARITY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGRIDGRANULARITY) else 0) | (if (o.SETGRIDGRANULARITY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGRIDGRANULARITY) else 0) | (if (o.SETDESKWALLPAPER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDESKWALLPAPER) else 0) | (if (o.SETDESKPATTERN == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDESKPATTERN) else 0) | (if (o.GETKEYBOARDDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDDELAY) else 0) | (if (o.SETKEYBOARDDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDDELAY) else 0) | (if (o.ICONVERTICALSPACING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.ICONVERTICALSPACING) else 0) | (if (o.GETICONTITLEWRAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONTITLEWRAP) else 0) | (if (o.SETICONTITLEWRAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONTITLEWRAP) else 0) | (if (o.GETMENUDROPALIGNMENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUDROPALIGNMENT) else 0) | (if (o.SETMENUDROPALIGNMENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUDROPALIGNMENT) else 0) | (if (o.SETDOUBLECLKWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLKWIDTH) else 0) | (if (o.SETDOUBLECLKHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLKHEIGHT) else 0) | (if (o.GETICONTITLELOGFONT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONTITLELOGFONT) else 0) | (if (o.SETDOUBLECLICKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOUBLECLICKTIME) else 0) | (if (o.SETMOUSEBUTTONSWAP == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEBUTTONSWAP) else 0) | (if (o.SETICONTITLELOGFONT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONTITLELOGFONT) else 0) | (if (o.GETFASTTASKSWITCH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFASTTASKSWITCH) else 0) | (if (o.SETFASTTASKSWITCH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFASTTASKSWITCH) else 0) | (if (o.SETDRAGFULLWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGFULLWINDOWS) else 0) | (if (o.GETDRAGFULLWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDRAGFULLWINDOWS) else 0) | (if (o.GETNONCLIENTMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETNONCLIENTMETRICS) else 0) | (if (o.SETNONCLIENTMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETNONCLIENTMETRICS) else 0) | (if (o.GETMINIMIZEDMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMINIMIZEDMETRICS) else 0) | (if (o.SETMINIMIZEDMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMINIMIZEDMETRICS) else 0) | (if (o.GETICONMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETICONMETRICS) else 0) | (if (o.SETICONMETRICS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONMETRICS) else 0) | (if (o.SETWORKAREA == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWORKAREA) else 0) | (if (o.GETWORKAREA == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWORKAREA) else 0) | (if (o.SETPENWINDOWS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENWINDOWS) else 0) | (if (o.GETHIGHCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHIGHCONTRAST) else 0) | (if (o.SETHIGHCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHIGHCONTRAST) else 0) | (if (o.GETKEYBOARDPREF == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDPREF) else 0) | (if (o.SETKEYBOARDPREF == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDPREF) else 0) | (if (o.GETSCREENREADER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENREADER) else 0) | (if (o.SETSCREENREADER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENREADER) else 0) | (if (o.GETANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETANIMATION) else 0) | (if (o.SETANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETANIMATION) else 0) | (if (o.GETFONTSMOOTHING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHING) else 0) | (if (o.SETFONTSMOOTHING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHING) else 0) | (if (o.SETDRAGWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGWIDTH) else 0) | (if (o.SETDRAGHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGHEIGHT) else 0) | (if (o.SETHANDHELD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHANDHELD) else 0) | (if (o.GETLOWPOWERTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOWPOWERTIMEOUT) else 0) | (if (o.GETPOWEROFFTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPOWEROFFTIMEOUT) else 0) | (if (o.SETLOWPOWERTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOWPOWERTIMEOUT) else 0) | (if (o.SETPOWEROFFTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPOWEROFFTIMEOUT) else 0) | (if (o.GETLOWPOWERACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOWPOWERACTIVE) else 0) | (if (o.GETPOWEROFFACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPOWEROFFACTIVE) else 0) | (if (o.SETLOWPOWERACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOWPOWERACTIVE) else 0) | (if (o.SETPOWEROFFACTIVE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPOWEROFFACTIVE) else 0) | (if (o.SETCURSORS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCURSORS) else 0) | (if (o.SETICONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETICONS) else 0) | (if (o.GETDEFAULTINPUTLANG == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDEFAULTINPUTLANG) else 0) | (if (o.SETDEFAULTINPUTLANG == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDEFAULTINPUTLANG) else 0) | (if (o.SETLANGTOGGLE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLANGTOGGLE) else 0) | (if (o.GETWINDOWSEXTENSION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWINDOWSEXTENSION) else 0) | (if (o.SETMOUSETRAILS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSETRAILS) else 0) | (if (o.GETMOUSETRAILS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSETRAILS) else 0) | (if (o.SETSCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVERRUNNING) else 0) | (if (o.GETFILTERKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFILTERKEYS) else 0) | (if (o.SETFILTERKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFILTERKEYS) else 0) | (if (o.GETTOGGLEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOGGLEKEYS) else 0) | (if (o.SETTOGGLEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOGGLEKEYS) else 0) | (if (o.GETMOUSEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEKEYS) else 0) | (if (o.SETMOUSEKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEKEYS) else 0) | (if (o.GETSHOWSOUNDS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSHOWSOUNDS) else 0) | (if (o.SETSHOWSOUNDS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSHOWSOUNDS) else 0) | (if (o.GETSTICKYKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSTICKYKEYS) else 0) | (if (o.SETSTICKYKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSTICKYKEYS) else 0) | (if (o.GETACCESSTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACCESSTIMEOUT) else 0) | (if (o.SETACCESSTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACCESSTIMEOUT) else 0) | (if (o.GETSERIALKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSERIALKEYS) else 0) | (if (o.SETSERIALKEYS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSERIALKEYS) else 0) | (if (o.GETSOUNDSENTRY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSOUNDSENTRY) else 0) | (if (o.SETSOUNDSENTRY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSOUNDSENTRY) else 0) | (if (o.GETSNAPTODEFBUTTON == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSNAPTODEFBUTTON) else 0) | (if (o.SETSNAPTODEFBUTTON == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSNAPTODEFBUTTON) else 0) | (if (o.GETMOUSEHOVERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERWIDTH) else 0) | (if (o.SETMOUSEHOVERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERWIDTH) else 0) | (if (o.GETMOUSEHOVERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERHEIGHT) else 0) | (if (o.SETMOUSEHOVERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERHEIGHT) else 0) | (if (o.GETMOUSEHOVERTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEHOVERTIME) else 0) | (if (o.SETMOUSEHOVERTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEHOVERTIME) else 0) | (if (o.GETWHEELSCROLLLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWHEELSCROLLLINES) else 0) | (if (o.SETWHEELSCROLLLINES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWHEELSCROLLLINES) else 0) | (if (o.GETMENUSHOWDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUSHOWDELAY) else 0) | (if (o.SETMENUSHOWDELAY == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUSHOWDELAY) else 0) | (if (o.GETWHEELSCROLLCHARS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWHEELSCROLLCHARS) else 0) | (if (o.SETWHEELSCROLLCHARS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWHEELSCROLLCHARS) else 0) | (if (o.GETSHOWIMEUI == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSHOWIMEUI) else 0) | (if (o.SETSHOWIMEUI == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSHOWIMEUI) else 0) | (if (o.GETMOUSESPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESPEED) else 0) | (if (o.SETMOUSESPEED == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESPEED) else 0) | (if (o.GETSCREENSAVERRUNNING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVERRUNNING) else 0) | (if (o.GETDESKWALLPAPER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDESKWALLPAPER) else 0) | (if (o.GETAUDIODESCRIPTION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETAUDIODESCRIPTION) else 0) | (if (o.SETAUDIODESCRIPTION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETAUDIODESCRIPTION) else 0) | (if (o.GETSCREENSAVESECURE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSCREENSAVESECURE) else 0) | (if (o.SETSCREENSAVESECURE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSCREENSAVESECURE) else 0) | (if (o.GETHUNGAPPTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHUNGAPPTIMEOUT) else 0) | (if (o.SETHUNGAPPTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHUNGAPPTIMEOUT) else 0) | (if (o.GETWAITTOKILLTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWAITTOKILLTIMEOUT) else 0) | (if (o.SETWAITTOKILLTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWAITTOKILLTIMEOUT) else 0) | (if (o.GETWAITTOKILLSERVICETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWAITTOKILLSERVICETIMEOUT) else 0) | (if (o.SETWAITTOKILLSERVICETIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWAITTOKILLSERVICETIMEOUT) else 0) | (if (o.GETMOUSEDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEDOCKTHRESHOLD) else 0) | (if (o.SETMOUSEDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEDOCKTHRESHOLD) else 0) | (if (o.GETPENDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENDOCKTHRESHOLD) else 0) | (if (o.SETPENDOCKTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENDOCKTHRESHOLD) else 0) | (if (o.GETWINARRANGING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETWINARRANGING) else 0) | (if (o.SETWINARRANGING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETWINARRANGING) else 0) | (if (o.GETMOUSEDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEDRAGOUTTHRESHOLD) else 0) | (if (o.SETMOUSEDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEDRAGOUTTHRESHOLD) else 0) | (if (o.GETPENDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENDRAGOUTTHRESHOLD) else 0) | (if (o.SETPENDRAGOUTTHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENDRAGOUTTHRESHOLD) else 0) | (if (o.GETMOUSESIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESIDEMOVETHRESHOLD) else 0) | (if (o.SETMOUSESIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESIDEMOVETHRESHOLD) else 0) | (if (o.GETPENSIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENSIDEMOVETHRESHOLD) else 0) | (if (o.SETPENSIDEMOVETHRESHOLD == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENSIDEMOVETHRESHOLD) else 0) | (if (o.GETDRAGFROMMAXIMIZE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDRAGFROMMAXIMIZE) else 0) | (if (o.SETDRAGFROMMAXIMIZE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDRAGFROMMAXIMIZE) else 0) | (if (o.GETSNAPSIZING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSNAPSIZING) else 0) | (if (o.SETSNAPSIZING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSNAPSIZING) else 0) | (if (o.GETDOCKMOVING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDOCKMOVING) else 0) | (if (o.SETDOCKMOVING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDOCKMOVING) else 0) | (if (o.GETTOUCHPREDICTIONPARAMETERS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOUCHPREDICTIONPARAMETERS) else 0) | (if (o.SETTOUCHPREDICTIONPARAMETERS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOUCHPREDICTIONPARAMETERS) else 0) | (if (o.GETLOGICALDPIOVERRIDE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLOGICALDPIOVERRIDE) else 0) | (if (o.SETLOGICALDPIOVERRIDE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLOGICALDPIOVERRIDE) else 0) | (if (o.GETMENURECT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENURECT) else 0) | (if (o.SETMENURECT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENURECT) else 0) | (if (o.GETACTIVEWINDOWTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWINDOWTRACKING) else 0) | (if (o.SETACTIVEWINDOWTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWINDOWTRACKING) else 0) | (if (o.GETMENUANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUANIMATION) else 0) | (if (o.SETMENUANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUANIMATION) else 0) | (if (o.GETCOMBOBOXANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCOMBOBOXANIMATION) else 0) | (if (o.SETCOMBOBOXANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCOMBOBOXANIMATION) else 0) | (if (o.GETLISTBOXSMOOTHSCROLLING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETLISTBOXSMOOTHSCROLLING) else 0) | (if (o.SETLISTBOXSMOOTHSCROLLING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETLISTBOXSMOOTHSCROLLING) else 0) | (if (o.GETGRADIENTCAPTIONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGRADIENTCAPTIONS) else 0) | (if (o.SETGRADIENTCAPTIONS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGRADIENTCAPTIONS) else 0) | (if (o.GETKEYBOARDCUES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETKEYBOARDCUES) else 0) | (if (o.SETKEYBOARDCUES == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETKEYBOARDCUES) else 0) | (if (o.GETACTIVEWNDTRKZORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWNDTRKZORDER) else 0) | (if (o.SETACTIVEWNDTRKZORDER == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWNDTRKZORDER) else 0) | (if (o.GETHOTTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHOTTRACKING) else 0) | (if (o.SETHOTTRACKING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHOTTRACKING) else 0) | (if (o.GETMENUFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMENUFADE) else 0) | (if (o.SETMENUFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMENUFADE) else 0) | (if (o.GETSELECTIONFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSELECTIONFADE) else 0) | (if (o.SETSELECTIONFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSELECTIONFADE) else 0) | (if (o.GETTOOLTIPANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOOLTIPANIMATION) else 0) | (if (o.SETTOOLTIPANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOOLTIPANIMATION) else 0) | (if (o.GETTOOLTIPFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTOOLTIPFADE) else 0) | (if (o.SETTOOLTIPFADE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTOOLTIPFADE) else 0) | (if (o.GETCURSORSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCURSORSHADOW) else 0) | (if (o.SETCURSORSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCURSORSHADOW) else 0) | (if (o.GETMOUSESONAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSESONAR) else 0) | (if (o.SETMOUSESONAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSESONAR) else 0) | (if (o.GETMOUSECLICKLOCK == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSECLICKLOCK) else 0) | (if (o.SETMOUSECLICKLOCK == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSECLICKLOCK) else 0) | (if (o.GETMOUSEVANISH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEVANISH) else 0) | (if (o.SETMOUSEVANISH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEVANISH) else 0) | (if (o.GETFLATMENU == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFLATMENU) else 0) | (if (o.SETFLATMENU == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFLATMENU) else 0) | (if (o.GETDROPSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDROPSHADOW) else 0) | (if (o.SETDROPSHADOW == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDROPSHADOW) else 0) | (if (o.GETBLOCKSENDINPUTRESETS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETBLOCKSENDINPUTRESETS) else 0) | (if (o.SETBLOCKSENDINPUTRESETS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETBLOCKSENDINPUTRESETS) else 0) | (if (o.GETUIEFFECTS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETUIEFFECTS) else 0) | (if (o.SETUIEFFECTS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETUIEFFECTS) else 0) | (if (o.GETDISABLEOVERLAPPEDCONTENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETDISABLEOVERLAPPEDCONTENT) else 0) | (if (o.SETDISABLEOVERLAPPEDCONTENT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETDISABLEOVERLAPPEDCONTENT) else 0) | (if (o.GETCLIENTAREAANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCLIENTAREAANIMATION) else 0) | (if (o.SETCLIENTAREAANIMATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCLIENTAREAANIMATION) else 0) | (if (o.GETCLEARTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCLEARTYPE) else 0) | (if (o.SETCLEARTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCLEARTYPE) else 0) | (if (o.GETSPEECHRECOGNITION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSPEECHRECOGNITION) else 0) | (if (o.SETSPEECHRECOGNITION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSPEECHRECOGNITION) else 0) | (if (o.GETCARETBROWSING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETBROWSING) else 0) | (if (o.SETCARETBROWSING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETBROWSING) else 0) | (if (o.GETTHREADLOCALINPUTSETTINGS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETTHREADLOCALINPUTSETTINGS) else 0) | (if (o.SETTHREADLOCALINPUTSETTINGS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETTHREADLOCALINPUTSETTINGS) else 0) | (if (o.GETSYSTEMLANGUAGEBAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETSYSTEMLANGUAGEBAR) else 0) | (if (o.SETSYSTEMLANGUAGEBAR == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETSYSTEMLANGUAGEBAR) else 0) | (if (o.GETFOREGROUNDLOCKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOREGROUNDLOCKTIMEOUT) else 0) | (if (o.SETFOREGROUNDLOCKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOREGROUNDLOCKTIMEOUT) else 0) | (if (o.GETACTIVEWNDTRKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETACTIVEWNDTRKTIMEOUT) else 0) | (if (o.SETACTIVEWNDTRKTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETACTIVEWNDTRKTIMEOUT) else 0) | (if (o.GETFOREGROUNDFLASHCOUNT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOREGROUNDFLASHCOUNT) else 0) | (if (o.SETFOREGROUNDFLASHCOUNT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOREGROUNDFLASHCOUNT) else 0) | (if (o.GETCARETWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETWIDTH) else 0) | (if (o.SETCARETWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETWIDTH) else 0) | (if (o.GETMOUSECLICKLOCKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSECLICKLOCKTIME) else 0) | (if (o.SETMOUSECLICKLOCKTIME == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSECLICKLOCKTIME) else 0) | (if (o.GETFONTSMOOTHINGTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGTYPE) else 0) | (if (o.SETFONTSMOOTHINGTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGTYPE) else 0) | (if (o.GETFONTSMOOTHINGCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGCONTRAST) else 0) | (if (o.SETFONTSMOOTHINGCONTRAST == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGCONTRAST) else 0) | (if (o.GETFOCUSBORDERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOCUSBORDERWIDTH) else 0) | (if (o.SETFOCUSBORDERWIDTH == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOCUSBORDERWIDTH) else 0) | (if (o.GETFOCUSBORDERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFOCUSBORDERHEIGHT) else 0) | (if (o.SETFOCUSBORDERHEIGHT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFOCUSBORDERHEIGHT) else 0) | (if (o.GETFONTSMOOTHINGORIENTATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETFONTSMOOTHINGORIENTATION) else 0) | (if (o.SETFONTSMOOTHINGORIENTATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETFONTSMOOTHINGORIENTATION) else 0) | (if (o.GETMINIMUMHITRADIUS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMINIMUMHITRADIUS) else 0) | (if (o.SETMINIMUMHITRADIUS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMINIMUMHITRADIUS) else 0) | (if (o.GETMESSAGEDURATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMESSAGEDURATION) else 0) | (if (o.SETMESSAGEDURATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMESSAGEDURATION) else 0) | (if (o.GETCONTACTVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCONTACTVISUALIZATION) else 0) | (if (o.SETCONTACTVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCONTACTVISUALIZATION) else 0) | (if (o.GETGESTUREVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETGESTUREVISUALIZATION) else 0) | (if (o.SETGESTUREVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETGESTUREVISUALIZATION) else 0) | (if (o.GETMOUSEWHEELROUTING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETMOUSEWHEELROUTING) else 0) | (if (o.SETMOUSEWHEELROUTING == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETMOUSEWHEELROUTING) else 0) | (if (o.GETPENVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENVISUALIZATION) else 0) | (if (o.SETPENVISUALIZATION == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENVISUALIZATION) else 0) | (if (o.GETPENARBITRATIONTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETPENARBITRATIONTYPE) else 0) | (if (o.SETPENARBITRATIONTYPE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETPENARBITRATIONTYPE) else 0) | (if (o.GETCARETTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETCARETTIMEOUT) else 0) | (if (o.SETCARETTIMEOUT == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETCARETTIMEOUT) else 0) | (if (o.GETHANDEDNESS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.GETHANDEDNESS) else 0) | (if (o.SETHANDEDNESS == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_ACTION.SETHANDEDNESS) else 0));
     }
 };
 pub const SPI_GETBEEP = SYSTEM_PARAMETERS_INFO_ACTION.GETBEEP;
@@ -3673,25 +3349,7 @@ pub const TRACK_POPUP_MENU_FLAGS = enum(u32) {
         LAYOUTRTL: u1 = 0,
         WORKAREA: u1 = 0,
     }) TRACK_POPUP_MENU_FLAGS {
-        return @intToEnum(TRACK_POPUP_MENU_FLAGS,
-              (if (o.LEFTBUTTON == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LEFTBUTTON) else 0)
-            | (if (o.RIGHTBUTTON == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RIGHTBUTTON) else 0)
-            | (if (o.CENTERALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.CENTERALIGN) else 0)
-            | (if (o.RIGHTALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RIGHTALIGN) else 0)
-            | (if (o.VCENTERALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VCENTERALIGN) else 0)
-            | (if (o.BOTTOMALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.BOTTOMALIGN) else 0)
-            | (if (o.VERTICAL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERTICAL) else 0)
-            | (if (o.NONOTIFY == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.NONOTIFY) else 0)
-            | (if (o.RETURNCMD == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RETURNCMD) else 0)
-            | (if (o.RECURSE == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RECURSE) else 0)
-            | (if (o.HORPOSANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.HORPOSANIMATION) else 0)
-            | (if (o.HORNEGANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.HORNEGANIMATION) else 0)
-            | (if (o.VERPOSANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERPOSANIMATION) else 0)
-            | (if (o.VERNEGANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERNEGANIMATION) else 0)
-            | (if (o.NOANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.NOANIMATION) else 0)
-            | (if (o.LAYOUTRTL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LAYOUTRTL) else 0)
-            | (if (o.WORKAREA == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.WORKAREA) else 0)
-        );
+        return @intToEnum(TRACK_POPUP_MENU_FLAGS, (if (o.LEFTBUTTON == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LEFTBUTTON) else 0) | (if (o.RIGHTBUTTON == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RIGHTBUTTON) else 0) | (if (o.CENTERALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.CENTERALIGN) else 0) | (if (o.RIGHTALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RIGHTALIGN) else 0) | (if (o.VCENTERALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VCENTERALIGN) else 0) | (if (o.BOTTOMALIGN == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.BOTTOMALIGN) else 0) | (if (o.VERTICAL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERTICAL) else 0) | (if (o.NONOTIFY == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.NONOTIFY) else 0) | (if (o.RETURNCMD == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RETURNCMD) else 0) | (if (o.RECURSE == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.RECURSE) else 0) | (if (o.HORPOSANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.HORPOSANIMATION) else 0) | (if (o.HORNEGANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.HORNEGANIMATION) else 0) | (if (o.VERPOSANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERPOSANIMATION) else 0) | (if (o.VERNEGANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.VERNEGANIMATION) else 0) | (if (o.NOANIMATION == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.NOANIMATION) else 0) | (if (o.LAYOUTRTL == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.LAYOUTRTL) else 0) | (if (o.WORKAREA == 1) @enumToInt(TRACK_POPUP_MENU_FLAGS.WORKAREA) else 0));
     }
 };
 pub const TPM_LEFTBUTTON = TRACK_POPUP_MENU_FLAGS.LEFTBUTTON;
@@ -3771,33 +3429,7 @@ pub const WINDOW_EX_STYLE = enum(u32) {
         COMPOSITED: u1 = 0,
         NOACTIVATE: u1 = 0,
     }) WINDOW_EX_STYLE {
-        return @intToEnum(WINDOW_EX_STYLE,
-              (if (o.DLGMODALFRAME == 1) @enumToInt(WINDOW_EX_STYLE.DLGMODALFRAME) else 0)
-            | (if (o.NOPARENTNOTIFY == 1) @enumToInt(WINDOW_EX_STYLE.NOPARENTNOTIFY) else 0)
-            | (if (o.TOPMOST == 1) @enumToInt(WINDOW_EX_STYLE.TOPMOST) else 0)
-            | (if (o.ACCEPTFILES == 1) @enumToInt(WINDOW_EX_STYLE.ACCEPTFILES) else 0)
-            | (if (o.TRANSPARENT == 1) @enumToInt(WINDOW_EX_STYLE.TRANSPARENT) else 0)
-            | (if (o.MDICHILD == 1) @enumToInt(WINDOW_EX_STYLE.MDICHILD) else 0)
-            | (if (o.TOOLWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.TOOLWINDOW) else 0)
-            | (if (o.WINDOWEDGE == 1) @enumToInt(WINDOW_EX_STYLE.WINDOWEDGE) else 0)
-            | (if (o.CLIENTEDGE == 1) @enumToInt(WINDOW_EX_STYLE.CLIENTEDGE) else 0)
-            | (if (o.CONTEXTHELP == 1) @enumToInt(WINDOW_EX_STYLE.CONTEXTHELP) else 0)
-            | (if (o.RIGHT == 1) @enumToInt(WINDOW_EX_STYLE.RIGHT) else 0)
-            | (if (o.LEFT == 1) @enumToInt(WINDOW_EX_STYLE.LEFT) else 0)
-            | (if (o.RTLREADING == 1) @enumToInt(WINDOW_EX_STYLE.RTLREADING) else 0)
-            | (if (o.LEFTSCROLLBAR == 1) @enumToInt(WINDOW_EX_STYLE.LEFTSCROLLBAR) else 0)
-            | (if (o.CONTROLPARENT == 1) @enumToInt(WINDOW_EX_STYLE.CONTROLPARENT) else 0)
-            | (if (o.STATICEDGE == 1) @enumToInt(WINDOW_EX_STYLE.STATICEDGE) else 0)
-            | (if (o.APPWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.APPWINDOW) else 0)
-            | (if (o.OVERLAPPEDWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.OVERLAPPEDWINDOW) else 0)
-            | (if (o.PALETTEWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.PALETTEWINDOW) else 0)
-            | (if (o.LAYERED == 1) @enumToInt(WINDOW_EX_STYLE.LAYERED) else 0)
-            | (if (o.NOINHERITLAYOUT == 1) @enumToInt(WINDOW_EX_STYLE.NOINHERITLAYOUT) else 0)
-            | (if (o.NOREDIRECTIONBITMAP == 1) @enumToInt(WINDOW_EX_STYLE.NOREDIRECTIONBITMAP) else 0)
-            | (if (o.LAYOUTRTL == 1) @enumToInt(WINDOW_EX_STYLE.LAYOUTRTL) else 0)
-            | (if (o.COMPOSITED == 1) @enumToInt(WINDOW_EX_STYLE.COMPOSITED) else 0)
-            | (if (o.NOACTIVATE == 1) @enumToInt(WINDOW_EX_STYLE.NOACTIVATE) else 0)
-        );
+        return @intToEnum(WINDOW_EX_STYLE, (if (o.DLGMODALFRAME == 1) @enumToInt(WINDOW_EX_STYLE.DLGMODALFRAME) else 0) | (if (o.NOPARENTNOTIFY == 1) @enumToInt(WINDOW_EX_STYLE.NOPARENTNOTIFY) else 0) | (if (o.TOPMOST == 1) @enumToInt(WINDOW_EX_STYLE.TOPMOST) else 0) | (if (o.ACCEPTFILES == 1) @enumToInt(WINDOW_EX_STYLE.ACCEPTFILES) else 0) | (if (o.TRANSPARENT == 1) @enumToInt(WINDOW_EX_STYLE.TRANSPARENT) else 0) | (if (o.MDICHILD == 1) @enumToInt(WINDOW_EX_STYLE.MDICHILD) else 0) | (if (o.TOOLWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.TOOLWINDOW) else 0) | (if (o.WINDOWEDGE == 1) @enumToInt(WINDOW_EX_STYLE.WINDOWEDGE) else 0) | (if (o.CLIENTEDGE == 1) @enumToInt(WINDOW_EX_STYLE.CLIENTEDGE) else 0) | (if (o.CONTEXTHELP == 1) @enumToInt(WINDOW_EX_STYLE.CONTEXTHELP) else 0) | (if (o.RIGHT == 1) @enumToInt(WINDOW_EX_STYLE.RIGHT) else 0) | (if (o.LEFT == 1) @enumToInt(WINDOW_EX_STYLE.LEFT) else 0) | (if (o.RTLREADING == 1) @enumToInt(WINDOW_EX_STYLE.RTLREADING) else 0) | (if (o.LEFTSCROLLBAR == 1) @enumToInt(WINDOW_EX_STYLE.LEFTSCROLLBAR) else 0) | (if (o.CONTROLPARENT == 1) @enumToInt(WINDOW_EX_STYLE.CONTROLPARENT) else 0) | (if (o.STATICEDGE == 1) @enumToInt(WINDOW_EX_STYLE.STATICEDGE) else 0) | (if (o.APPWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.APPWINDOW) else 0) | (if (o.OVERLAPPEDWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.OVERLAPPEDWINDOW) else 0) | (if (o.PALETTEWINDOW == 1) @enumToInt(WINDOW_EX_STYLE.PALETTEWINDOW) else 0) | (if (o.LAYERED == 1) @enumToInt(WINDOW_EX_STYLE.LAYERED) else 0) | (if (o.NOINHERITLAYOUT == 1) @enumToInt(WINDOW_EX_STYLE.NOINHERITLAYOUT) else 0) | (if (o.NOREDIRECTIONBITMAP == 1) @enumToInt(WINDOW_EX_STYLE.NOREDIRECTIONBITMAP) else 0) | (if (o.LAYOUTRTL == 1) @enumToInt(WINDOW_EX_STYLE.LAYOUTRTL) else 0) | (if (o.COMPOSITED == 1) @enumToInt(WINDOW_EX_STYLE.COMPOSITED) else 0) | (if (o.NOACTIVATE == 1) @enumToInt(WINDOW_EX_STYLE.NOACTIVATE) else 0));
     }
 };
 pub const WS_EX_DLGMODALFRAME = WINDOW_EX_STYLE.DLGMODALFRAME;
@@ -3881,29 +3513,7 @@ pub const WINDOW_STYLE = enum(u32) {
         POPUPWINDOW: u1 = 0,
         ACTIVECAPTION: u1 = 0,
     }) WINDOW_STYLE {
-        return @intToEnum(WINDOW_STYLE,
-              (if (o.OVERLAPPED == 1) @enumToInt(WINDOW_STYLE.OVERLAPPED) else 0)
-            | (if (o.POPUP == 1) @enumToInt(WINDOW_STYLE.POPUP) else 0)
-            | (if (o.CHILD == 1) @enumToInt(WINDOW_STYLE.CHILD) else 0)
-            | (if (o.MINIMIZE == 1) @enumToInt(WINDOW_STYLE.MINIMIZE) else 0)
-            | (if (o.VISIBLE == 1) @enumToInt(WINDOW_STYLE.VISIBLE) else 0)
-            | (if (o.DISABLED == 1) @enumToInt(WINDOW_STYLE.DISABLED) else 0)
-            | (if (o.CLIPSIBLINGS == 1) @enumToInt(WINDOW_STYLE.CLIPSIBLINGS) else 0)
-            | (if (o.CLIPCHILDREN == 1) @enumToInt(WINDOW_STYLE.CLIPCHILDREN) else 0)
-            | (if (o.MAXIMIZE == 1) @enumToInt(WINDOW_STYLE.MAXIMIZE) else 0)
-            | (if (o.CAPTION == 1) @enumToInt(WINDOW_STYLE.CAPTION) else 0)
-            | (if (o.BORDER == 1) @enumToInt(WINDOW_STYLE.BORDER) else 0)
-            | (if (o.DLGFRAME == 1) @enumToInt(WINDOW_STYLE.DLGFRAME) else 0)
-            | (if (o.VSCROLL == 1) @enumToInt(WINDOW_STYLE.VSCROLL) else 0)
-            | (if (o.HSCROLL == 1) @enumToInt(WINDOW_STYLE.HSCROLL) else 0)
-            | (if (o.SYSMENU == 1) @enumToInt(WINDOW_STYLE.SYSMENU) else 0)
-            | (if (o.THICKFRAME == 1) @enumToInt(WINDOW_STYLE.THICKFRAME) else 0)
-            | (if (o.GROUP == 1) @enumToInt(WINDOW_STYLE.GROUP) else 0)
-            | (if (o.TABSTOP == 1) @enumToInt(WINDOW_STYLE.TABSTOP) else 0)
-            | (if (o.TILEDWINDOW == 1) @enumToInt(WINDOW_STYLE.TILEDWINDOW) else 0)
-            | (if (o.POPUPWINDOW == 1) @enumToInt(WINDOW_STYLE.POPUPWINDOW) else 0)
-            | (if (o.ACTIVECAPTION == 1) @enumToInt(WINDOW_STYLE.ACTIVECAPTION) else 0)
-        );
+        return @intToEnum(WINDOW_STYLE, (if (o.OVERLAPPED == 1) @enumToInt(WINDOW_STYLE.OVERLAPPED) else 0) | (if (o.POPUP == 1) @enumToInt(WINDOW_STYLE.POPUP) else 0) | (if (o.CHILD == 1) @enumToInt(WINDOW_STYLE.CHILD) else 0) | (if (o.MINIMIZE == 1) @enumToInt(WINDOW_STYLE.MINIMIZE) else 0) | (if (o.VISIBLE == 1) @enumToInt(WINDOW_STYLE.VISIBLE) else 0) | (if (o.DISABLED == 1) @enumToInt(WINDOW_STYLE.DISABLED) else 0) | (if (o.CLIPSIBLINGS == 1) @enumToInt(WINDOW_STYLE.CLIPSIBLINGS) else 0) | (if (o.CLIPCHILDREN == 1) @enumToInt(WINDOW_STYLE.CLIPCHILDREN) else 0) | (if (o.MAXIMIZE == 1) @enumToInt(WINDOW_STYLE.MAXIMIZE) else 0) | (if (o.CAPTION == 1) @enumToInt(WINDOW_STYLE.CAPTION) else 0) | (if (o.BORDER == 1) @enumToInt(WINDOW_STYLE.BORDER) else 0) | (if (o.DLGFRAME == 1) @enumToInt(WINDOW_STYLE.DLGFRAME) else 0) | (if (o.VSCROLL == 1) @enumToInt(WINDOW_STYLE.VSCROLL) else 0) | (if (o.HSCROLL == 1) @enumToInt(WINDOW_STYLE.HSCROLL) else 0) | (if (o.SYSMENU == 1) @enumToInt(WINDOW_STYLE.SYSMENU) else 0) | (if (o.THICKFRAME == 1) @enumToInt(WINDOW_STYLE.THICKFRAME) else 0) | (if (o.GROUP == 1) @enumToInt(WINDOW_STYLE.GROUP) else 0) | (if (o.TABSTOP == 1) @enumToInt(WINDOW_STYLE.TABSTOP) else 0) | (if (o.TILEDWINDOW == 1) @enumToInt(WINDOW_STYLE.TILEDWINDOW) else 0) | (if (o.POPUPWINDOW == 1) @enumToInt(WINDOW_STYLE.POPUPWINDOW) else 0) | (if (o.ACTIVECAPTION == 1) @enumToInt(WINDOW_STYLE.ACTIVECAPTION) else 0));
     }
 };
 pub const WS_OVERLAPPED = WINDOW_STYLE.OVERLAPPED;
@@ -3957,17 +3567,7 @@ pub const MENU_ITEM_TYPE = enum(u32) {
         SEPARATOR: u1 = 0,
         STRING: u1 = 0,
     }) MENU_ITEM_TYPE {
-        return @intToEnum(MENU_ITEM_TYPE,
-              (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_TYPE.BITMAP) else 0)
-            | (if (o.MENUBARBREAK == 1) @enumToInt(MENU_ITEM_TYPE.MENUBARBREAK) else 0)
-            | (if (o.MENUBREAK == 1) @enumToInt(MENU_ITEM_TYPE.MENUBREAK) else 0)
-            | (if (o.OWNERDRAW == 1) @enumToInt(MENU_ITEM_TYPE.OWNERDRAW) else 0)
-            | (if (o.RADIOCHECK == 1) @enumToInt(MENU_ITEM_TYPE.RADIOCHECK) else 0)
-            | (if (o.RIGHTJUSTIFY == 1) @enumToInt(MENU_ITEM_TYPE.RIGHTJUSTIFY) else 0)
-            | (if (o.RIGHTORDER == 1) @enumToInt(MENU_ITEM_TYPE.RIGHTORDER) else 0)
-            | (if (o.SEPARATOR == 1) @enumToInt(MENU_ITEM_TYPE.SEPARATOR) else 0)
-            | (if (o.STRING == 1) @enumToInt(MENU_ITEM_TYPE.STRING) else 0)
-        );
+        return @intToEnum(MENU_ITEM_TYPE, (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_TYPE.BITMAP) else 0) | (if (o.MENUBARBREAK == 1) @enumToInt(MENU_ITEM_TYPE.MENUBARBREAK) else 0) | (if (o.MENUBREAK == 1) @enumToInt(MENU_ITEM_TYPE.MENUBREAK) else 0) | (if (o.OWNERDRAW == 1) @enumToInt(MENU_ITEM_TYPE.OWNERDRAW) else 0) | (if (o.RADIOCHECK == 1) @enumToInt(MENU_ITEM_TYPE.RADIOCHECK) else 0) | (if (o.RIGHTJUSTIFY == 1) @enumToInt(MENU_ITEM_TYPE.RIGHTJUSTIFY) else 0) | (if (o.RIGHTORDER == 1) @enumToInt(MENU_ITEM_TYPE.RIGHTORDER) else 0) | (if (o.SEPARATOR == 1) @enumToInt(MENU_ITEM_TYPE.SEPARATOR) else 0) | (if (o.STRING == 1) @enumToInt(MENU_ITEM_TYPE.STRING) else 0));
     }
 };
 pub const MFT_BITMAP = MENU_ITEM_TYPE.BITMAP;
@@ -4065,34 +3665,7 @@ pub const OPEN_FILENAME_FLAGS = enum(u32) {
         DONTADDTORECENT: u1 = 0,
         FORCESHOWHIDDEN: u1 = 0,
     }) OPEN_FILENAME_FLAGS {
-        return @intToEnum(OPEN_FILENAME_FLAGS,
-              (if (o.READONLY == 1) @enumToInt(OPEN_FILENAME_FLAGS.READONLY) else 0)
-            | (if (o.OVERWRITEPROMPT == 1) @enumToInt(OPEN_FILENAME_FLAGS.OVERWRITEPROMPT) else 0)
-            | (if (o.HIDEREADONLY == 1) @enumToInt(OPEN_FILENAME_FLAGS.HIDEREADONLY) else 0)
-            | (if (o.NOCHANGEDIR == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOCHANGEDIR) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(OPEN_FILENAME_FLAGS.SHOWHELP) else 0)
-            | (if (o.ENABLEHOOK == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLETEMPLATEHANDLE) else 0)
-            | (if (o.NOVALIDATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOVALIDATE) else 0)
-            | (if (o.ALLOWMULTISELECT == 1) @enumToInt(OPEN_FILENAME_FLAGS.ALLOWMULTISELECT) else 0)
-            | (if (o.EXTENSIONDIFFERENT == 1) @enumToInt(OPEN_FILENAME_FLAGS.EXTENSIONDIFFERENT) else 0)
-            | (if (o.PATHMUSTEXIST == 1) @enumToInt(OPEN_FILENAME_FLAGS.PATHMUSTEXIST) else 0)
-            | (if (o.FILEMUSTEXIST == 1) @enumToInt(OPEN_FILENAME_FLAGS.FILEMUSTEXIST) else 0)
-            | (if (o.CREATEPROMPT == 1) @enumToInt(OPEN_FILENAME_FLAGS.CREATEPROMPT) else 0)
-            | (if (o.SHAREAWARE == 1) @enumToInt(OPEN_FILENAME_FLAGS.SHAREAWARE) else 0)
-            | (if (o.NOREADONLYRETURN == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOREADONLYRETURN) else 0)
-            | (if (o.NOTESTFILECREATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOTESTFILECREATE) else 0)
-            | (if (o.NONETWORKBUTTON == 1) @enumToInt(OPEN_FILENAME_FLAGS.NONETWORKBUTTON) else 0)
-            | (if (o.NOLONGNAMES == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOLONGNAMES) else 0)
-            | (if (o.EXPLORER == 1) @enumToInt(OPEN_FILENAME_FLAGS.EXPLORER) else 0)
-            | (if (o.NODEREFERENCELINKS == 1) @enumToInt(OPEN_FILENAME_FLAGS.NODEREFERENCELINKS) else 0)
-            | (if (o.LONGNAMES == 1) @enumToInt(OPEN_FILENAME_FLAGS.LONGNAMES) else 0)
-            | (if (o.ENABLEINCLUDENOTIFY == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLEINCLUDENOTIFY) else 0)
-            | (if (o.ENABLESIZING == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLESIZING) else 0)
-            | (if (o.DONTADDTORECENT == 1) @enumToInt(OPEN_FILENAME_FLAGS.DONTADDTORECENT) else 0)
-            | (if (o.FORCESHOWHIDDEN == 1) @enumToInt(OPEN_FILENAME_FLAGS.FORCESHOWHIDDEN) else 0)
-        );
+        return @intToEnum(OPEN_FILENAME_FLAGS, (if (o.READONLY == 1) @enumToInt(OPEN_FILENAME_FLAGS.READONLY) else 0) | (if (o.OVERWRITEPROMPT == 1) @enumToInt(OPEN_FILENAME_FLAGS.OVERWRITEPROMPT) else 0) | (if (o.HIDEREADONLY == 1) @enumToInt(OPEN_FILENAME_FLAGS.HIDEREADONLY) else 0) | (if (o.NOCHANGEDIR == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOCHANGEDIR) else 0) | (if (o.SHOWHELP == 1) @enumToInt(OPEN_FILENAME_FLAGS.SHOWHELP) else 0) | (if (o.ENABLEHOOK == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLEHOOK) else 0) | (if (o.ENABLETEMPLATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLETEMPLATE) else 0) | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLETEMPLATEHANDLE) else 0) | (if (o.NOVALIDATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOVALIDATE) else 0) | (if (o.ALLOWMULTISELECT == 1) @enumToInt(OPEN_FILENAME_FLAGS.ALLOWMULTISELECT) else 0) | (if (o.EXTENSIONDIFFERENT == 1) @enumToInt(OPEN_FILENAME_FLAGS.EXTENSIONDIFFERENT) else 0) | (if (o.PATHMUSTEXIST == 1) @enumToInt(OPEN_FILENAME_FLAGS.PATHMUSTEXIST) else 0) | (if (o.FILEMUSTEXIST == 1) @enumToInt(OPEN_FILENAME_FLAGS.FILEMUSTEXIST) else 0) | (if (o.CREATEPROMPT == 1) @enumToInt(OPEN_FILENAME_FLAGS.CREATEPROMPT) else 0) | (if (o.SHAREAWARE == 1) @enumToInt(OPEN_FILENAME_FLAGS.SHAREAWARE) else 0) | (if (o.NOREADONLYRETURN == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOREADONLYRETURN) else 0) | (if (o.NOTESTFILECREATE == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOTESTFILECREATE) else 0) | (if (o.NONETWORKBUTTON == 1) @enumToInt(OPEN_FILENAME_FLAGS.NONETWORKBUTTON) else 0) | (if (o.NOLONGNAMES == 1) @enumToInt(OPEN_FILENAME_FLAGS.NOLONGNAMES) else 0) | (if (o.EXPLORER == 1) @enumToInt(OPEN_FILENAME_FLAGS.EXPLORER) else 0) | (if (o.NODEREFERENCELINKS == 1) @enumToInt(OPEN_FILENAME_FLAGS.NODEREFERENCELINKS) else 0) | (if (o.LONGNAMES == 1) @enumToInt(OPEN_FILENAME_FLAGS.LONGNAMES) else 0) | (if (o.ENABLEINCLUDENOTIFY == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLEINCLUDENOTIFY) else 0) | (if (o.ENABLESIZING == 1) @enumToInt(OPEN_FILENAME_FLAGS.ENABLESIZING) else 0) | (if (o.DONTADDTORECENT == 1) @enumToInt(OPEN_FILENAME_FLAGS.DONTADDTORECENT) else 0) | (if (o.FORCESHOWHIDDEN == 1) @enumToInt(OPEN_FILENAME_FLAGS.FORCESHOWHIDDEN) else 0));
     }
 };
 pub const OFN_READONLY = OPEN_FILENAME_FLAGS.READONLY;
@@ -4130,10 +3703,7 @@ pub const OPEN_FILENAME_FLAGS_EX = enum(u32) {
         NE: u1 = 0,
         PLACESBAR: u1 = 0,
     }) OPEN_FILENAME_FLAGS_EX {
-        return @intToEnum(OPEN_FILENAME_FLAGS_EX,
-              (if (o.NE == 1) @enumToInt(OPEN_FILENAME_FLAGS_EX.NE) else 0)
-            | (if (o.PLACESBAR == 1) @enumToInt(OPEN_FILENAME_FLAGS_EX.PLACESBAR) else 0)
-        );
+        return @intToEnum(OPEN_FILENAME_FLAGS_EX, (if (o.NE == 1) @enumToInt(OPEN_FILENAME_FLAGS_EX.NE) else 0) | (if (o.PLACESBAR == 1) @enumToInt(OPEN_FILENAME_FLAGS_EX.PLACESBAR) else 0));
     }
 };
 pub const OFN_EX_NONE = OPEN_FILENAME_FLAGS_EX.NE;
@@ -4156,13 +3726,7 @@ pub const MENU_ITEM_STATE = enum(u32) {
         ENABLED: u1 = 0,
         DEFAULT: u1 = 0,
     }) MENU_ITEM_STATE {
-        return @intToEnum(MENU_ITEM_STATE,
-              (if (o.GRAYED == 1) @enumToInt(MENU_ITEM_STATE.GRAYED) else 0)
-            | (if (o.CHECKED == 1) @enumToInt(MENU_ITEM_STATE.CHECKED) else 0)
-            | (if (o.HILITE == 1) @enumToInt(MENU_ITEM_STATE.HILITE) else 0)
-            | (if (o.ENABLED == 1) @enumToInt(MENU_ITEM_STATE.ENABLED) else 0)
-            | (if (o.DEFAULT == 1) @enumToInt(MENU_ITEM_STATE.DEFAULT) else 0)
-        );
+        return @intToEnum(MENU_ITEM_STATE, (if (o.GRAYED == 1) @enumToInt(MENU_ITEM_STATE.GRAYED) else 0) | (if (o.CHECKED == 1) @enumToInt(MENU_ITEM_STATE.CHECKED) else 0) | (if (o.HILITE == 1) @enumToInt(MENU_ITEM_STATE.HILITE) else 0) | (if (o.ENABLED == 1) @enumToInt(MENU_ITEM_STATE.ENABLED) else 0) | (if (o.DEFAULT == 1) @enumToInt(MENU_ITEM_STATE.DEFAULT) else 0));
     }
 };
 pub const MFS_GRAYED = MENU_ITEM_STATE.GRAYED;
@@ -4239,19 +3803,7 @@ pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = enum(u32) {
         LUID: u1 = 0,
         RETURNHDESK: u1 = 0,
     }) BROADCAST_SYSTEM_MESSAGE_FLAGS {
-        return @intToEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS,
-              (if (o.ALLOWSFW == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW) else 0)
-            | (if (o.FLUSHDISK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK) else 0)
-            | (if (o.FORCEIFHUNG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG) else 0)
-            | (if (o.IGNORECURRENTTASK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK) else 0)
-            | (if (o.NOHANG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG) else 0)
-            | (if (o.NOTIMEOUTIFNOTHUNG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG) else 0)
-            | (if (o.POSTMESSAGE == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE) else 0)
-            | (if (o.QUERY == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY) else 0)
-            | (if (o.SENDNOTIFYMESSAGE == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE) else 0)
-            | (if (o.LUID == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID) else 0)
-            | (if (o.RETURNHDESK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK) else 0)
-        );
+        return @intToEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS, (if (o.ALLOWSFW == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW) else 0) | (if (o.FLUSHDISK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK) else 0) | (if (o.FORCEIFHUNG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG) else 0) | (if (o.IGNORECURRENTTASK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK) else 0) | (if (o.NOHANG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG) else 0) | (if (o.NOTIMEOUTIFNOTHUNG == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG) else 0) | (if (o.POSTMESSAGE == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE) else 0) | (if (o.QUERY == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY) else 0) | (if (o.SENDNOTIFYMESSAGE == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE) else 0) | (if (o.LUID == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID) else 0) | (if (o.RETURNHDESK == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK) else 0));
     }
 };
 pub const BSF_ALLOWSFW = BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW;
@@ -4326,17 +3878,7 @@ pub const ANIMATE_WINDOW_FLAGS = enum(u32) {
         VER_POSITIVE: u1 = 0,
         VER_NEGATIVE: u1 = 0,
     }) ANIMATE_WINDOW_FLAGS {
-        return @intToEnum(ANIMATE_WINDOW_FLAGS,
-              (if (o.ACTIVATE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.ACTIVATE) else 0)
-            | (if (o.BLEND == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.BLEND) else 0)
-            | (if (o.CENTER == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.CENTER) else 0)
-            | (if (o.HIDE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HIDE) else 0)
-            | (if (o.HOR_POSITIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HOR_POSITIVE) else 0)
-            | (if (o.HOR_NEGATIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HOR_NEGATIVE) else 0)
-            | (if (o.SLIDE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.SLIDE) else 0)
-            | (if (o.VER_POSITIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.VER_POSITIVE) else 0)
-            | (if (o.VER_NEGATIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.VER_NEGATIVE) else 0)
-        );
+        return @intToEnum(ANIMATE_WINDOW_FLAGS, (if (o.ACTIVATE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.ACTIVATE) else 0) | (if (o.BLEND == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.BLEND) else 0) | (if (o.CENTER == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.CENTER) else 0) | (if (o.HIDE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HIDE) else 0) | (if (o.HOR_POSITIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HOR_POSITIVE) else 0) | (if (o.HOR_NEGATIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.HOR_NEGATIVE) else 0) | (if (o.SLIDE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.SLIDE) else 0) | (if (o.VER_POSITIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.VER_POSITIVE) else 0) | (if (o.VER_NEGATIVE == 1) @enumToInt(ANIMATE_WINDOW_FLAGS.VER_NEGATIVE) else 0));
     }
 };
 pub const AW_ACTIVATE = ANIMATE_WINDOW_FLAGS.ACTIVATE;
@@ -4408,11 +3950,7 @@ pub const BROADCAST_SYSTEM_MESSAGE_INFO = enum(u32) {
         LLDESKTOPS: u1 = 0,
         PPLICATIONS: u1 = 0,
     }) BROADCAST_SYSTEM_MESSAGE_INFO {
-        return @intToEnum(BROADCAST_SYSTEM_MESSAGE_INFO,
-              (if (o.LLCOMPONENTS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS) else 0)
-            | (if (o.LLDESKTOPS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS) else 0)
-            | (if (o.PPLICATIONS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS) else 0)
-        );
+        return @intToEnum(BROADCAST_SYSTEM_MESSAGE_INFO, (if (o.LLCOMPONENTS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS) else 0) | (if (o.LLDESKTOPS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS) else 0) | (if (o.PPLICATIONS == 1) @enumToInt(BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS) else 0));
     }
 };
 pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS;
@@ -4428,10 +3966,7 @@ pub const SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS = enum(u32) {
         UPDATEINIFILE: u1 = 0,
         SENDCHANGE: u1 = 0,
     }) SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS {
-        return @intToEnum(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS,
-              (if (o.UPDATEINIFILE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.UPDATEINIFILE) else 0)
-            | (if (o.SENDCHANGE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDCHANGE) else 0)
-        );
+        return @intToEnum(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS, (if (o.UPDATEINIFILE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.UPDATEINIFILE) else 0) | (if (o.SENDCHANGE == 1) @enumToInt(SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.SENDCHANGE) else 0));
     }
 };
 pub const SPIF_UPDATEINIFILE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.UPDATEINIFILE;
@@ -4471,21 +4006,7 @@ pub const SET_WINDOW_POS_FLAGS = enum(u32) {
         NOZORDER: u1 = 0,
         SHOWWINDOW: u1 = 0,
     }) SET_WINDOW_POS_FLAGS {
-        return @intToEnum(SET_WINDOW_POS_FLAGS,
-              (if (o.ASYNCWINDOWPOS == 1) @enumToInt(SET_WINDOW_POS_FLAGS.ASYNCWINDOWPOS) else 0)
-            | (if (o.DEFERERASE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.DEFERERASE) else 0)
-            | (if (o.DRAWFRAME == 1) @enumToInt(SET_WINDOW_POS_FLAGS.DRAWFRAME) else 0)
-            | (if (o.HIDEWINDOW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.HIDEWINDOW) else 0)
-            | (if (o.NOACTIVATE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOACTIVATE) else 0)
-            | (if (o.NOCOPYBITS == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOCOPYBITS) else 0)
-            | (if (o.NOMOVE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOMOVE) else 0)
-            | (if (o.NOOWNERZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOOWNERZORDER) else 0)
-            | (if (o.NOREDRAW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOREDRAW) else 0)
-            | (if (o.NOSENDCHANGING == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOSENDCHANGING) else 0)
-            | (if (o.NOSIZE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOSIZE) else 0)
-            | (if (o.NOZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOZORDER) else 0)
-            | (if (o.SHOWWINDOW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.SHOWWINDOW) else 0)
-        );
+        return @intToEnum(SET_WINDOW_POS_FLAGS, (if (o.ASYNCWINDOWPOS == 1) @enumToInt(SET_WINDOW_POS_FLAGS.ASYNCWINDOWPOS) else 0) | (if (o.DEFERERASE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.DEFERERASE) else 0) | (if (o.DRAWFRAME == 1) @enumToInt(SET_WINDOW_POS_FLAGS.DRAWFRAME) else 0) | (if (o.HIDEWINDOW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.HIDEWINDOW) else 0) | (if (o.NOACTIVATE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOACTIVATE) else 0) | (if (o.NOCOPYBITS == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOCOPYBITS) else 0) | (if (o.NOMOVE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOMOVE) else 0) | (if (o.NOOWNERZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOOWNERZORDER) else 0) | (if (o.NOREDRAW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOREDRAW) else 0) | (if (o.NOSENDCHANGING == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOSENDCHANGING) else 0) | (if (o.NOSIZE == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOSIZE) else 0) | (if (o.NOZORDER == 1) @enumToInt(SET_WINDOW_POS_FLAGS.NOZORDER) else 0) | (if (o.SHOWWINDOW == 1) @enumToInt(SET_WINDOW_POS_FLAGS.SHOWWINDOW) else 0));
     }
 };
 pub const SWP_ASYNCWINDOWPOS = SET_WINDOW_POS_FLAGS.ASYNCWINDOWPOS;
@@ -4537,22 +4058,7 @@ pub const QUEUE_STATUS_FLAGS = enum(u32) {
         SENDMESSAGE: u1 = 0,
         TIMER: u1 = 0,
     }) QUEUE_STATUS_FLAGS {
-        return @intToEnum(QUEUE_STATUS_FLAGS,
-              (if (o.ALLEVENTS == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLEVENTS) else 0)
-            | (if (o.ALLINPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLINPUT) else 0)
-            | (if (o.ALLPOSTMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLPOSTMESSAGE) else 0)
-            | (if (o.HOTKEY == 1) @enumToInt(QUEUE_STATUS_FLAGS.HOTKEY) else 0)
-            | (if (o.INPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.INPUT) else 0)
-            | (if (o.KEY == 1) @enumToInt(QUEUE_STATUS_FLAGS.KEY) else 0)
-            | (if (o.MOUSE == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSE) else 0)
-            | (if (o.MOUSEBUTTON == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSEBUTTON) else 0)
-            | (if (o.MOUSEMOVE == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSEMOVE) else 0)
-            | (if (o.PAINT == 1) @enumToInt(QUEUE_STATUS_FLAGS.PAINT) else 0)
-            | (if (o.POSTMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.POSTMESSAGE) else 0)
-            | (if (o.RAWINPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.RAWINPUT) else 0)
-            | (if (o.SENDMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.SENDMESSAGE) else 0)
-            | (if (o.TIMER == 1) @enumToInt(QUEUE_STATUS_FLAGS.TIMER) else 0)
-        );
+        return @intToEnum(QUEUE_STATUS_FLAGS, (if (o.ALLEVENTS == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLEVENTS) else 0) | (if (o.ALLINPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLINPUT) else 0) | (if (o.ALLPOSTMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.ALLPOSTMESSAGE) else 0) | (if (o.HOTKEY == 1) @enumToInt(QUEUE_STATUS_FLAGS.HOTKEY) else 0) | (if (o.INPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.INPUT) else 0) | (if (o.KEY == 1) @enumToInt(QUEUE_STATUS_FLAGS.KEY) else 0) | (if (o.MOUSE == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSE) else 0) | (if (o.MOUSEBUTTON == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSEBUTTON) else 0) | (if (o.MOUSEMOVE == 1) @enumToInt(QUEUE_STATUS_FLAGS.MOUSEMOVE) else 0) | (if (o.PAINT == 1) @enumToInt(QUEUE_STATUS_FLAGS.PAINT) else 0) | (if (o.POSTMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.POSTMESSAGE) else 0) | (if (o.RAWINPUT == 1) @enumToInt(QUEUE_STATUS_FLAGS.RAWINPUT) else 0) | (if (o.SENDMESSAGE == 1) @enumToInt(QUEUE_STATUS_FLAGS.SENDMESSAGE) else 0) | (if (o.TIMER == 1) @enumToInt(QUEUE_STATUS_FLAGS.TIMER) else 0));
     }
 };
 pub const QS_ALLEVENTS = QUEUE_STATUS_FLAGS.ALLEVENTS;
@@ -4609,10 +4115,7 @@ pub const LAYERED_WINDOW_ATTRIBUTES_FLAGS = enum(u32) {
         ALPHA: u1 = 0,
         COLORKEY: u1 = 0,
     }) LAYERED_WINDOW_ATTRIBUTES_FLAGS {
-        return @intToEnum(LAYERED_WINDOW_ATTRIBUTES_FLAGS,
-              (if (o.ALPHA == 1) @enumToInt(LAYERED_WINDOW_ATTRIBUTES_FLAGS.ALPHA) else 0)
-            | (if (o.COLORKEY == 1) @enumToInt(LAYERED_WINDOW_ATTRIBUTES_FLAGS.COLORKEY) else 0)
-        );
+        return @intToEnum(LAYERED_WINDOW_ATTRIBUTES_FLAGS, (if (o.ALPHA == 1) @enumToInt(LAYERED_WINDOW_ATTRIBUTES_FLAGS.ALPHA) else 0) | (if (o.COLORKEY == 1) @enumToInt(LAYERED_WINDOW_ATTRIBUTES_FLAGS.COLORKEY) else 0));
     }
 };
 pub const LWA_ALPHA = LAYERED_WINDOW_ATTRIBUTES_FLAGS.ALPHA;
@@ -4632,13 +4135,7 @@ pub const SEND_MESSAGE_TIMEOUT_FLAGS = enum(u32) {
         NOTIMEOUTIFNOTHUNG: u1 = 0,
         ERRORONEXIT: u1 = 0,
     }) SEND_MESSAGE_TIMEOUT_FLAGS {
-        return @intToEnum(SEND_MESSAGE_TIMEOUT_FLAGS,
-              (if (o.ABORTIFHUNG == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.ABORTIFHUNG) else 0)
-            | (if (o.BLOCK == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.BLOCK) else 0)
-            | (if (o.NORMAL == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.NORMAL) else 0)
-            | (if (o.NOTIMEOUTIFNOTHUNG == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.NOTIMEOUTIFNOTHUNG) else 0)
-            | (if (o.ERRORONEXIT == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.ERRORONEXIT) else 0)
-        );
+        return @intToEnum(SEND_MESSAGE_TIMEOUT_FLAGS, (if (o.ABORTIFHUNG == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.ABORTIFHUNG) else 0) | (if (o.BLOCK == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.BLOCK) else 0) | (if (o.NORMAL == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.NORMAL) else 0) | (if (o.NOTIMEOUTIFNOTHUNG == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.NOTIMEOUTIFNOTHUNG) else 0) | (if (o.ERRORONEXIT == 1) @enumToInt(SEND_MESSAGE_TIMEOUT_FLAGS.ERRORONEXIT) else 0));
     }
 };
 pub const SMTO_ABORTIFHUNG = SEND_MESSAGE_TIMEOUT_FLAGS.ABORTIFHUNG;
@@ -4665,15 +4162,7 @@ pub const PEEK_MESSAGE_REMOVE_TYPE = enum(u32) {
         QS_PAINT: u1 = 0,
         QS_SENDMESSAGE: u1 = 0,
     }) PEEK_MESSAGE_REMOVE_TYPE {
-        return @intToEnum(PEEK_MESSAGE_REMOVE_TYPE,
-              (if (o.NOREMOVE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.NOREMOVE) else 0)
-            | (if (o.REMOVE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.REMOVE) else 0)
-            | (if (o.NOYIELD == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.NOYIELD) else 0)
-            | (if (o.QS_INPUT == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_INPUT) else 0)
-            | (if (o.QS_POSTMESSAGE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_POSTMESSAGE) else 0)
-            | (if (o.QS_PAINT == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_PAINT) else 0)
-            | (if (o.QS_SENDMESSAGE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_SENDMESSAGE) else 0)
-        );
+        return @intToEnum(PEEK_MESSAGE_REMOVE_TYPE, (if (o.NOREMOVE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.NOREMOVE) else 0) | (if (o.REMOVE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.REMOVE) else 0) | (if (o.NOYIELD == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.NOYIELD) else 0) | (if (o.QS_INPUT == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_INPUT) else 0) | (if (o.QS_POSTMESSAGE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_POSTMESSAGE) else 0) | (if (o.QS_PAINT == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_PAINT) else 0) | (if (o.QS_SENDMESSAGE == 1) @enumToInt(PEEK_MESSAGE_REMOVE_TYPE.QS_SENDMESSAGE) else 0));
     }
 };
 pub const PM_NOREMOVE = PEEK_MESSAGE_REMOVE_TYPE.NOREMOVE;
@@ -5009,10 +4498,7 @@ pub const CASCADE_WINDOWS_HOW = enum(u32) {
         SKIPDISABLED: u1 = 0,
         ZORDER: u1 = 0,
     }) CASCADE_WINDOWS_HOW {
-        return @intToEnum(CASCADE_WINDOWS_HOW,
-              (if (o.SKIPDISABLED == 1) @enumToInt(CASCADE_WINDOWS_HOW.SKIPDISABLED) else 0)
-            | (if (o.ZORDER == 1) @enumToInt(CASCADE_WINDOWS_HOW.ZORDER) else 0)
-        );
+        return @intToEnum(CASCADE_WINDOWS_HOW, (if (o.SKIPDISABLED == 1) @enumToInt(CASCADE_WINDOWS_HOW.SKIPDISABLED) else 0) | (if (o.ZORDER == 1) @enumToInt(CASCADE_WINDOWS_HOW.ZORDER) else 0));
     }
 };
 pub const MDITILE_SKIPDISABLED = CASCADE_WINDOWS_HOW.SKIPDISABLED;
@@ -5035,10 +4521,7 @@ pub const GET_MENU_DEFAULT_ITEM_FLAGS = enum(u32) {
         GOINTOPOPUPS: u1 = 0,
         USEDISABLED: u1 = 0,
     }) GET_MENU_DEFAULT_ITEM_FLAGS {
-        return @intToEnum(GET_MENU_DEFAULT_ITEM_FLAGS,
-              (if (o.GOINTOPOPUPS == 1) @enumToInt(GET_MENU_DEFAULT_ITEM_FLAGS.GOINTOPOPUPS) else 0)
-            | (if (o.USEDISABLED == 1) @enumToInt(GET_MENU_DEFAULT_ITEM_FLAGS.USEDISABLED) else 0)
-        );
+        return @intToEnum(GET_MENU_DEFAULT_ITEM_FLAGS, (if (o.GOINTOPOPUPS == 1) @enumToInt(GET_MENU_DEFAULT_ITEM_FLAGS.GOINTOPOPUPS) else 0) | (if (o.USEDISABLED == 1) @enumToInt(GET_MENU_DEFAULT_ITEM_FLAGS.USEDISABLED) else 0));
     }
 };
 pub const GMDI_GOINTOPOPUPS = GET_MENU_DEFAULT_ITEM_FLAGS.GOINTOPOPUPS;
@@ -5085,26 +4568,7 @@ pub const PAGESETUPDLG_FLAGS = enum(u32) {
         RETURNDEFAULT: u1 = 0,
         SHOWHELP: u1 = 0,
     }) PAGESETUPDLG_FLAGS {
-        return @intToEnum(PAGESETUPDLG_FLAGS,
-              (if (o.DEFAULTMINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS) else 0)
-            | (if (o.DISABLEMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEMARGINS) else 0)
-            | (if (o.DISABLEORIENTATION == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEORIENTATION) else 0)
-            | (if (o.DISABLEPAGEPAINTING == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPAGEPAINTING) else 0)
-            | (if (o.DISABLEPAPER == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPAPER) else 0)
-            | (if (o.DISABLEPRINTER == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPRINTER) else 0)
-            | (if (o.ENABLEPAGEPAINTHOOK == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGEPAINTHOOK) else 0)
-            | (if (o.ENABLEPAGESETUPHOOK == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPHOOK) else 0)
-            | (if (o.ENABLEPAGESETUPTEMPLATE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATE) else 0)
-            | (if (o.ENABLEPAGESETUPTEMPLATEHANDLE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATEHANDLE) else 0)
-            | (if (o.INHUNDREDTHSOFMILLIMETERS == 1) @enumToInt(PAGESETUPDLG_FLAGS.INHUNDREDTHSOFMILLIMETERS) else 0)
-            | (if (o.INTHOUSANDTHSOFINCHES == 1) @enumToInt(PAGESETUPDLG_FLAGS.INTHOUSANDTHSOFINCHES) else 0)
-            | (if (o.MARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MARGINS) else 0)
-            | (if (o.MINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MINMARGINS) else 0)
-            | (if (o.NONETWORKBUTTON == 1) @enumToInt(PAGESETUPDLG_FLAGS.NONETWORKBUTTON) else 0)
-            | (if (o.NOWARNING == 1) @enumToInt(PAGESETUPDLG_FLAGS.NOWARNING) else 0)
-            | (if (o.RETURNDEFAULT == 1) @enumToInt(PAGESETUPDLG_FLAGS.RETURNDEFAULT) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(PAGESETUPDLG_FLAGS.SHOWHELP) else 0)
-        );
+        return @intToEnum(PAGESETUPDLG_FLAGS, (if (o.DEFAULTMINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS) else 0) | (if (o.DISABLEMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEMARGINS) else 0) | (if (o.DISABLEORIENTATION == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEORIENTATION) else 0) | (if (o.DISABLEPAGEPAINTING == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPAGEPAINTING) else 0) | (if (o.DISABLEPAPER == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPAPER) else 0) | (if (o.DISABLEPRINTER == 1) @enumToInt(PAGESETUPDLG_FLAGS.DISABLEPRINTER) else 0) | (if (o.ENABLEPAGEPAINTHOOK == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGEPAINTHOOK) else 0) | (if (o.ENABLEPAGESETUPHOOK == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPHOOK) else 0) | (if (o.ENABLEPAGESETUPTEMPLATE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATE) else 0) | (if (o.ENABLEPAGESETUPTEMPLATEHANDLE == 1) @enumToInt(PAGESETUPDLG_FLAGS.ENABLEPAGESETUPTEMPLATEHANDLE) else 0) | (if (o.INHUNDREDTHSOFMILLIMETERS == 1) @enumToInt(PAGESETUPDLG_FLAGS.INHUNDREDTHSOFMILLIMETERS) else 0) | (if (o.INTHOUSANDTHSOFINCHES == 1) @enumToInt(PAGESETUPDLG_FLAGS.INTHOUSANDTHSOFINCHES) else 0) | (if (o.MARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MARGINS) else 0) | (if (o.MINMARGINS == 1) @enumToInt(PAGESETUPDLG_FLAGS.MINMARGINS) else 0) | (if (o.NONETWORKBUTTON == 1) @enumToInt(PAGESETUPDLG_FLAGS.NONETWORKBUTTON) else 0) | (if (o.NOWARNING == 1) @enumToInt(PAGESETUPDLG_FLAGS.NOWARNING) else 0) | (if (o.RETURNDEFAULT == 1) @enumToInt(PAGESETUPDLG_FLAGS.RETURNDEFAULT) else 0) | (if (o.SHOWHELP == 1) @enumToInt(PAGESETUPDLG_FLAGS.SHOWHELP) else 0));
     }
 };
 pub const PSD_DEFAULTMINMARGINS = PAGESETUPDLG_FLAGS.DEFAULTMINMARGINS;
@@ -5198,35 +4662,7 @@ pub const CHOOSEFONT_FLAGS = enum(u32) {
         USESTYLE: u1 = 0,
         WYSIWYG: u1 = 0,
     }) CHOOSEFONT_FLAGS {
-        return @intToEnum(CHOOSEFONT_FLAGS,
-              (if (o.APPLY == 1) @enumToInt(CHOOSEFONT_FLAGS.APPLY) else 0)
-            | (if (o.ANSIONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.ANSIONLY) else 0)
-            | (if (o.BOTH == 1) @enumToInt(CHOOSEFONT_FLAGS.BOTH) else 0)
-            | (if (o.EFFECTS == 1) @enumToInt(CHOOSEFONT_FLAGS.EFFECTS) else 0)
-            | (if (o.ENABLEHOOK == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLETEMPLATEHANDLE) else 0)
-            | (if (o.FIXEDPITCHONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.FIXEDPITCHONLY) else 0)
-            | (if (o.FORCEFONTEXIST == 1) @enumToInt(CHOOSEFONT_FLAGS.FORCEFONTEXIST) else 0)
-            | (if (o.INACTIVEFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.INACTIVEFONTS) else 0)
-            | (if (o.INITTOLOGFONTSTRUCT == 1) @enumToInt(CHOOSEFONT_FLAGS.INITTOLOGFONTSTRUCT) else 0)
-            | (if (o.LIMITSIZE == 1) @enumToInt(CHOOSEFONT_FLAGS.LIMITSIZE) else 0)
-            | (if (o.NOOEMFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOOEMFONTS) else 0)
-            | (if (o.NOFACESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOFACESEL) else 0)
-            | (if (o.NOSCRIPTSEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSCRIPTSEL) else 0)
-            | (if (o.NOSIMULATIONS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIMULATIONS) else 0)
-            | (if (o.NOSIZESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIZESEL) else 0)
-            | (if (o.NOSTYLESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSTYLESEL) else 0)
-            | (if (o.NOVERTFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOVERTFONTS) else 0)
-            | (if (o.PRINTERFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.PRINTERFONTS) else 0)
-            | (if (o.SCALABLEONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.SCALABLEONLY) else 0)
-            | (if (o.SCREENFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.SCREENFONTS) else 0)
-            | (if (o.SELECTSCRIPT == 1) @enumToInt(CHOOSEFONT_FLAGS.SELECTSCRIPT) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(CHOOSEFONT_FLAGS.SHOWHELP) else 0)
-            | (if (o.TTONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.TTONLY) else 0)
-            | (if (o.USESTYLE == 1) @enumToInt(CHOOSEFONT_FLAGS.USESTYLE) else 0)
-            | (if (o.WYSIWYG == 1) @enumToInt(CHOOSEFONT_FLAGS.WYSIWYG) else 0)
-        );
+        return @intToEnum(CHOOSEFONT_FLAGS, (if (o.APPLY == 1) @enumToInt(CHOOSEFONT_FLAGS.APPLY) else 0) | (if (o.ANSIONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.ANSIONLY) else 0) | (if (o.BOTH == 1) @enumToInt(CHOOSEFONT_FLAGS.BOTH) else 0) | (if (o.EFFECTS == 1) @enumToInt(CHOOSEFONT_FLAGS.EFFECTS) else 0) | (if (o.ENABLEHOOK == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLEHOOK) else 0) | (if (o.ENABLETEMPLATE == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLETEMPLATE) else 0) | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(CHOOSEFONT_FLAGS.ENABLETEMPLATEHANDLE) else 0) | (if (o.FIXEDPITCHONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.FIXEDPITCHONLY) else 0) | (if (o.FORCEFONTEXIST == 1) @enumToInt(CHOOSEFONT_FLAGS.FORCEFONTEXIST) else 0) | (if (o.INACTIVEFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.INACTIVEFONTS) else 0) | (if (o.INITTOLOGFONTSTRUCT == 1) @enumToInt(CHOOSEFONT_FLAGS.INITTOLOGFONTSTRUCT) else 0) | (if (o.LIMITSIZE == 1) @enumToInt(CHOOSEFONT_FLAGS.LIMITSIZE) else 0) | (if (o.NOOEMFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOOEMFONTS) else 0) | (if (o.NOFACESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOFACESEL) else 0) | (if (o.NOSCRIPTSEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSCRIPTSEL) else 0) | (if (o.NOSIMULATIONS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIMULATIONS) else 0) | (if (o.NOSIZESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSIZESEL) else 0) | (if (o.NOSTYLESEL == 1) @enumToInt(CHOOSEFONT_FLAGS.NOSTYLESEL) else 0) | (if (o.NOVERTFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.NOVERTFONTS) else 0) | (if (o.PRINTERFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.PRINTERFONTS) else 0) | (if (o.SCALABLEONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.SCALABLEONLY) else 0) | (if (o.SCREENFONTS == 1) @enumToInt(CHOOSEFONT_FLAGS.SCREENFONTS) else 0) | (if (o.SELECTSCRIPT == 1) @enumToInt(CHOOSEFONT_FLAGS.SELECTSCRIPT) else 0) | (if (o.SHOWHELP == 1) @enumToInt(CHOOSEFONT_FLAGS.SHOWHELP) else 0) | (if (o.TTONLY == 1) @enumToInt(CHOOSEFONT_FLAGS.TTONLY) else 0) | (if (o.USESTYLE == 1) @enumToInt(CHOOSEFONT_FLAGS.USESTYLE) else 0) | (if (o.WYSIWYG == 1) @enumToInt(CHOOSEFONT_FLAGS.WYSIWYG) else 0));
     }
 };
 pub const CF_APPLY = CHOOSEFONT_FLAGS.APPLY;
@@ -5297,25 +4733,7 @@ pub const FINDREPLACE_FLAGS = enum(u32) {
         SHOWHELP: u1 = 0,
         WHOLEWORD: u1 = 0,
     }) FINDREPLACE_FLAGS {
-        return @intToEnum(FINDREPLACE_FLAGS,
-              (if (o.DIALOGTERM == 1) @enumToInt(FINDREPLACE_FLAGS.DIALOGTERM) else 0)
-            | (if (o.DOWN == 1) @enumToInt(FINDREPLACE_FLAGS.DOWN) else 0)
-            | (if (o.ENABLEHOOK == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLEHOOK) else 0)
-            | (if (o.ENABLETEMPLATE == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLETEMPLATE) else 0)
-            | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLETEMPLATEHANDLE) else 0)
-            | (if (o.FINDNEXT == 1) @enumToInt(FINDREPLACE_FLAGS.FINDNEXT) else 0)
-            | (if (o.HIDEUPDOWN == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEUPDOWN) else 0)
-            | (if (o.HIDEMATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEMATCHCASE) else 0)
-            | (if (o.HIDEWHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEWHOLEWORD) else 0)
-            | (if (o.MATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.MATCHCASE) else 0)
-            | (if (o.NOMATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.NOMATCHCASE) else 0)
-            | (if (o.NOUPDOWN == 1) @enumToInt(FINDREPLACE_FLAGS.NOUPDOWN) else 0)
-            | (if (o.NOWHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.NOWHOLEWORD) else 0)
-            | (if (o.REPLACE == 1) @enumToInt(FINDREPLACE_FLAGS.REPLACE) else 0)
-            | (if (o.REPLACEALL == 1) @enumToInt(FINDREPLACE_FLAGS.REPLACEALL) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(FINDREPLACE_FLAGS.SHOWHELP) else 0)
-            | (if (o.WHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.WHOLEWORD) else 0)
-        );
+        return @intToEnum(FINDREPLACE_FLAGS, (if (o.DIALOGTERM == 1) @enumToInt(FINDREPLACE_FLAGS.DIALOGTERM) else 0) | (if (o.DOWN == 1) @enumToInt(FINDREPLACE_FLAGS.DOWN) else 0) | (if (o.ENABLEHOOK == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLEHOOK) else 0) | (if (o.ENABLETEMPLATE == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLETEMPLATE) else 0) | (if (o.ENABLETEMPLATEHANDLE == 1) @enumToInt(FINDREPLACE_FLAGS.ENABLETEMPLATEHANDLE) else 0) | (if (o.FINDNEXT == 1) @enumToInt(FINDREPLACE_FLAGS.FINDNEXT) else 0) | (if (o.HIDEUPDOWN == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEUPDOWN) else 0) | (if (o.HIDEMATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEMATCHCASE) else 0) | (if (o.HIDEWHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.HIDEWHOLEWORD) else 0) | (if (o.MATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.MATCHCASE) else 0) | (if (o.NOMATCHCASE == 1) @enumToInt(FINDREPLACE_FLAGS.NOMATCHCASE) else 0) | (if (o.NOUPDOWN == 1) @enumToInt(FINDREPLACE_FLAGS.NOUPDOWN) else 0) | (if (o.NOWHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.NOWHOLEWORD) else 0) | (if (o.REPLACE == 1) @enumToInt(FINDREPLACE_FLAGS.REPLACE) else 0) | (if (o.REPLACEALL == 1) @enumToInt(FINDREPLACE_FLAGS.REPLACEALL) else 0) | (if (o.SHOWHELP == 1) @enumToInt(FINDREPLACE_FLAGS.SHOWHELP) else 0) | (if (o.WHOLEWORD == 1) @enumToInt(FINDREPLACE_FLAGS.WHOLEWORD) else 0));
     }
 };
 pub const FR_DIALOGTERM = FINDREPLACE_FLAGS.DIALOGTERM;
@@ -5395,35 +4813,7 @@ pub const PRINTDLGEX_FLAGS = enum(u32) {
         PRINTSETUP: u1 = 0,
         SHOWHELP: u1 = 0,
     }) PRINTDLGEX_FLAGS {
-        return @intToEnum(PRINTDLGEX_FLAGS,
-              (if (o.ALLPAGES == 1) @enumToInt(PRINTDLGEX_FLAGS.ALLPAGES) else 0)
-            | (if (o.COLLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.COLLATE) else 0)
-            | (if (o.CURRENTPAGE == 1) @enumToInt(PRINTDLGEX_FLAGS.CURRENTPAGE) else 0)
-            | (if (o.DISABLEPRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.DISABLEPRINTTOFILE) else 0)
-            | (if (o.ENABLEPRINTTEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATE) else 0)
-            | (if (o.ENABLEPRINTTEMPLATEHANDLE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATEHANDLE) else 0)
-            | (if (o.EXCLUSIONFLAGS == 1) @enumToInt(PRINTDLGEX_FLAGS.EXCLUSIONFLAGS) else 0)
-            | (if (o.HIDEPRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.HIDEPRINTTOFILE) else 0)
-            | (if (o.NOCURRENTPAGE == 1) @enumToInt(PRINTDLGEX_FLAGS.NOCURRENTPAGE) else 0)
-            | (if (o.NOPAGENUMS == 1) @enumToInt(PRINTDLGEX_FLAGS.NOPAGENUMS) else 0)
-            | (if (o.NOSELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.NOSELECTION) else 0)
-            | (if (o.NOWARNING == 1) @enumToInt(PRINTDLGEX_FLAGS.NOWARNING) else 0)
-            | (if (o.PAGENUMS == 1) @enumToInt(PRINTDLGEX_FLAGS.PAGENUMS) else 0)
-            | (if (o.PRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.PRINTTOFILE) else 0)
-            | (if (o.RETURNDC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNDC) else 0)
-            | (if (o.RETURNDEFAULT == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNDEFAULT) else 0)
-            | (if (o.RETURNIC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNIC) else 0)
-            | (if (o.SELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.SELECTION) else 0)
-            | (if (o.USEDEVMODECOPIES == 1) @enumToInt(PRINTDLGEX_FLAGS.USEDEVMODECOPIES) else 0)
-            | (if (o.USELARGETEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.USELARGETEMPLATE) else 0)
-            | (if (o.ENABLEPRINTHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTHOOK) else 0)
-            | (if (o.ENABLESETUPHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPHOOK) else 0)
-            | (if (o.ENABLESETUPTEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATE) else 0)
-            | (if (o.ENABLESETUPTEMPLATEHANDLE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATEHANDLE) else 0)
-            | (if (o.NONETWORKBUTTON == 1) @enumToInt(PRINTDLGEX_FLAGS.NONETWORKBUTTON) else 0)
-            | (if (o.PRINTSETUP == 1) @enumToInt(PRINTDLGEX_FLAGS.PRINTSETUP) else 0)
-            | (if (o.SHOWHELP == 1) @enumToInt(PRINTDLGEX_FLAGS.SHOWHELP) else 0)
-        );
+        return @intToEnum(PRINTDLGEX_FLAGS, (if (o.ALLPAGES == 1) @enumToInt(PRINTDLGEX_FLAGS.ALLPAGES) else 0) | (if (o.COLLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.COLLATE) else 0) | (if (o.CURRENTPAGE == 1) @enumToInt(PRINTDLGEX_FLAGS.CURRENTPAGE) else 0) | (if (o.DISABLEPRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.DISABLEPRINTTOFILE) else 0) | (if (o.ENABLEPRINTTEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATE) else 0) | (if (o.ENABLEPRINTTEMPLATEHANDLE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTTEMPLATEHANDLE) else 0) | (if (o.EXCLUSIONFLAGS == 1) @enumToInt(PRINTDLGEX_FLAGS.EXCLUSIONFLAGS) else 0) | (if (o.HIDEPRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.HIDEPRINTTOFILE) else 0) | (if (o.NOCURRENTPAGE == 1) @enumToInt(PRINTDLGEX_FLAGS.NOCURRENTPAGE) else 0) | (if (o.NOPAGENUMS == 1) @enumToInt(PRINTDLGEX_FLAGS.NOPAGENUMS) else 0) | (if (o.NOSELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.NOSELECTION) else 0) | (if (o.NOWARNING == 1) @enumToInt(PRINTDLGEX_FLAGS.NOWARNING) else 0) | (if (o.PAGENUMS == 1) @enumToInt(PRINTDLGEX_FLAGS.PAGENUMS) else 0) | (if (o.PRINTTOFILE == 1) @enumToInt(PRINTDLGEX_FLAGS.PRINTTOFILE) else 0) | (if (o.RETURNDC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNDC) else 0) | (if (o.RETURNDEFAULT == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNDEFAULT) else 0) | (if (o.RETURNIC == 1) @enumToInt(PRINTDLGEX_FLAGS.RETURNIC) else 0) | (if (o.SELECTION == 1) @enumToInt(PRINTDLGEX_FLAGS.SELECTION) else 0) | (if (o.USEDEVMODECOPIES == 1) @enumToInt(PRINTDLGEX_FLAGS.USEDEVMODECOPIES) else 0) | (if (o.USELARGETEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.USELARGETEMPLATE) else 0) | (if (o.ENABLEPRINTHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLEPRINTHOOK) else 0) | (if (o.ENABLESETUPHOOK == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPHOOK) else 0) | (if (o.ENABLESETUPTEMPLATE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATE) else 0) | (if (o.ENABLESETUPTEMPLATEHANDLE == 1) @enumToInt(PRINTDLGEX_FLAGS.ENABLESETUPTEMPLATEHANDLE) else 0) | (if (o.NONETWORKBUTTON == 1) @enumToInt(PRINTDLGEX_FLAGS.NONETWORKBUTTON) else 0) | (if (o.PRINTSETUP == 1) @enumToInt(PRINTDLGEX_FLAGS.PRINTSETUP) else 0) | (if (o.SHOWHELP == 1) @enumToInt(PRINTDLGEX_FLAGS.SHOWHELP) else 0));
     }
 };
 pub const PD_ALLPAGES = PRINTDLGEX_FLAGS.ALLPAGES;
@@ -5463,10 +4853,7 @@ pub const MOUSEHOOKSTRUCTEX_MOUSE_DATA = enum(u32) {
         @"1": u1 = 0,
         @"2": u1 = 0,
     }) MOUSEHOOKSTRUCTEX_MOUSE_DATA {
-        return @intToEnum(MOUSEHOOKSTRUCTEX_MOUSE_DATA,
-              (if (o.@"1" == 1) @enumToInt(MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"1") else 0)
-            | (if (o.@"2" == 1) @enumToInt(MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"2") else 0)
-        );
+        return @intToEnum(MOUSEHOOKSTRUCTEX_MOUSE_DATA, (if (o.@"1" == 1) @enumToInt(MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"1") else 0) | (if (o.@"2" == 1) @enumToInt(MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"2") else 0));
     }
 };
 pub const XBUTTON1 = MOUSEHOOKSTRUCTEX_MOUSE_DATA.@"1";
@@ -5494,17 +4881,7 @@ pub const MENU_ITEM_MASK = enum(u32) {
         SUBMENU: u1 = 0,
         TYPE: u1 = 0,
     }) MENU_ITEM_MASK {
-        return @intToEnum(MENU_ITEM_MASK,
-              (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_MASK.BITMAP) else 0)
-            | (if (o.CHECKMARKS == 1) @enumToInt(MENU_ITEM_MASK.CHECKMARKS) else 0)
-            | (if (o.DATA == 1) @enumToInt(MENU_ITEM_MASK.DATA) else 0)
-            | (if (o.FTYPE == 1) @enumToInt(MENU_ITEM_MASK.FTYPE) else 0)
-            | (if (o.ID == 1) @enumToInt(MENU_ITEM_MASK.ID) else 0)
-            | (if (o.STATE == 1) @enumToInt(MENU_ITEM_MASK.STATE) else 0)
-            | (if (o.STRING == 1) @enumToInt(MENU_ITEM_MASK.STRING) else 0)
-            | (if (o.SUBMENU == 1) @enumToInt(MENU_ITEM_MASK.SUBMENU) else 0)
-            | (if (o.TYPE == 1) @enumToInt(MENU_ITEM_MASK.TYPE) else 0)
-        );
+        return @intToEnum(MENU_ITEM_MASK, (if (o.BITMAP == 1) @enumToInt(MENU_ITEM_MASK.BITMAP) else 0) | (if (o.CHECKMARKS == 1) @enumToInt(MENU_ITEM_MASK.CHECKMARKS) else 0) | (if (o.DATA == 1) @enumToInt(MENU_ITEM_MASK.DATA) else 0) | (if (o.FTYPE == 1) @enumToInt(MENU_ITEM_MASK.FTYPE) else 0) | (if (o.ID == 1) @enumToInt(MENU_ITEM_MASK.ID) else 0) | (if (o.STATE == 1) @enumToInt(MENU_ITEM_MASK.STATE) else 0) | (if (o.STRING == 1) @enumToInt(MENU_ITEM_MASK.STRING) else 0) | (if (o.SUBMENU == 1) @enumToInt(MENU_ITEM_MASK.SUBMENU) else 0) | (if (o.TYPE == 1) @enumToInt(MENU_ITEM_MASK.TYPE) else 0));
     }
 };
 pub const MIIM_BITMAP = MENU_ITEM_MASK.BITMAP;
@@ -5540,14 +4917,7 @@ pub const MENUINFO_STYLE = enum(u32) {
         NOCHECK: u1 = 0,
         NOTIFYBYPOS: u1 = 0,
     }) MENUINFO_STYLE {
-        return @intToEnum(MENUINFO_STYLE,
-              (if (o.AUTODISMISS == 1) @enumToInt(MENUINFO_STYLE.AUTODISMISS) else 0)
-            | (if (o.CHECKORBMP == 1) @enumToInt(MENUINFO_STYLE.CHECKORBMP) else 0)
-            | (if (o.DRAGDROP == 1) @enumToInt(MENUINFO_STYLE.DRAGDROP) else 0)
-            | (if (o.MODELESS == 1) @enumToInt(MENUINFO_STYLE.MODELESS) else 0)
-            | (if (o.NOCHECK == 1) @enumToInt(MENUINFO_STYLE.NOCHECK) else 0)
-            | (if (o.NOTIFYBYPOS == 1) @enumToInt(MENUINFO_STYLE.NOTIFYBYPOS) else 0)
-        );
+        return @intToEnum(MENUINFO_STYLE, (if (o.AUTODISMISS == 1) @enumToInt(MENUINFO_STYLE.AUTODISMISS) else 0) | (if (o.CHECKORBMP == 1) @enumToInt(MENUINFO_STYLE.CHECKORBMP) else 0) | (if (o.DRAGDROP == 1) @enumToInt(MENUINFO_STYLE.DRAGDROP) else 0) | (if (o.MODELESS == 1) @enumToInt(MENUINFO_STYLE.MODELESS) else 0) | (if (o.NOCHECK == 1) @enumToInt(MENUINFO_STYLE.NOCHECK) else 0) | (if (o.NOTIFYBYPOS == 1) @enumToInt(MENUINFO_STYLE.NOTIFYBYPOS) else 0));
     }
 };
 pub const MNS_AUTODISMISS = MENUINFO_STYLE.AUTODISMISS;
@@ -5567,11 +4937,7 @@ pub const WINDOWPLACEMENT_FLAGS = enum(u32) {
         RESTORETOMAXIMIZED: u1 = 0,
         SETMINPOSITION: u1 = 0,
     }) WINDOWPLACEMENT_FLAGS {
-        return @intToEnum(WINDOWPLACEMENT_FLAGS,
-              (if (o.ASYNCWINDOWPLACEMENT == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.ASYNCWINDOWPLACEMENT) else 0)
-            | (if (o.RESTORETOMAXIMIZED == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.RESTORETOMAXIMIZED) else 0)
-            | (if (o.SETMINPOSITION == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.SETMINPOSITION) else 0)
-        );
+        return @intToEnum(WINDOWPLACEMENT_FLAGS, (if (o.ASYNCWINDOWPLACEMENT == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.ASYNCWINDOWPLACEMENT) else 0) | (if (o.RESTORETOMAXIMIZED == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.RESTORETOMAXIMIZED) else 0) | (if (o.SETMINPOSITION == 1) @enumToInt(WINDOWPLACEMENT_FLAGS.SETMINPOSITION) else 0));
     }
 };
 pub const WPF_ASYNCWINDOWPLACEMENT = WINDOWPLACEMENT_FLAGS.ASYNCWINDOWPLACEMENT;
@@ -5594,14 +4960,7 @@ pub const CHOOSEFONT_FONT_TYPE = enum(u32) {
         SCREEN_FONTTYPE: u1 = 0,
         SIMULATED_FONTTYPE: u1 = 0,
     }) CHOOSEFONT_FONT_TYPE {
-        return @intToEnum(CHOOSEFONT_FONT_TYPE,
-              (if (o.BOLD_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.BOLD_FONTTYPE) else 0)
-            | (if (o.ITALIC_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.ITALIC_FONTTYPE) else 0)
-            | (if (o.PRINTER_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.PRINTER_FONTTYPE) else 0)
-            | (if (o.REGULAR_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.REGULAR_FONTTYPE) else 0)
-            | (if (o.SCREEN_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.SCREEN_FONTTYPE) else 0)
-            | (if (o.SIMULATED_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.SIMULATED_FONTTYPE) else 0)
-        );
+        return @intToEnum(CHOOSEFONT_FONT_TYPE, (if (o.BOLD_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.BOLD_FONTTYPE) else 0) | (if (o.ITALIC_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.ITALIC_FONTTYPE) else 0) | (if (o.PRINTER_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.PRINTER_FONTTYPE) else 0) | (if (o.REGULAR_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.REGULAR_FONTTYPE) else 0) | (if (o.SCREEN_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.SCREEN_FONTTYPE) else 0) | (if (o.SIMULATED_FONTTYPE == 1) @enumToInt(CHOOSEFONT_FONT_TYPE.SIMULATED_FONTTYPE) else 0));
     }
 };
 pub const BOLD_FONTTYPE = CHOOSEFONT_FONT_TYPE.BOLD_FONTTYPE;
@@ -5627,14 +4986,7 @@ pub const MENUINFO_MASK = enum(u32) {
         MENUDATA: u1 = 0,
         STYLE: u1 = 0,
     }) MENUINFO_MASK {
-        return @intToEnum(MENUINFO_MASK,
-              (if (o.APPLYTOSUBMENUS == 1) @enumToInt(MENUINFO_MASK.APPLYTOSUBMENUS) else 0)
-            | (if (o.BACKGROUND == 1) @enumToInt(MENUINFO_MASK.BACKGROUND) else 0)
-            | (if (o.HELPID == 1) @enumToInt(MENUINFO_MASK.HELPID) else 0)
-            | (if (o.MAXHEIGHT == 1) @enumToInt(MENUINFO_MASK.MAXHEIGHT) else 0)
-            | (if (o.MENUDATA == 1) @enumToInt(MENUINFO_MASK.MENUDATA) else 0)
-            | (if (o.STYLE == 1) @enumToInt(MENUINFO_MASK.STYLE) else 0)
-        );
+        return @intToEnum(MENUINFO_MASK, (if (o.APPLYTOSUBMENUS == 1) @enumToInt(MENUINFO_MASK.APPLYTOSUBMENUS) else 0) | (if (o.BACKGROUND == 1) @enumToInt(MENUINFO_MASK.BACKGROUND) else 0) | (if (o.HELPID == 1) @enumToInt(MENUINFO_MASK.HELPID) else 0) | (if (o.MAXHEIGHT == 1) @enumToInt(MENUINFO_MASK.MAXHEIGHT) else 0) | (if (o.MENUDATA == 1) @enumToInt(MENUINFO_MASK.MENUDATA) else 0) | (if (o.STYLE == 1) @enumToInt(MENUINFO_MASK.STYLE) else 0));
     }
 };
 pub const MIM_APPLYTOSUBMENUS = MENUINFO_MASK.APPLYTOSUBMENUS;
@@ -5676,13 +5028,7 @@ pub const GUITHREADINFO_FLAGS = enum(u32) {
         POPUPMENUMODE: u1 = 0,
         SYSTEMMENUMODE: u1 = 0,
     }) GUITHREADINFO_FLAGS {
-        return @intToEnum(GUITHREADINFO_FLAGS,
-              (if (o.CARETBLINKING == 1) @enumToInt(GUITHREADINFO_FLAGS.CARETBLINKING) else 0)
-            | (if (o.INMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.INMENUMODE) else 0)
-            | (if (o.INMOVESIZE == 1) @enumToInt(GUITHREADINFO_FLAGS.INMOVESIZE) else 0)
-            | (if (o.POPUPMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.POPUPMENUMODE) else 0)
-            | (if (o.SYSTEMMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.SYSTEMMENUMODE) else 0)
-        );
+        return @intToEnum(GUITHREADINFO_FLAGS, (if (o.CARETBLINKING == 1) @enumToInt(GUITHREADINFO_FLAGS.CARETBLINKING) else 0) | (if (o.INMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.INMENUMODE) else 0) | (if (o.INMOVESIZE == 1) @enumToInt(GUITHREADINFO_FLAGS.INMOVESIZE) else 0) | (if (o.POPUPMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.POPUPMENUMODE) else 0) | (if (o.SYSTEMMENUMODE == 1) @enumToInt(GUITHREADINFO_FLAGS.SYSTEMMENUMODE) else 0));
     }
 };
 pub const GUI_CARETBLINKING = GUITHREADINFO_FLAGS.CARETBLINKING;
@@ -5692,13 +5038,13 @@ pub const GUI_POPUPMENUMODE = GUITHREADINFO_FLAGS.POPUPMENUMODE;
 pub const GUI_SYSTEMMENUMODE = GUITHREADINFO_FLAGS.SYSTEMMENUMODE;
 
 // TODO: this type has a FreeFunc 'UnhookWindowsHookEx', what can Zig do with this information?
-pub const HHOOK = *opaque{};
+pub const HHOOK = *opaque {};
 
 // TODO: this type has a FreeFunc 'DestroyIcon', what can Zig do with this information?
-pub const HICON = *opaque{};
+pub const HICON = *opaque {};
 
 // TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
-pub const HMENU = *opaque{};
+pub const HMENU = *opaque {};
 
 // TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
 //TODO: type 'HCURSOR' is "AlsoUsableFor" 'HICON' which means this type is implicitly
@@ -5707,7 +5053,7 @@ pub const HMENU = *opaque{};
 pub const HCURSOR = HICON;
 
 // TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
-pub const HACCEL = *opaque{};
+pub const HACCEL = *opaque {};
 
 pub const MESSAGE_RESOURCE_ENTRY = extern struct {
     Length: u16,
@@ -5726,77 +5072,77 @@ pub const MESSAGE_RESOURCE_DATA = extern struct {
     Blocks: [1]MESSAGE_RESOURCE_BLOCK,
 };
 
-pub const WNDPROC = fn(
+pub const WNDPROC = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const DLGPROC = fn(
+pub const DLGPROC = fn (
     param0: HWND,
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub const TIMERPROC = fn(
+pub const TIMERPROC = fn (
     param0: HWND,
     param1: u32,
     param2: usize,
     param3: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WNDENUMPROC = fn(
+pub const WNDENUMPROC = fn (
     param0: HWND,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const HOOKPROC = fn(
+pub const HOOKPROC = fn (
     code: i32,
     wParam: WPARAM,
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const SENDASYNCPROC = fn(
+pub const SENDASYNCPROC = fn (
     param0: HWND,
     param1: u32,
     param2: usize,
     param3: LRESULT,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PROPENUMPROCA = fn(
+pub const PROPENUMPROCA = fn (
     param0: HWND,
     param1: [*:0]const u8,
     param2: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PROPENUMPROCW = fn(
+pub const PROPENUMPROCW = fn (
     param0: HWND,
     param1: [*:0]const u16,
     param2: HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PROPENUMPROCEXA = fn(
+pub const PROPENUMPROCEXA = fn (
     param0: HWND,
     param1: PSTR,
     param2: HANDLE,
     param3: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PROPENUMPROCEXW = fn(
+pub const PROPENUMPROCEXW = fn (
     param0: HWND,
     param1: PWSTR,
     param2: HANDLE,
     param3: usize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const NAMEENUMPROCA = fn(
+pub const NAMEENUMPROCA = fn (
     param0: PSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const NAMEENUMPROCW = fn(
+pub const NAMEENUMPROCW = fn (
     param0: PWSTR,
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -5894,12 +5240,12 @@ pub const WNDCLASSEXA = extern struct {
     cbClsExtra: i32,
     cbWndExtra: i32,
     hInstance: HINSTANCE,
-    hIcon: HICON,
-    hCursor: HCURSOR,
-    hbrBackground: HBRUSH,
-    lpszMenuName: [*:0]const u8,
+    hIcon: ?HICON,
+    hCursor: ?HCURSOR,
+    hbrBackground: ?HBRUSH,
+    lpszMenuName: ?[*:0]const u8,
     lpszClassName: [*:0]const u8,
-    hIconSm: HICON,
+    hIconSm: ?HICON,
 };
 
 pub const WNDCLASSEXW = extern struct {
@@ -6038,7 +5384,7 @@ pub const BSMINFO = extern struct {
     luid: LUID,
 };
 
-pub const PREGISTERCLASSNAMEW = fn(
+pub const PREGISTERCLASSNAMEW = fn (
     param0: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) u8;
 
@@ -6152,7 +5498,7 @@ pub const DROPSTRUCT = extern struct {
     dwControlData: u32,
 };
 
-pub const MSGBOXCALLBACK = fn(
+pub const MSGBOXCALLBACK = fn (
     lpHelpInfo: *HELPINFO,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
@@ -6491,467 +5837,466 @@ pub const MrmResourceIndexerMessage = extern struct {
 };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPENFILENAME_NT4A = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u8,
-    lpstrCustomFilter: PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u8,
-    lpstrTitle: [*:0]const u8,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u8,
+    .X86 => struct {
+        pub const OPENFILENAME_NT4A = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            lpstrFilter: [*:0]const u8,
+            lpstrCustomFilter: PSTR,
+            nMaxCustFilter: u32,
+            nFilterIndex: u32,
+            lpstrFile: PSTR,
+            nMaxFile: u32,
+            lpstrFileTitle: PSTR,
+            nMaxFileTitle: u32,
+            lpstrInitialDir: [*:0]const u8,
+            lpstrTitle: [*:0]const u8,
+            Flags: u32,
+            nFileOffset: u16,
+            nFileExtension: u16,
+            lpstrDefExt: [*:0]const u8,
+            lCustData: LPARAM,
+            lpfnHook: LPOFNHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPENFILENAME_NT4W = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u16,
-    lpstrCustomFilter: PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u16,
-    lpstrTitle: [*:0]const u16,
-    Flags: u32,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u16,
+    .X86 => struct {
+        pub const OPENFILENAME_NT4W = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            lpstrFilter: [*:0]const u16,
+            lpstrCustomFilter: PWSTR,
+            nMaxCustFilter: u32,
+            nFilterIndex: u32,
+            lpstrFile: PWSTR,
+            nMaxFile: u32,
+            lpstrFileTitle: PWSTR,
+            nMaxFileTitle: u32,
+            lpstrInitialDir: [*:0]const u16,
+            lpstrTitle: [*:0]const u16,
+            Flags: u32,
+            nFileOffset: u16,
+            nFileExtension: u16,
+            lpstrDefExt: [*:0]const u16,
+            lCustData: LPARAM,
+            lpfnHook: LPOFNHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPENFILENAMEA = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u8,
-    lpstrCustomFilter: PSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u8,
-    lpstrTitle: [*:0]const u8,
-    Flags: OPEN_FILENAME_FLAGS,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u8,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-    pvReserved: *c_void,
-    dwReserved: u32,
-    FlagsEx: OPEN_FILENAME_FLAGS_EX,
+    .X86 => struct {
+        pub const OPENFILENAMEA = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            lpstrFilter: [*:0]const u8,
+            lpstrCustomFilter: PSTR,
+            nMaxCustFilter: u32,
+            nFilterIndex: u32,
+            lpstrFile: PSTR,
+            nMaxFile: u32,
+            lpstrFileTitle: PSTR,
+            nMaxFileTitle: u32,
+            lpstrInitialDir: [*:0]const u8,
+            lpstrTitle: [*:0]const u8,
+            Flags: OPEN_FILENAME_FLAGS,
+            nFileOffset: u16,
+            nFileExtension: u16,
+            lpstrDefExt: [*:0]const u8,
+            lCustData: LPARAM,
+            lpfnHook: LPOFNHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+            pvReserved: *c_void,
+            dwReserved: u32,
+            FlagsEx: OPEN_FILENAME_FLAGS_EX,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OPENFILENAMEW = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    lpstrFilter: [*:0]const u16,
-    lpstrCustomFilter: PWSTR,
-    nMaxCustFilter: u32,
-    nFilterIndex: u32,
-    lpstrFile: PWSTR,
-    nMaxFile: u32,
-    lpstrFileTitle: PWSTR,
-    nMaxFileTitle: u32,
-    lpstrInitialDir: [*:0]const u16,
-    lpstrTitle: [*:0]const u16,
-    Flags: OPEN_FILENAME_FLAGS,
-    nFileOffset: u16,
-    nFileExtension: u16,
-    lpstrDefExt: [*:0]const u16,
-    lCustData: LPARAM,
-    lpfnHook: LPOFNHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-    pvReserved: *c_void,
-    dwReserved: u32,
-    FlagsEx: OPEN_FILENAME_FLAGS_EX,
+    .X86 => struct {
+        pub const OPENFILENAMEW = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            lpstrFilter: [*:0]const u16,
+            lpstrCustomFilter: PWSTR,
+            nMaxCustFilter: u32,
+            nFilterIndex: u32,
+            lpstrFile: PWSTR,
+            nMaxFile: u32,
+            lpstrFileTitle: PWSTR,
+            nMaxFileTitle: u32,
+            lpstrInitialDir: [*:0]const u16,
+            lpstrTitle: [*:0]const u16,
+            Flags: OPEN_FILENAME_FLAGS,
+            nFileOffset: u16,
+            nFileExtension: u16,
+            lpstrDefExt: [*:0]const u16,
+            lCustData: LPARAM,
+            lpfnHook: LPOFNHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+            pvReserved: *c_void,
+            dwReserved: u32,
+            FlagsEx: OPEN_FILENAME_FLAGS_EX,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OFNOTIFYA = packed struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEA,
-    pszFile: PSTR,
+    .X86 => struct {
+        pub const OFNOTIFYA = packed struct {
+            hdr: NMHDR,
+            lpOFN: *OPENFILENAMEA,
+            pszFile: PSTR,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OFNOTIFYW = packed struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEW,
-    pszFile: PWSTR,
+    .X86 => struct {
+        pub const OFNOTIFYW = packed struct {
+            hdr: NMHDR,
+            lpOFN: *OPENFILENAMEW,
+            pszFile: PWSTR,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OFNOTIFYEXA = packed struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEA,
-    psf: *c_void,
-    pidl: *c_void,
+    .X86 => struct {
+        pub const OFNOTIFYEXA = packed struct {
+            hdr: NMHDR,
+            lpOFN: *OPENFILENAMEA,
+            psf: *c_void,
+            pidl: *c_void,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const OFNOTIFYEXW = packed struct {
-    hdr: NMHDR,
-    lpOFN: *OPENFILENAMEW,
-    psf: *c_void,
-    pidl: *c_void,
+    .X86 => struct {
+        pub const OFNOTIFYEXW = packed struct {
+            hdr: NMHDR,
+            lpOFN: *OPENFILENAMEW,
+            psf: *c_void,
+            pidl: *c_void,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CHOOSECOLORA = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HWND,
-    rgbResult: u32,
-    lpCustColors: *u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCCHOOKPROC,
-    lpTemplateName: [*:0]const u8,
+    .X86 => struct {
+        pub const CHOOSECOLORA = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HWND,
+            rgbResult: u32,
+            lpCustColors: *u32,
+            Flags: u32,
+            lCustData: LPARAM,
+            lpfnHook: LPCCHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CHOOSECOLORW = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HWND,
-    rgbResult: u32,
-    lpCustColors: *u32,
-    Flags: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCCHOOKPROC,
-    lpTemplateName: [*:0]const u16,
+    .X86 => struct {
+        pub const CHOOSECOLORW = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HWND,
+            rgbResult: u32,
+            lpCustColors: *u32,
+            Flags: u32,
+            lCustData: LPARAM,
+            lpfnHook: LPCCHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FINDREPLACEA = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    Flags: FINDREPLACE_FLAGS,
-    lpstrFindWhat: PSTR,
-    lpstrReplaceWith: PSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: LPFRHOOKPROC,
-    lpTemplateName: [*:0]const u8,
+    .X86 => struct {
+        pub const FINDREPLACEA = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            Flags: FINDREPLACE_FLAGS,
+            lpstrFindWhat: PSTR,
+            lpstrReplaceWith: PSTR,
+            wFindWhatLen: u16,
+            wReplaceWithLen: u16,
+            lCustData: LPARAM,
+            lpfnHook: LPFRHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FINDREPLACEW = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hInstance: HINSTANCE,
-    Flags: FINDREPLACE_FLAGS,
-    lpstrFindWhat: PWSTR,
-    lpstrReplaceWith: PWSTR,
-    wFindWhatLen: u16,
-    wReplaceWithLen: u16,
-    lCustData: LPARAM,
-    lpfnHook: LPFRHOOKPROC,
-    lpTemplateName: [*:0]const u16,
+    .X86 => struct {
+        pub const FINDREPLACEW = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hInstance: HINSTANCE,
+            Flags: FINDREPLACE_FLAGS,
+            lpstrFindWhat: PWSTR,
+            lpstrReplaceWith: PWSTR,
+            wFindWhatLen: u16,
+            wReplaceWithLen: u16,
+            lCustData: LPARAM,
+            lpfnHook: LPFRHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CHOOSEFONTA = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDC: HDC,
-    lpLogFont: *LOGFONTA,
-    iPointSize: i32,
-    Flags: CHOOSEFONT_FLAGS,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCFHOOKPROC,
-    lpTemplateName: [*:0]const u8,
-    hInstance: HINSTANCE,
-    lpszStyle: PSTR,
-    nFontType: CHOOSEFONT_FONT_TYPE,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
+    .X86 => struct {
+        pub const CHOOSEFONTA = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDC: HDC,
+            lpLogFont: *LOGFONTA,
+            iPointSize: i32,
+            Flags: CHOOSEFONT_FLAGS,
+            rgbColors: u32,
+            lCustData: LPARAM,
+            lpfnHook: LPCFHOOKPROC,
+            lpTemplateName: [*:0]const u8,
+            hInstance: HINSTANCE,
+            lpszStyle: PSTR,
+            nFontType: CHOOSEFONT_FONT_TYPE,
+            ___MISSING_ALIGNMENT__: u16,
+            nSizeMin: i32,
+            nSizeMax: i32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CHOOSEFONTW = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDC: HDC,
-    lpLogFont: *LOGFONTW,
-    iPointSize: i32,
-    Flags: CHOOSEFONT_FLAGS,
-    rgbColors: u32,
-    lCustData: LPARAM,
-    lpfnHook: LPCFHOOKPROC,
-    lpTemplateName: [*:0]const u16,
-    hInstance: HINSTANCE,
-    lpszStyle: PWSTR,
-    nFontType: CHOOSEFONT_FONT_TYPE,
-    ___MISSING_ALIGNMENT__: u16,
-    nSizeMin: i32,
-    nSizeMax: i32,
+    .X86 => struct {
+        pub const CHOOSEFONTW = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDC: HDC,
+            lpLogFont: *LOGFONTW,
+            iPointSize: i32,
+            Flags: CHOOSEFONT_FLAGS,
+            rgbColors: u32,
+            lCustData: LPARAM,
+            lpfnHook: LPCFHOOKPROC,
+            lpTemplateName: [*:0]const u16,
+            hInstance: HINSTANCE,
+            lpszStyle: PWSTR,
+            nFontType: CHOOSEFONT_FONT_TYPE,
+            ___MISSING_ALIGNMENT__: u16,
+            nSizeMin: i32,
+            nSizeMax: i32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTDLGA = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: LPPRINTHOOKPROC,
-    lpfnSetupHook: LPSETUPHOOKPROC,
-    lpPrintTemplateName: [*:0]const u8,
-    lpSetupTemplateName: [*:0]const u8,
-    hPrintTemplate: isize,
-    hSetupTemplate: isize,
+    .X86 => struct {
+        pub const PRINTDLGA = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            hDC: HDC,
+            Flags: PRINTDLGEX_FLAGS,
+            nFromPage: u16,
+            nToPage: u16,
+            nMinPage: u16,
+            nMaxPage: u16,
+            nCopies: u16,
+            hInstance: HINSTANCE,
+            lCustData: LPARAM,
+            lpfnPrintHook: LPPRINTHOOKPROC,
+            lpfnSetupHook: LPSETUPHOOKPROC,
+            lpPrintTemplateName: [*:0]const u8,
+            lpSetupTemplateName: [*:0]const u8,
+            hPrintTemplate: isize,
+            hSetupTemplate: isize,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTDLGW = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    nFromPage: u16,
-    nToPage: u16,
-    nMinPage: u16,
-    nMaxPage: u16,
-    nCopies: u16,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPrintHook: LPPRINTHOOKPROC,
-    lpfnSetupHook: LPSETUPHOOKPROC,
-    lpPrintTemplateName: [*:0]const u16,
-    lpSetupTemplateName: [*:0]const u16,
-    hPrintTemplate: isize,
-    hSetupTemplate: isize,
+    .X86 => struct {
+        pub const PRINTDLGW = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            hDC: HDC,
+            Flags: PRINTDLGEX_FLAGS,
+            nFromPage: u16,
+            nToPage: u16,
+            nMinPage: u16,
+            nMaxPage: u16,
+            nCopies: u16,
+            hInstance: HINSTANCE,
+            lCustData: LPARAM,
+            lpfnPrintHook: LPPRINTHOOKPROC,
+            lpfnSetupHook: LPSETUPHOOKPROC,
+            lpPrintTemplateName: [*:0]const u16,
+            lpSetupTemplateName: [*:0]const u16,
+            hPrintTemplate: isize,
+            hSetupTemplate: isize,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTPAGERANGE = packed struct {
-    nFromPage: u32,
-    nToPage: u32,
+    .X86 => struct {
+        pub const PRINTPAGERANGE = packed struct {
+            nFromPage: u32,
+            nToPage: u32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTDLGEXA = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: *PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: HINSTANCE,
-    lpPrintTemplateName: [*:0]const u8,
-    lpCallback: *IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: *HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
+    .X86 => struct {
+        pub const PRINTDLGEXA = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            hDC: HDC,
+            Flags: PRINTDLGEX_FLAGS,
+            Flags2: u32,
+            ExclusionFlags: u32,
+            nPageRanges: u32,
+            nMaxPageRanges: u32,
+            lpPageRanges: *PRINTPAGERANGE,
+            nMinPage: u32,
+            nMaxPage: u32,
+            nCopies: u32,
+            hInstance: HINSTANCE,
+            lpPrintTemplateName: [*:0]const u8,
+            lpCallback: *IUnknown,
+            nPropertyPages: u32,
+            lphPropertyPages: *HPROPSHEETPAGE,
+            nStartPage: u32,
+            dwResultAction: u32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PRINTDLGEXW = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    hDC: HDC,
-    Flags: PRINTDLGEX_FLAGS,
-    Flags2: u32,
-    ExclusionFlags: u32,
-    nPageRanges: u32,
-    nMaxPageRanges: u32,
-    lpPageRanges: *PRINTPAGERANGE,
-    nMinPage: u32,
-    nMaxPage: u32,
-    nCopies: u32,
-    hInstance: HINSTANCE,
-    lpPrintTemplateName: [*:0]const u16,
-    lpCallback: *IUnknown,
-    nPropertyPages: u32,
-    lphPropertyPages: *HPROPSHEETPAGE,
-    nStartPage: u32,
-    dwResultAction: u32,
+    .X86 => struct {
+        pub const PRINTDLGEXW = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            hDC: HDC,
+            Flags: PRINTDLGEX_FLAGS,
+            Flags2: u32,
+            ExclusionFlags: u32,
+            nPageRanges: u32,
+            nMaxPageRanges: u32,
+            lpPageRanges: *PRINTPAGERANGE,
+            nMinPage: u32,
+            nMaxPage: u32,
+            nCopies: u32,
+            hInstance: HINSTANCE,
+            lpPrintTemplateName: [*:0]const u16,
+            lpCallback: *IUnknown,
+            nPropertyPages: u32,
+            lphPropertyPages: *HPROPSHEETPAGE,
+            nStartPage: u32,
+            dwResultAction: u32,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const DEVNAMES = packed struct {
-    wDriverOffset: u16,
-    wDeviceOffset: u16,
-    wOutputOffset: u16,
-    wDefault: u16,
+    .X86 => struct {
+        pub const DEVNAMES = packed struct {
+            wDriverOffset: u16,
+            wDeviceOffset: u16,
+            wOutputOffset: u16,
+            wDefault: u16,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PAGESETUPDLGA = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    Flags: PAGESETUPDLG_FLAGS,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: LPPAGESETUPHOOK,
-    lpfnPagePaintHook: LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: [*:0]const u8,
-    hPageSetupTemplate: isize,
+    .X86 => struct {
+        pub const PAGESETUPDLGA = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            Flags: PAGESETUPDLG_FLAGS,
+            ptPaperSize: POINT,
+            rtMinMargin: RECT,
+            rtMargin: RECT,
+            hInstance: HINSTANCE,
+            lCustData: LPARAM,
+            lpfnPageSetupHook: LPPAGESETUPHOOK,
+            lpfnPagePaintHook: LPPAGEPAINTHOOK,
+            lpPageSetupTemplateName: [*:0]const u8,
+            hPageSetupTemplate: isize,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PAGESETUPDLGW = packed struct {
-    lStructSize: u32,
-    hwndOwner: HWND,
-    hDevMode: isize,
-    hDevNames: isize,
-    Flags: PAGESETUPDLG_FLAGS,
-    ptPaperSize: POINT,
-    rtMinMargin: RECT,
-    rtMargin: RECT,
-    hInstance: HINSTANCE,
-    lCustData: LPARAM,
-    lpfnPageSetupHook: LPPAGESETUPHOOK,
-    lpfnPagePaintHook: LPPAGEPAINTHOOK,
-    lpPageSetupTemplateName: [*:0]const u16,
-    hPageSetupTemplate: isize,
+    .X86 => struct {
+        pub const PAGESETUPDLGW = packed struct {
+            lStructSize: u32,
+            hwndOwner: HWND,
+            hDevMode: isize,
+            hDevNames: isize,
+            Flags: PAGESETUPDLG_FLAGS,
+            ptPaperSize: POINT,
+            rtMinMargin: RECT,
+            rtMargin: RECT,
+            hInstance: HINSTANCE,
+            lCustData: LPARAM,
+            lpfnPageSetupHook: LPPAGESETUPHOOK,
+            lpfnPagePaintHook: LPPAGEPAINTHOOK,
+            lpPageSetupTemplateName: [*:0]const u16,
+            hPageSetupTemplate: isize,
+        };
+    },
+    else => struct {},
 };
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (424)
@@ -7043,8 +6388,7 @@ pub extern "COMDLG32" fn PrintDlgExW(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "COMDLG32" fn CommDlgExtendedError(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "COMDLG32" fn CommDlgExtendedError() callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "COMDLG32" fn PageSetupDlgA(
     param0: *PAGESETUPDLGA,
@@ -7102,8 +6446,7 @@ pub extern "USER32" fn IsHungAppWindow(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "USER32" fn DisableProcessWindowsGhosting(
-) callconv(@import("std").os.windows.WINAPI) void;
+pub extern "USER32" fn DisableProcessWindowsGhosting() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn RegisterWindowMessageA(
@@ -7169,20 +6512,16 @@ pub extern "USER32" fn PeekMessageW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetMessagePos(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "USER32" fn GetMessagePos() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetMessageTime(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "USER32" fn GetMessageTime() callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetMessageExtraInfo(
-) callconv(@import("std").os.windows.WINAPI) LPARAM;
+pub extern "USER32" fn GetMessageExtraInfo() callconv(@import("std").os.windows.WINAPI) LPARAM;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn IsWow64Message(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn IsWow64Message() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetMessageExtraInfo(
@@ -7338,8 +6677,7 @@ pub extern "USER32" fn ReplyMessage(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn WaitMessage(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn WaitMessage() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DefWindowProcA(
@@ -7381,8 +6719,7 @@ pub extern "USER32" fn CallWindowProcW(
 ) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn InSendMessage(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn InSendMessage() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn InSendMessageEx(
@@ -7649,8 +6986,7 @@ pub extern "USER32" fn IsIconic(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn AnyPopup(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn AnyPopup() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn BringWindowToTop(
@@ -7830,8 +7166,7 @@ pub extern "USER32" fn GetDlgCtrlID(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetDialogBaseUnits(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "USER32" fn GetDialogBaseUnits() callconv(@import("std").os.windows.WINAPI) i32;
 
 pub extern "USER32" fn DefDlgProcA(
     hDlg: HWND,
@@ -8029,8 +7364,7 @@ pub extern "USER32" fn IsCharLowerA(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetInputState(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn GetInputState() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetQueueStatus(
@@ -8221,12 +7555,10 @@ pub extern "USER32" fn GetSystemMenu(
 ) callconv(@import("std").os.windows.WINAPI) HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CreateMenu(
-) callconv(@import("std").os.windows.WINAPI) HMENU;
+pub extern "USER32" fn CreateMenu() callconv(@import("std").os.windows.WINAPI) HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn CreatePopupMenu(
-) callconv(@import("std").os.windows.WINAPI) HMENU;
+pub extern "USER32" fn CreatePopupMenu() callconv(@import("std").os.windows.WINAPI) HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn DestroyMenu(
@@ -8340,8 +7672,7 @@ pub extern "USER32" fn SetMenuItemBitmaps(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetMenuCheckMarkDimensions(
-) callconv(@import("std").os.windows.WINAPI) i32;
+pub extern "USER32" fn GetMenuCheckMarkDimensions() callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn TrackPopupMenu(
@@ -8386,8 +7717,7 @@ pub extern "USER32" fn SetMenuInfo(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn EndMenu(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn EndMenu() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn InsertMenuItemA(
@@ -8483,8 +7813,7 @@ pub extern "USER32" fn DrawIcon(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetForegroundWindow(
-) callconv(@import("std").os.windows.WINAPI) HWND;
+pub extern "USER32" fn GetForegroundWindow() callconv(@import("std").os.windows.WINAPI) HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SwitchToThisWindow(
@@ -8716,8 +8045,7 @@ pub extern "USER32" fn GetClipCursor(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetCursor(
-) callconv(@import("std").os.windows.WINAPI) HCURSOR;
+pub extern "USER32" fn GetCursor() callconv(@import("std").os.windows.WINAPI) HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn CreateCaret(
@@ -8728,8 +8056,7 @@ pub extern "USER32" fn CreateCaret(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetCaretBlinkTime(
-) callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "USER32" fn GetCaretBlinkTime() callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetCaretBlinkTime(
@@ -8737,8 +8064,7 @@ pub extern "USER32" fn SetCaretBlinkTime(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn DestroyCaret(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn DestroyCaret() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn HideCaret(
@@ -8851,50 +8177,54 @@ pub extern "USER32" fn SetWindowLongW(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+    .X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetWindowLongPtrA(
-    hWnd: HWND,
-    nIndex: WINDOW_LONG_PTR_INDEX,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetWindowLongPtrW(
-    hWnd: HWND,
-    nIndex: WINDOW_LONG_PTR_INDEX,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-}, else => struct { } };
+        // TODO: this type is limited to platform 'windows5.0'
+        pub extern "USER32" fn GetWindowLongPtrA(
+            hWnd: HWND,
+            nIndex: WINDOW_LONG_PTR_INDEX,
+        ) callconv(@import("std").os.windows.WINAPI) isize;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+    .X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetWindowLongPtrA(
-    hWnd: HWND,
-    nIndex: WINDOW_LONG_PTR_INDEX,
-    dwNewLong: isize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-}, else => struct { } };
+        // TODO: this type is limited to platform 'windows5.0'
+        pub extern "USER32" fn GetWindowLongPtrW(
+            hWnd: HWND,
+            nIndex: WINDOW_LONG_PTR_INDEX,
+        ) callconv(@import("std").os.windows.WINAPI) isize;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+    .X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetWindowLongPtrW(
-    hWnd: HWND,
-    nIndex: WINDOW_LONG_PTR_INDEX,
-    dwNewLong: isize,
-) callconv(@import("std").os.windows.WINAPI) isize;
+        // TODO: this type is limited to platform 'windows5.0'
+        pub extern "USER32" fn SetWindowLongPtrA(
+            hWnd: HWND,
+            nIndex: WINDOW_LONG_PTR_INDEX,
+            dwNewLong: isize,
+        ) callconv(@import("std").os.windows.WINAPI) isize;
+    },
+    else => struct {},
+};
 
-}, else => struct { } };
+pub usingnamespace switch (@import("../zig.zig").arch) {
+    .X64, .Arm64 => struct {
+
+        // TODO: this type is limited to platform 'windows5.0'
+        pub extern "USER32" fn SetWindowLongPtrW(
+            hWnd: HWND,
+            nIndex: WINDOW_LONG_PTR_INDEX,
+            dwNewLong: isize,
+        ) callconv(@import("std").os.windows.WINAPI) isize;
+    },
+    else => struct {},
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetClassWord(
@@ -8936,50 +8266,54 @@ pub extern "USER32" fn SetClassLongW(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+    .X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClassLongPtrA(
-    hWnd: HWND,
-    nIndex: GET_CLASS_LONG_INDEX,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetClassLongPtrW(
-    hWnd: HWND,
-    nIndex: GET_CLASS_LONG_INDEX,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-}, else => struct { } };
+        // TODO: this type is limited to platform 'windows5.0'
+        pub extern "USER32" fn GetClassLongPtrA(
+            hWnd: HWND,
+            nIndex: GET_CLASS_LONG_INDEX,
+        ) callconv(@import("std").os.windows.WINAPI) usize;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+    .X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetClassLongPtrA(
-    hWnd: HWND,
-    nIndex: GET_CLASS_LONG_INDEX,
-    dwNewLong: isize,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-}, else => struct { } };
+        // TODO: this type is limited to platform 'windows5.0'
+        pub extern "USER32" fn GetClassLongPtrW(
+            hWnd: HWND,
+            nIndex: GET_CLASS_LONG_INDEX,
+        ) callconv(@import("std").os.windows.WINAPI) usize;
+    },
+    else => struct {},
+};
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+    .X64, .Arm64 => struct {
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn SetClassLongPtrW(
-    hWnd: HWND,
-    nIndex: GET_CLASS_LONG_INDEX,
-    dwNewLong: isize,
-) callconv(@import("std").os.windows.WINAPI) usize;
+        // TODO: this type is limited to platform 'windows5.0'
+        pub extern "USER32" fn SetClassLongPtrA(
+            hWnd: HWND,
+            nIndex: GET_CLASS_LONG_INDEX,
+            dwNewLong: isize,
+        ) callconv(@import("std").os.windows.WINAPI) usize;
+    },
+    else => struct {},
+};
 
-}, else => struct { } };
+pub usingnamespace switch (@import("../zig.zig").arch) {
+    .X64, .Arm64 => struct {
+
+        // TODO: this type is limited to platform 'windows5.0'
+        pub extern "USER32" fn SetClassLongPtrW(
+            hWnd: HWND,
+            nIndex: GET_CLASS_LONG_INDEX,
+            dwNewLong: isize,
+        ) callconv(@import("std").os.windows.WINAPI) usize;
+    },
+    else => struct {},
+};
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetProcessDefaultLayout(
@@ -8992,13 +8326,12 @@ pub extern "USER32" fn SetProcessDefaultLayout(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetDesktopWindow(
-) callconv(@import("std").os.windows.WINAPI) HWND;
+pub extern "USER32" fn GetDesktopWindow() callconv(@import("std").os.windows.WINAPI) HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetParent(
     hWnd: HWND,
-) callconv(@import("std").os.windows.WINAPI) HWND;
+) callconv(@import("std").os.windows.WINAPI) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn SetParent(
@@ -9042,8 +8375,7 @@ pub extern "USER32" fn FindWindowExW(
 ) callconv(@import("std").os.windows.WINAPI) HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "USER32" fn GetShellWindow(
-) callconv(@import("std").os.windows.WINAPI) HWND;
+pub extern "USER32" fn GetShellWindow() callconv(@import("std").os.windows.WINAPI) HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn RegisterShellHookWindow(
@@ -9490,8 +8822,7 @@ pub extern "USER32" fn SystemParametersInfoW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn SoundSentry(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn SoundSentry() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn SetDebugErrorLevel(
     dwLevel: u32,
@@ -9504,8 +8835,7 @@ pub extern "USER32" fn InternalGetWindowText(
     cchMaxCount: i32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "USER32" fn CancelShutdown(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn CancelShutdown() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "USER32" fn GetGUIThreadInfo(
@@ -9514,12 +8844,10 @@ pub extern "USER32" fn GetGUIThreadInfo(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn SetProcessDPIAware(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn SetProcessDPIAware() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "USER32" fn IsProcessDPIAware(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "USER32" fn IsProcessDPIAware() callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "USER32" fn InheritWindowMonitor(
     hwnd: HWND,
@@ -9800,7 +9128,6 @@ pub extern "MrmSupport" fn MrmCreateConfigInMemory(
     outputXmlSize: *u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (132)
 //--------------------------------------------------------------------------------
@@ -10074,138 +9401,138 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const GetAltTabInfo = GetAltTabInfoW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
-        pub const WINSTAENUMPROC = *opaque{};
-        pub const DESKTOPENUMPROC = *opaque{};
-        pub const OPENFILENAME_NT4 = *opaque{};
-        pub const OPENFILENAME = *opaque{};
-        pub const OFNOTIFY = *opaque{};
-        pub const OFNOTIFYEX = *opaque{};
-        pub const CHOOSECOLOR = *opaque{};
-        pub const FINDREPLACE = *opaque{};
-        pub const CHOOSEFONT = *opaque{};
-        pub const PRINTDLG = *opaque{};
-        pub const PRINTDLGEX = *opaque{};
-        pub const PAGESETUPDLG = *opaque{};
-        pub const PROPENUMPROC = *opaque{};
-        pub const PROPENUMPROCEX = *opaque{};
-        pub const NAMEENUMPROC = *opaque{};
-        pub const CBT_CREATEWND = *opaque{};
-        pub const WNDCLASSEX = *opaque{};
-        pub const WNDCLASS = *opaque{};
-        pub const CREATESTRUCT = *opaque{};
-        pub const MENUITEMINFO = *opaque{};
-        pub const MSGBOXPARAMS = *opaque{};
-        pub const ICONINFOEX = *opaque{};
-        pub const MDICREATESTRUCT = *opaque{};
-        pub const NONCLIENTMETRICS = *opaque{};
-        pub const ICONMETRICS = *opaque{};
-        pub const GetOpenFileName = *opaque{};
-        pub const GetSaveFileName = *opaque{};
-        pub const GetFileTitle = *opaque{};
-        pub const ChooseColor = *opaque{};
-        pub const FindText = *opaque{};
-        pub const ReplaceText = *opaque{};
-        pub const ChooseFont = *opaque{};
-        pub const PrintDlg = *opaque{};
-        pub const PrintDlgEx = *opaque{};
-        pub const PageSetupDlg = *opaque{};
-        pub const LoadString = *opaque{};
-        pub const wvsprintf = *opaque{};
-        pub const wsprintf = *opaque{};
-        pub const RegisterWindowMessage = *opaque{};
-        pub const GetMessage = *opaque{};
-        pub const DispatchMessage = *opaque{};
-        pub const PeekMessage = *opaque{};
-        pub const SendMessage = *opaque{};
-        pub const SendMessageTimeout = *opaque{};
-        pub const SendNotifyMessage = *opaque{};
-        pub const SendMessageCallback = *opaque{};
-        pub const BroadcastSystemMessageEx = *opaque{};
-        pub const BroadcastSystemMessage = *opaque{};
-        pub const PostMessage = *opaque{};
-        pub const PostThreadMessage = *opaque{};
-        pub const DefWindowProc = *opaque{};
-        pub const CallWindowProc = *opaque{};
-        pub const RegisterClass = *opaque{};
-        pub const UnregisterClass = *opaque{};
-        pub const GetClassInfo = *opaque{};
-        pub const RegisterClassEx = *opaque{};
-        pub const GetClassInfoEx = *opaque{};
-        pub const CreateWindowEx = *opaque{};
-        pub const CreateDialogParam = *opaque{};
-        pub const CreateDialogIndirectParam = *opaque{};
-        pub const DialogBoxParam = *opaque{};
-        pub const DialogBoxIndirectParam = *opaque{};
-        pub const SetDlgItemText = *opaque{};
-        pub const GetDlgItemText = *opaque{};
-        pub const SendDlgItemMessage = *opaque{};
-        pub const DefDlgProc = *opaque{};
-        pub const CallMsgFilter = *opaque{};
-        pub const CharToOem = *opaque{};
-        pub const OemToChar = *opaque{};
-        pub const CharToOemBuff = *opaque{};
-        pub const OemToCharBuff = *opaque{};
-        pub const CharUpper = *opaque{};
-        pub const CharUpperBuff = *opaque{};
-        pub const CharLower = *opaque{};
-        pub const CharLowerBuff = *opaque{};
-        pub const CharNext = *opaque{};
-        pub const CharPrev = *opaque{};
-        pub const IsCharAlpha = *opaque{};
-        pub const IsCharAlphaNumeric = *opaque{};
-        pub const IsCharUpper = *opaque{};
-        pub const LoadAccelerators = *opaque{};
-        pub const CreateAcceleratorTable = *opaque{};
-        pub const CopyAcceleratorTable = *opaque{};
-        pub const TranslateAccelerator = *opaque{};
-        pub const LoadMenu = *opaque{};
-        pub const LoadMenuIndirect = *opaque{};
-        pub const ChangeMenu = *opaque{};
-        pub const GetMenuString = *opaque{};
-        pub const InsertMenu = *opaque{};
-        pub const AppendMenu = *opaque{};
-        pub const ModifyMenu = *opaque{};
-        pub const InsertMenuItem = *opaque{};
-        pub const GetMenuItemInfo = *opaque{};
-        pub const SetMenuItemInfo = *opaque{};
-        pub const SetProp = *opaque{};
-        pub const GetProp = *opaque{};
-        pub const RemoveProp = *opaque{};
-        pub const EnumPropsEx = *opaque{};
-        pub const EnumProps = *opaque{};
-        pub const SetWindowText = *opaque{};
-        pub const GetWindowText = *opaque{};
-        pub const GetWindowTextLength = *opaque{};
-        pub const MessageBox = *opaque{};
-        pub const MessageBoxEx = *opaque{};
-        pub const MessageBoxIndirect = *opaque{};
-        pub const GetWindowLong = *opaque{};
-        pub const SetWindowLong = *opaque{};
-        pub const GetWindowLongPtr = *opaque{};
-        pub const SetWindowLongPtr = *opaque{};
-        pub const GetClassLong = *opaque{};
-        pub const SetClassLong = *opaque{};
-        pub const GetClassLongPtr = *opaque{};
-        pub const SetClassLongPtr = *opaque{};
-        pub const FindWindow = *opaque{};
-        pub const FindWindowEx = *opaque{};
-        pub const GetClassName = *opaque{};
-        pub const SetWindowsHook = *opaque{};
-        pub const SetWindowsHookEx = *opaque{};
-        pub const LoadCursor = *opaque{};
-        pub const LoadCursorFromFile = *opaque{};
-        pub const LoadIcon = *opaque{};
-        pub const PrivateExtractIcons = *opaque{};
-        pub const LoadImage = *opaque{};
-        pub const GetIconInfoEx = *opaque{};
-        pub const IsDialogMessage = *opaque{};
-        pub const DefFrameProc = *opaque{};
-        pub const DefMDIChildProc = *opaque{};
-        pub const CreateMDIWindow = *opaque{};
-        pub const SystemParametersInfo = *opaque{};
-        pub const GetWindowModuleFileName = *opaque{};
-        pub const RealGetWindowClass = *opaque{};
-        pub const GetAltTabInfo = *opaque{};
+        pub const WINSTAENUMPROC = *opaque {};
+        pub const DESKTOPENUMPROC = *opaque {};
+        pub const OPENFILENAME_NT4 = *opaque {};
+        pub const OPENFILENAME = *opaque {};
+        pub const OFNOTIFY = *opaque {};
+        pub const OFNOTIFYEX = *opaque {};
+        pub const CHOOSECOLOR = *opaque {};
+        pub const FINDREPLACE = *opaque {};
+        pub const CHOOSEFONT = *opaque {};
+        pub const PRINTDLG = *opaque {};
+        pub const PRINTDLGEX = *opaque {};
+        pub const PAGESETUPDLG = *opaque {};
+        pub const PROPENUMPROC = *opaque {};
+        pub const PROPENUMPROCEX = *opaque {};
+        pub const NAMEENUMPROC = *opaque {};
+        pub const CBT_CREATEWND = *opaque {};
+        pub const WNDCLASSEX = *opaque {};
+        pub const WNDCLASS = *opaque {};
+        pub const CREATESTRUCT = *opaque {};
+        pub const MENUITEMINFO = *opaque {};
+        pub const MSGBOXPARAMS = *opaque {};
+        pub const ICONINFOEX = *opaque {};
+        pub const MDICREATESTRUCT = *opaque {};
+        pub const NONCLIENTMETRICS = *opaque {};
+        pub const ICONMETRICS = *opaque {};
+        pub const GetOpenFileName = *opaque {};
+        pub const GetSaveFileName = *opaque {};
+        pub const GetFileTitle = *opaque {};
+        pub const ChooseColor = *opaque {};
+        pub const FindText = *opaque {};
+        pub const ReplaceText = *opaque {};
+        pub const ChooseFont = *opaque {};
+        pub const PrintDlg = *opaque {};
+        pub const PrintDlgEx = *opaque {};
+        pub const PageSetupDlg = *opaque {};
+        pub const LoadString = *opaque {};
+        pub const wvsprintf = *opaque {};
+        pub const wsprintf = *opaque {};
+        pub const RegisterWindowMessage = *opaque {};
+        pub const GetMessage = *opaque {};
+        pub const DispatchMessage = *opaque {};
+        pub const PeekMessage = *opaque {};
+        pub const SendMessage = *opaque {};
+        pub const SendMessageTimeout = *opaque {};
+        pub const SendNotifyMessage = *opaque {};
+        pub const SendMessageCallback = *opaque {};
+        pub const BroadcastSystemMessageEx = *opaque {};
+        pub const BroadcastSystemMessage = *opaque {};
+        pub const PostMessage = *opaque {};
+        pub const PostThreadMessage = *opaque {};
+        pub const DefWindowProc = *opaque {};
+        pub const CallWindowProc = *opaque {};
+        pub const RegisterClass = *opaque {};
+        pub const UnregisterClass = *opaque {};
+        pub const GetClassInfo = *opaque {};
+        pub const RegisterClassEx = *opaque {};
+        pub const GetClassInfoEx = *opaque {};
+        pub const CreateWindowEx = *opaque {};
+        pub const CreateDialogParam = *opaque {};
+        pub const CreateDialogIndirectParam = *opaque {};
+        pub const DialogBoxParam = *opaque {};
+        pub const DialogBoxIndirectParam = *opaque {};
+        pub const SetDlgItemText = *opaque {};
+        pub const GetDlgItemText = *opaque {};
+        pub const SendDlgItemMessage = *opaque {};
+        pub const DefDlgProc = *opaque {};
+        pub const CallMsgFilter = *opaque {};
+        pub const CharToOem = *opaque {};
+        pub const OemToChar = *opaque {};
+        pub const CharToOemBuff = *opaque {};
+        pub const OemToCharBuff = *opaque {};
+        pub const CharUpper = *opaque {};
+        pub const CharUpperBuff = *opaque {};
+        pub const CharLower = *opaque {};
+        pub const CharLowerBuff = *opaque {};
+        pub const CharNext = *opaque {};
+        pub const CharPrev = *opaque {};
+        pub const IsCharAlpha = *opaque {};
+        pub const IsCharAlphaNumeric = *opaque {};
+        pub const IsCharUpper = *opaque {};
+        pub const LoadAccelerators = *opaque {};
+        pub const CreateAcceleratorTable = *opaque {};
+        pub const CopyAcceleratorTable = *opaque {};
+        pub const TranslateAccelerator = *opaque {};
+        pub const LoadMenu = *opaque {};
+        pub const LoadMenuIndirect = *opaque {};
+        pub const ChangeMenu = *opaque {};
+        pub const GetMenuString = *opaque {};
+        pub const InsertMenu = *opaque {};
+        pub const AppendMenu = *opaque {};
+        pub const ModifyMenu = *opaque {};
+        pub const InsertMenuItem = *opaque {};
+        pub const GetMenuItemInfo = *opaque {};
+        pub const SetMenuItemInfo = *opaque {};
+        pub const SetProp = *opaque {};
+        pub const GetProp = *opaque {};
+        pub const RemoveProp = *opaque {};
+        pub const EnumPropsEx = *opaque {};
+        pub const EnumProps = *opaque {};
+        pub const SetWindowText = *opaque {};
+        pub const GetWindowText = *opaque {};
+        pub const GetWindowTextLength = *opaque {};
+        pub const MessageBox = *opaque {};
+        pub const MessageBoxEx = *opaque {};
+        pub const MessageBoxIndirect = *opaque {};
+        pub const GetWindowLong = *opaque {};
+        pub const SetWindowLong = *opaque {};
+        pub const GetWindowLongPtr = *opaque {};
+        pub const SetWindowLongPtr = *opaque {};
+        pub const GetClassLong = *opaque {};
+        pub const SetClassLong = *opaque {};
+        pub const GetClassLongPtr = *opaque {};
+        pub const SetClassLongPtr = *opaque {};
+        pub const FindWindow = *opaque {};
+        pub const FindWindowEx = *opaque {};
+        pub const GetClassName = *opaque {};
+        pub const SetWindowsHook = *opaque {};
+        pub const SetWindowsHookEx = *opaque {};
+        pub const LoadCursor = *opaque {};
+        pub const LoadCursorFromFile = *opaque {};
+        pub const LoadIcon = *opaque {};
+        pub const PrivateExtractIcons = *opaque {};
+        pub const LoadImage = *opaque {};
+        pub const GetIconInfoEx = *opaque {};
+        pub const IsDialogMessage = *opaque {};
+        pub const DefFrameProc = *opaque {};
+        pub const DefMDIChildProc = *opaque {};
+        pub const CreateMDIWindow = *opaque {};
+        pub const SystemParametersInfo = *opaque {};
+        pub const GetWindowModuleFileName = *opaque {};
+        pub const RealGetWindowClass = *opaque {};
+        pub const GetAltTabInfo = *opaque {};
     } else struct {
         pub const WINSTAENUMPROC = @compileError("'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module");
         pub const DESKTOPENUMPROC = @compileError("'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module");
@@ -10377,36 +9704,86 @@ const SIZE = @import("../foundation.zig").SIZE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WINSTAENUMPROCA")) { _ = WINSTAENUMPROCA; }
-    if (@hasDecl(@This(), "WINSTAENUMPROCW")) { _ = WINSTAENUMPROCW; }
-    if (@hasDecl(@This(), "DESKTOPENUMPROCA")) { _ = DESKTOPENUMPROCA; }
-    if (@hasDecl(@This(), "DESKTOPENUMPROCW")) { _ = DESKTOPENUMPROCW; }
-    if (@hasDecl(@This(), "LPOFNHOOKPROC")) { _ = LPOFNHOOKPROC; }
-    if (@hasDecl(@This(), "LPCCHOOKPROC")) { _ = LPCCHOOKPROC; }
-    if (@hasDecl(@This(), "LPFRHOOKPROC")) { _ = LPFRHOOKPROC; }
-    if (@hasDecl(@This(), "LPCFHOOKPROC")) { _ = LPCFHOOKPROC; }
-    if (@hasDecl(@This(), "LPPRINTHOOKPROC")) { _ = LPPRINTHOOKPROC; }
-    if (@hasDecl(@This(), "LPSETUPHOOKPROC")) { _ = LPSETUPHOOKPROC; }
-    if (@hasDecl(@This(), "LPPAGEPAINTHOOK")) { _ = LPPAGEPAINTHOOK; }
-    if (@hasDecl(@This(), "LPPAGESETUPHOOK")) { _ = LPPAGESETUPHOOK; }
-    if (@hasDecl(@This(), "WNDPROC")) { _ = WNDPROC; }
-    if (@hasDecl(@This(), "DLGPROC")) { _ = DLGPROC; }
-    if (@hasDecl(@This(), "TIMERPROC")) { _ = TIMERPROC; }
-    if (@hasDecl(@This(), "WNDENUMPROC")) { _ = WNDENUMPROC; }
-    if (@hasDecl(@This(), "HOOKPROC")) { _ = HOOKPROC; }
-    if (@hasDecl(@This(), "SENDASYNCPROC")) { _ = SENDASYNCPROC; }
-    if (@hasDecl(@This(), "PROPENUMPROCA")) { _ = PROPENUMPROCA; }
-    if (@hasDecl(@This(), "PROPENUMPROCW")) { _ = PROPENUMPROCW; }
-    if (@hasDecl(@This(), "PROPENUMPROCEXA")) { _ = PROPENUMPROCEXA; }
-    if (@hasDecl(@This(), "PROPENUMPROCEXW")) { _ = PROPENUMPROCEXW; }
-    if (@hasDecl(@This(), "NAMEENUMPROCA")) { _ = NAMEENUMPROCA; }
-    if (@hasDecl(@This(), "NAMEENUMPROCW")) { _ = NAMEENUMPROCW; }
-    if (@hasDecl(@This(), "PREGISTERCLASSNAMEW")) { _ = PREGISTERCLASSNAMEW; }
-    if (@hasDecl(@This(), "MSGBOXCALLBACK")) { _ = MSGBOXCALLBACK; }
+    if (@hasDecl(@This(), "WINSTAENUMPROCA")) {
+        _ = WINSTAENUMPROCA;
+    }
+    if (@hasDecl(@This(), "WINSTAENUMPROCW")) {
+        _ = WINSTAENUMPROCW;
+    }
+    if (@hasDecl(@This(), "DESKTOPENUMPROCA")) {
+        _ = DESKTOPENUMPROCA;
+    }
+    if (@hasDecl(@This(), "DESKTOPENUMPROCW")) {
+        _ = DESKTOPENUMPROCW;
+    }
+    if (@hasDecl(@This(), "LPOFNHOOKPROC")) {
+        _ = LPOFNHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPCCHOOKPROC")) {
+        _ = LPCCHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPFRHOOKPROC")) {
+        _ = LPFRHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPCFHOOKPROC")) {
+        _ = LPCFHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPPRINTHOOKPROC")) {
+        _ = LPPRINTHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPSETUPHOOKPROC")) {
+        _ = LPSETUPHOOKPROC;
+    }
+    if (@hasDecl(@This(), "LPPAGEPAINTHOOK")) {
+        _ = LPPAGEPAINTHOOK;
+    }
+    if (@hasDecl(@This(), "LPPAGESETUPHOOK")) {
+        _ = LPPAGESETUPHOOK;
+    }
+    if (@hasDecl(@This(), "WNDPROC")) {
+        _ = WNDPROC;
+    }
+    if (@hasDecl(@This(), "DLGPROC")) {
+        _ = DLGPROC;
+    }
+    if (@hasDecl(@This(), "TIMERPROC")) {
+        _ = TIMERPROC;
+    }
+    if (@hasDecl(@This(), "WNDENUMPROC")) {
+        _ = WNDENUMPROC;
+    }
+    if (@hasDecl(@This(), "HOOKPROC")) {
+        _ = HOOKPROC;
+    }
+    if (@hasDecl(@This(), "SENDASYNCPROC")) {
+        _ = SENDASYNCPROC;
+    }
+    if (@hasDecl(@This(), "PROPENUMPROCA")) {
+        _ = PROPENUMPROCA;
+    }
+    if (@hasDecl(@This(), "PROPENUMPROCW")) {
+        _ = PROPENUMPROCW;
+    }
+    if (@hasDecl(@This(), "PROPENUMPROCEXA")) {
+        _ = PROPENUMPROCEXA;
+    }
+    if (@hasDecl(@This(), "PROPENUMPROCEXW")) {
+        _ = PROPENUMPROCEXW;
+    }
+    if (@hasDecl(@This(), "NAMEENUMPROCA")) {
+        _ = NAMEENUMPROCA;
+    }
+    if (@hasDecl(@This(), "NAMEENUMPROCW")) {
+        _ = NAMEENUMPROCW;
+    }
+    if (@hasDecl(@This(), "PREGISTERCLASSNAMEW")) {
+        _ = PREGISTERCLASSNAMEW;
+    }
+    if (@hasDecl(@This(), "MSGBOXCALLBACK")) {
+        _ = MSGBOXCALLBACK;
+    }
 
-    @setEvalBranchQuota(
-        @import("std").meta.declarations(@This()).len * 3
-    );
+    @setEvalBranchQuota(@import("std").meta.declarations(@This()).len * 3);
 
     // reference all the pub declarations
     if (!@import("std").builtin.is_test) return;
